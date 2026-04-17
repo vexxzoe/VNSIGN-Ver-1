@@ -471,7 +471,7 @@ const Features = () => {
   ];
 
   return (
-    <section id="features" className="relative overflow-hidden bg-white" style={{ fontFamily: "'Be Vietnam Pro', sans-serif" }}>
+    <section id="features" className="relative overflow-hidden bg-brand-950" style={{ fontFamily: "'Be Vietnam Pro', sans-serif" }}>
       {/* Ambient glows */}
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-brand-600/25 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent-400/10 rounded-full blur-[120px] pointer-events-none" />
