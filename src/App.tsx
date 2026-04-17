@@ -166,7 +166,9 @@ const Navbar = () => {
               <Globe className="w-5 h-5" />
             </button>
             <a
-              href="#features"
+              href="https://www.tiktok.com/@vnvar.vn?is_from_webapp=1&sender_device=pc"
+              target="_blank"
+              rel="noopener noreferrer"
               className="border border-white/60 text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-white/10 hover:border-white transition-all active:scale-95"
             >
               Xem Demo
@@ -276,7 +278,7 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="relative w-full min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative w-full min-h-screen flex items-center overflow-hidden"
       style={{ fontFamily: "'Be Vietnam Pro', sans-serif" }}
     >
       {/* ── Full-width video background ── */}
@@ -291,14 +293,19 @@ const Hero = () => {
         <source src="/assets/videos/vnsign-preview.mp4" type="video/mp4" />
       </video>
 
-      {/* ── Dark overlay 45% ── */}
-      <div className="absolute inset-0 z-10" style={{ background: 'linear-gradient(135deg, rgba(2,34,46,0.72) 0%, rgba(8,103,136,0.55) 60%, rgba(0,0,0,0.50) 100%)' }} />
+      <div 
+        className="absolute inset-0 z-10" 
+        style={{ 
+          background: 'linear-gradient(to right, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.80) 25%, rgba(0,0,0,0.65) 45%, rgba(0,0,0,0.35) 70%, rgba(0,0,0,0.15) 100%)' 
+        }} 
+      />
 
       {/* ── Subtle bottom gradient fade ── */}
       <div className="absolute bottom-0 left-0 right-0 h-48 z-10" style={{ background: 'linear-gradient(to top, rgba(2,34,46,0.6) 0%, transparent 100%)' }} />
 
       {/* ── Content ── */}
-      <div className="relative z-20 w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-24 py-40 flex flex-col items-start">
+      <div className="relative z-20 w-full px-6 md:px-12 lg:px-24 pt-32 pb-24">
+        <div className="max-w-7xl mx-auto w-full flex flex-col items-start">
 
         {/* Badge */}
         <motion.div
@@ -384,6 +391,7 @@ const Hero = () => {
             </div>
           ))}
         </motion.div>
+        </div>
       </div>
 
       {/* ── Scroll indicator ── */}
@@ -471,88 +479,86 @@ const Features = () => {
   ];
 
   return (
-    <section id="features" className="relative overflow-hidden bg-brand-950" style={{ fontFamily: "'Be Vietnam Pro', sans-serif" }}>
-      {/* Ambient glows */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-brand-600/25 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent-400/10 rounded-full blur-[120px] pointer-events-none" />
+    <section id="features" className="section-padding bg-white relative overflow-hidden">
+      {/* Background overlay nhẹ */}
+      <div className="absolute top-0 right-0 w-1/3 h-full bg-accent-400/5 blur-[120px] pointer-events-none" />
 
-      {/* ── Section Header ── */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 pt-24 pb-16 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16"
-        >
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 pt-24 pb-16">
+        
+        {/* Tiêu đề section - giống ảnh bạn gửi */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
           <div>
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-accent-400/30 bg-accent-400/10 mb-6">
               <div className="w-1.5 h-1.5 rounded-full bg-accent-400 animate-pulse" />
-              <span className="text-accent-400 text-xs font-bold uppercase tracking-[0.18em]">Tính năng cốt lõi</span>
+              <span className="text-accent-400 text-xs font-bold uppercase tracking-[0.18em]">TÍNH NĂNG CỐT LÕI</span>
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-[1.08] tracking-tight max-w-2xl">
-              NỀN TẢNG <span style={{ color: '#ffc107' }}>THÔNG MINH</span><br />CHO MỌI MÀN HÌNH
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-brand-950 leading-[1.08] tracking-tight max-w-3xl">
+              NỀN TẢNG <span className="text-accent-400">THÔNG MINH</span><br />
+              CHO MỌI MÀN HÌNH
             </h2>
           </div>
-          <p className="text-white/50 text-base font-medium leading-relaxed max-w-sm md:text-right">
+          <p className="text-brand-600 text-base font-medium leading-relaxed max-w-sm md:text-right">
             {t.features.subtitle}
           </p>
-        </motion.div>
+        </div>
 
-        <div className="grid lg:grid-cols-12 gap-8">
-          {/* Left: Sticky Video Showcase */}
+        <div className="grid lg:grid-cols-12 gap-16">
+          {/* Left: Video Showcase */}
           <motion.div 
-            initial={{ opacity: 0, x: -40 }}
+            initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
             className="lg:col-span-5 relative"
           >
-            <div className="sticky top-28">
-              <div className="relative rounded-[32px] overflow-hidden shadow-2xl aspect-[4/5] bg-brand-900 group border border-white/10">
+            <div className="sticky top-32">
+              <div className="relative rounded-[40px] overflow-hidden border border-brand-100 shadow-2xl aspect-[4/5] bg-brand-950 group">
                 <video 
-                  autoPlay loop muted playsInline
-                  className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-[6s]"
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline 
+                  className="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-[5s]"
                 >
                   <source src="/assets/case-studies/AEON-BETA/VIDEO/7517333053904.mp4" type="video/mp4" />
                 </video>
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-950 via-brand-950/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
 
                 {/* Live badge */}
-                <div className="absolute top-6 left-6 flex items-center gap-2 bg-black/40 backdrop-blur-md border border-white/10 rounded-full px-4 py-2">
+                <div className="absolute top-6 left-6 flex items-center gap-2 bg-black/60 backdrop-blur-md border border-white/20 rounded-full px-4 py-1.5">
                   <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                  <span className="text-white text-[10px] font-bold uppercase tracking-widest">Live System</span>
+                  <span className="text-white text-xs font-bold uppercase tracking-widest">LIVE SYSTEM</span>
                 </div>
 
-                <div className="absolute bottom-8 left-8 right-8">
-                  <div className="text-accent-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">VNSIGN CMS Platform</div>
-                  <h4 className="text-white text-2xl font-black mb-3 leading-tight">
+                <div className="absolute bottom-10 left-10 right-10 text-white">
+                  <div className="text-accent-400 text-xs font-black uppercase tracking-widest mb-2">VNSIGN CMS PLATFORM</div>
+                  <h4 className="text-2xl md:text-3xl font-black leading-tight mb-3">
                     Quản lý tập trung — Điều khiển toàn bộ màn hình từ một nơi
                   </h4>
-                  <div className="flex items-center gap-3 mt-4">
+                  <div className="flex items-center gap-3 text-sm">
                     <div className="flex -space-x-2">
                       {[1,2,3].map(i => (
-                        <div key={i} className="w-7 h-7 rounded-full bg-brand-600 border-2 border-brand-950 flex items-center justify-center text-white text-[9px] font-black">{i}</div>
+                        <div key={i} className="w-7 h-7 rounded-full bg-brand-600 border-2 border-brand-950 flex items-center justify-center text-white text-[10px] font-black">{i}</div>
                       ))}
                     </div>
-                    <span className="text-white/50 text-xs font-medium">500+ doanh nghiệp tin dùng</span>
+                    <span>500+ doanh nghiệp tin dùng</span>
                   </div>
                 </div>
               </div>
-              
+
               {/* Floating uptime badge */}
               <motion.div 
-                animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -bottom-4 -right-4 bg-accent-400 px-6 py-4 rounded-2xl shadow-2xl shadow-accent-400/30 z-20"
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 4, repeat: Infinity }}
+                className="absolute -bottom-6 -right-6 bg-accent-400 px-7 py-5 rounded-3xl shadow-2xl z-20"
               >
-                <div className="text-3xl font-black text-brand-950 leading-none">99.9%</div>
-                <div className="text-[10px] font-bold text-brand-950/60 uppercase tracking-widest mt-1">Uptime Cloud</div>
+                <div className="text-4xl font-black text-brand-950">99.9%</div>
+                <div className="text-xs font-bold text-brand-950/70 uppercase tracking-widest">Uptime Cloud</div>
               </motion.div>
             </div>
           </motion.div>
 
           {/* Right: Feature Cards */}
-          <div className="lg:col-span-7 flex flex-col gap-5 pb-24">
+          <div className="lg:col-span-7 flex flex-col gap-6">
             {features.map((feature, index) => (
               <FeatureCard 
                 key={index} 
