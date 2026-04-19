@@ -1,4 +1,5 @@
 import React, { useState, useEffect, Suspense } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { LanguageProvider, useLanguage } from './contexts/LanguageContext';
 import { Chatbot } from './components/Chatbot';
 import { LazySection } from './components/LazySection';
@@ -20,15 +21,142 @@ const USP = React.lazy(() => import('./components/sections/USP'));
 const Pricing = React.lazy(() => import('./components/sections/Pricing'));
 const CTA = React.lazy(() => import('./components/sections/CTA'));
 const Testimonials = React.lazy(() => import('./components/sections/Testimonials'));
-const Resources = React.lazy(() => import('./components/sections/Resources'));
 const Contact = React.lazy(() => import('./components/sections/Contact'));
+
+const FeaturesPage = React.lazy(() => import('./pages/FeaturesPage'));
+const DocsPage = React.lazy(() => import('./pages/DocsPage'));
+const AboutPage = React.lazy(() => import('./pages/AboutPage'));
 
 const FallbackSkeleton = () => (
   <div className="h-64 w-full animate-pulse bg-brand-50/20 rounded-[40px] my-8 max-w-7xl mx-auto" />
 );
 
+const ScrollToHash = () => {
+  const { hash, state } = useLocation();
+
+  useEffect(() => {
+    if (hash) {
+      setTimeout(() => {
+        const id = hash.replace('#', '');
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  }, [hash]);
+
+  useEffect(() => {
+    const scrollState = state as { scrollTo?: string } | null;
+    if (scrollState && scrollState.scrollTo) {
+      setTimeout(() => {
+        const element = document.getElementById(scrollState.scrollTo!);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  }, [state]);
+
+  return null;
+};
+
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [pathname]);
+
+  return null;
+};
+
+const Home = ({ selectedProject, setSelectedProject }: any) => {
+  if (selectedProject) {
+    return (
+      <ProjectDetail 
+        project={selectedProject} 
+        onBack={() => setSelectedProject(null)} 
+      />
+    );
+  }
+
+  return (
+    <main>
+      {/* Above the fold, loaded immediately */}
+      <Hero />
+      
+      {/* Below the fold, loaded lazily and only when scrolled into view */}
+      <LazySection id="features">
+        <Suspense fallback={<FallbackSkeleton />}>
+          <Features />
+        </Suspense>
+      </LazySection>
+
+      <LazySection id="solutions">
+        <Suspense fallback={<FallbackSkeleton />}>
+          <Solutions />
+        </Suspense>
+      </LazySection>
+
+      <LazySection id="lcd-screens">
+        <Suspense fallback={<FallbackSkeleton />}>
+          <LCDScreens />
+        </Suspense>
+      </LazySection>
+
+      <LazySection id="led-screens">
+        <Suspense fallback={<FallbackSkeleton />}>
+          <LEDScreens />
+        </Suspense>
+      </LazySection>
+
+      <LazySection id="case-studies">
+        <Suspense fallback={<FallbackSkeleton />}>
+          <CaseStudies onProjectClick={(p: any) => setSelectedProject(p)} />
+        </Suspense>
+      </LazySection>
+
+      <LazySection id="how-it-works">
+        <Suspense fallback={<FallbackSkeleton />}>
+          <HowItWorks />
+        </Suspense>
+      </LazySection>
+
+      <LazySection>
+        <Suspense fallback={<FallbackSkeleton />}>
+          <USP />
+        </Suspense>
+      </LazySection>
+
+      <LazySection id="pricing">
+        <Suspense fallback={<FallbackSkeleton />}>
+          <Pricing />
+        </Suspense>
+      </LazySection>
+
+      <LazySection>
+        <Suspense fallback={<FallbackSkeleton />}>
+          <CTA />
+        </Suspense>
+      </LazySection>
+
+      <LazySection>
+        <Suspense fallback={<FallbackSkeleton />}>
+          <Testimonials />
+        </Suspense>
+      </LazySection>
+
+      <LazySection id="contact">
+        <Suspense fallback={<FallbackSkeleton />}>
+          <Contact />
+        </Suspense>
+      </LazySection>
+    </main>
+  );
+};
+
 const MainContent = () => {
-  const { t } = useLanguage();
   const [selectedProject, setSelectedProject] = useState<any>(null);
 
   useEffect(() => {
@@ -37,101 +165,31 @@ const MainContent = () => {
     }
   }, [selectedProject]);
 
-  if (selectedProject) {
-    return (
-      <div className="min-h-screen selection:bg-brand-200 selection:text-brand-700">
-        <Navbar />
-        <ProjectDetail 
-          project={selectedProject} 
-          onBack={() => setSelectedProject(null)} 
-        />
-        <Footer />
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-screen selection:bg-brand-200 selection:text-brand-700">
+      <ScrollToTop />
+      <ScrollToHash />
       <Navbar />
-      <main>
-        {/* Above the fold, loaded immediately */}
-        <Hero />
-        
-        {/* Below the fold, loaded lazily and only when scrolled into view */}
-        <LazySection id="features">
+      <Routes>
+        <Route path="/" element={<Home selectedProject={selectedProject} setSelectedProject={setSelectedProject} />} />
+        <Route path="/features" element={
           <Suspense fallback={<FallbackSkeleton />}>
-            <Features />
+            <FeaturesPage />
           </Suspense>
-        </LazySection>
-
-        <LazySection id="solutions">
+        } />
+        <Route path="/docs" element={
           <Suspense fallback={<FallbackSkeleton />}>
-            <Solutions />
+            <DocsPage />
           </Suspense>
-        </LazySection>
-
-        <LazySection id="lcd-screens">
+        } />
+        <Route path="/about" element={
           <Suspense fallback={<FallbackSkeleton />}>
-            <LCDScreens />
+            <AboutPage />
           </Suspense>
-        </LazySection>
-
-        <LazySection id="led-screens">
-          <Suspense fallback={<FallbackSkeleton />}>
-            <LEDScreens />
-          </Suspense>
-        </LazySection>
-
-        <LazySection id="case-studies">
-          <Suspense fallback={<FallbackSkeleton />}>
-            <CaseStudies onProjectClick={(p: any) => setSelectedProject(p)} />
-          </Suspense>
-        </LazySection>
-
-        <LazySection id="how-it-works">
-          <Suspense fallback={<FallbackSkeleton />}>
-            <HowItWorks />
-          </Suspense>
-        </LazySection>
-
-        <LazySection>
-          <Suspense fallback={<FallbackSkeleton />}>
-            <USP />
-          </Suspense>
-        </LazySection>
-
-        <LazySection id="pricing">
-          <Suspense fallback={<FallbackSkeleton />}>
-            <Pricing />
-          </Suspense>
-        </LazySection>
-
-        <LazySection>
-          <Suspense fallback={<FallbackSkeleton />}>
-            <CTA />
-          </Suspense>
-        </LazySection>
-
-        <LazySection>
-          <Suspense fallback={<FallbackSkeleton />}>
-            <Testimonials />
-          </Suspense>
-        </LazySection>
-
-        <LazySection id="resources">
-          <Suspense fallback={<FallbackSkeleton />}>
-            <Resources />
-          </Suspense>
-        </LazySection>
-
-        <LazySection id="contact">
-          <Suspense fallback={<FallbackSkeleton />}>
-            <Contact />
-          </Suspense>
-        </LazySection>
-      </main>
+        } />
+      </Routes>
       <Footer />
-      <Chatbot />
+      {!selectedProject && <Chatbot />}
     </div>
   );
 };

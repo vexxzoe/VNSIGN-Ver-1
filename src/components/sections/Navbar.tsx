@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, Suspense } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { 
   Monitor, Layout, Clock, Cloud, Shield, Zap, ChevronRight, Menu, X, Play, 
   CheckCircle2, ArrowLeft, AlertCircle, Tv, Smartphone, Globe, Settings, 
@@ -12,6 +13,8 @@ import { LazyVideo } from '../LazyVideo';
 
 const Navbar = () => {
   const { t } = useLanguage();
+  const navigate = useNavigate();
+  const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSolutionsOpen, setIsSolutionsOpen] = useState(false);
@@ -46,21 +49,31 @@ const Navbar = () => {
     if (href.startsWith('#')) {
       e.preventDefault();
       const id = href.substring(1);
-      const element = document.getElementById(id);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+      if (location.pathname === '/') {
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else {
+        navigate('/', { state: { scrollTo: id } });
       }
+      setIsMobileMenuOpen(false);
+    } else if (href.startsWith('/')) {
+      e.preventDefault();
+      navigate(href);
+      setIsMobileMenuOpen(false);
+    } else {
       setIsMobileMenuOpen(false);
     }
   };
 
   const navLinks = [
-    { name: t.nav.features, href: '#features' },
+    { name: t.nav.features, href: '/features' },
     { name: "Màn hình", href: '#solutions', dropdown: true },
     { name: t.nav.projects, href: '#case-studies' },
     { name: t.nav.pricing, href: '#contact' },
-    { name: t.nav.resources, href: '#resources' },
-    { name: t.nav.process, href: '#how-it-works' },
+    { name: t.nav.resources, href: '/docs' },
+    { name: "Giới thiệu", href: '/about' },
     { name: t.nav.contact, href: '#contact' },
   ];
 
