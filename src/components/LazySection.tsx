@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, useInView } from 'motion/react';
+import { motion } from 'motion/react';
 import { ProgressBar } from './ProgressBar';
 
 interface LazySectionProps {
+  id?: string;
   children: React.ReactNode;
   className?: string;
   threshold?: number;
@@ -10,25 +11,48 @@ interface LazySectionProps {
   once?: boolean;
   showProgress?: boolean;
   progressLabel?: string;
+  minHeight?: string;
 }
 
 export const LazySection: React.FC<LazySectionProps> = ({ 
+  id,
   children, 
   className = "", 
   threshold = 0.1,
   rootMargin = "100px",
   once = true,
   showProgress = false,
-  progressLabel = "Loading Section"
+  progressLabel = "Loading Section",
+  minHeight = "20vh"
 }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { 
-    once, 
-    amount: threshold,
-    margin: rootMargin as any 
-  });
-
+  const ref = useRef<HTMLElement>(null);
+  const [isInView, setIsInView] = useState(false);
   const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          if (once && ref.current) {
+            observer.unobserve(ref.current);
+          }
+        } else if (!once) {
+          setIsInView(false);
+        }
+      },
+      {
+        threshold,
+        rootMargin
+      }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, [threshold, rootMargin, once]);
 
   useEffect(() => {
     if (isInView && showProgress) {
@@ -38,7 +62,7 @@ export const LazySection: React.FC<LazySectionProps> = ({
   }, [isInView, showProgress]);
 
   return (
-    <div ref={ref} className={className}>
+    <section id={id} ref={ref} className={className} style={{ minHeight: isInView ? 'auto' : minHeight }}>
       {showProgress && (
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 mb-4">
           <ProgressBar progress={progress} label={progressLabel} />
@@ -49,8 +73,8 @@ export const LazySection: React.FC<LazySectionProps> = ({
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        {isInView ? children : <div className="h-20" />}
+        {isInView ? children : <div className="h-64 w-full animate-pulse bg-brand-50/10 rounded-2xl" />}
       </motion.div>
-    </div>
+    </section>
   );
 };

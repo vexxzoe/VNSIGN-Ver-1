@@ -1,0 +1,261 @@
+import React, { useState, useEffect, useRef, Suspense } from 'react';
+import { 
+  Monitor, Layout, Clock, Cloud, Shield, Zap, ChevronRight, Menu, X, Play, 
+  CheckCircle2, ArrowLeft, AlertCircle, Tv, Smartphone, Globe, Settings, 
+  BarChart3, ChevronDown, FileText, Youtube, Award, Users, Rocket, HeartHandshake
+} from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
+import { cn } from '../../lib/utils';
+import { Logo } from '../Logo';
+import { useLanguage } from '../../contexts/LanguageContext';
+import { LazyVideo } from '../LazyVideo';
+
+const Navbar = () => {
+  const { t } = useLanguage();
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSolutionsOpen, setIsSolutionsOpen] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const solutionsTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Trigger after scrolling past hero section (approx 80vh)
+      const heroHeight = window.innerHeight * 0.8;
+      setIsScrolled(window.scrollY > heroHeight);
+      
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (window.scrollY / totalHeight) * 100;
+      setScrollProgress(progress);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleSolutionsEnter = () => {
+    if (solutionsTimeoutRef.current) clearTimeout(solutionsTimeoutRef.current);
+    setIsSolutionsOpen(true);
+  };
+
+  const handleSolutionsLeave = () => {
+    solutionsTimeoutRef.current = setTimeout(() => {
+      setIsSolutionsOpen(false);
+    }, 150);
+  };
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      const id = href.substring(1);
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+      setIsMobileMenuOpen(false);
+    }
+  };
+
+  const navLinks = [
+    { name: t.nav.features, href: '#features' },
+    { name: "Màn hình", href: '#solutions', dropdown: true },
+    { name: t.nav.projects, href: '#case-studies' },
+    { name: t.nav.pricing, href: '#contact' },
+    { name: t.nav.resources, href: '#resources' },
+    { name: t.nav.process, href: '#how-it-works' },
+    { name: t.nav.contact, href: '#contact' },
+  ];
+
+  const solutionItems = [
+    { 
+      name: t.nav.lcd, 
+      href: '#lcd-screens', 
+      desc: t.nav.lcdDesc,
+      icon: Monitor
+    },
+    { 
+      name: t.nav.led, 
+      href: '#led-screens', 
+      desc: t.nav.ledDesc,
+      icon: Tv
+    },
+  ];
+
+  return (
+    <nav className={cn(
+      "fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-6 md:px-12 lg:px-24 py-4",
+      isScrolled 
+        ? "bg-brand-600/97 backdrop-blur-lg shadow-xl shadow-brand-950/20 py-3 border-b border-brand-500/30" 
+        : "bg-transparent py-5"
+    )}>
+      <div className="max-w-7xl mx-auto flex items-center justify-between">
+        <a href="#" className="flex-shrink-0" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
+          <Logo variant="image" logoUrl="/assets/logos/vnsign-white.png" />
+        </a>
+        {/* Desktop Nav */}
+        <div className="hidden md:flex items-center gap-8">
+          {navLinks.map((link) => (
+            <div 
+              key={link.name} 
+              className="relative"
+              onMouseEnter={link.dropdown ? handleSolutionsEnter : undefined}
+              onMouseLeave={link.dropdown ? handleSolutionsLeave : undefined}
+            >
+              <a 
+                href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
+                className={cn(
+                  "text-sm font-semibold transition-colors flex items-center gap-1 py-2",
+                  isScrolled ? "text-white hover:text-accent-400" : "text-white/90 hover:text-white"
+                )}
+              >
+                {link.name}
+                {link.dropdown && <ChevronDown className={cn("w-4 h-4 transition-transform", isSolutionsOpen ? "rotate-180" : "")} />}
+              </a>
+
+              {link.dropdown && (
+                <AnimatePresence>
+                  {isSolutionsOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute top-full left-1/2 -translate-x-1/2 w-80 bg-white rounded-2xl shadow-2xl border border-brand-100 p-4 mt-2"
+                    >
+                      <div className="grid gap-2">
+                        {solutionItems.map((item) => (
+                          <a
+                            key={item.name}
+                            href={item.href}
+                            className="flex items-start gap-4 p-3 rounded-xl hover:bg-brand-50/50 transition-colors group"
+                            onClick={() => setIsSolutionsOpen(false)}
+                          >
+                            <div className="w-10 h-10 bg-brand-50 rounded-lg flex items-center justify-center shrink-0 group-hover:bg-brand-600 transition-colors">
+                              <item.icon className="w-5 h-5 text-brand-600 group-hover:text-white transition-colors" />
+                            </div>
+                            <div>
+                              <div className="text-sm font-bold text-brand-950 mb-1">{item.name}</div>
+                              <div className="text-xs text-brand-500 leading-relaxed">{item.desc}</div>
+                            </div>
+                          </a>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              )}
+            </div>
+          ))}
+          <div className="flex items-center gap-3">
+            <button className="text-white hover:text-accent-400 transition-colors">
+              <Globe className="w-5 h-5" />
+            </button>
+            <a
+              href="https://www.tiktok.com/@vnvar.vn?is_from_webapp=1&sender_device=pc"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border border-white/60 text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-white/10 hover:border-white transition-all active:scale-95"
+            >
+              Xem Demo
+            </a>
+            <a
+              href="#contact"
+              className="bg-brand-600 text-white px-5 py-2.5 rounded-full text-sm font-bold hover:bg-brand-700 transition-all shadow-lg shadow-brand-600/30 active:scale-95"
+              style={{ background: isScrolled ? '#086788' : 'rgba(255,193,7,1)', color: isScrolled ? '#fff' : '#02222e' }}
+            >
+              Nhận báo giá
+            </a>
+          </div>
+        </div>
+
+        {/* Mobile Toggle */}
+        <button 
+          className="md:hidden text-white relative w-10 h-10 flex items-center justify-center"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          <AnimatePresence initial={false}>
+            <motion.div
+              key={isMobileMenuOpen ? 'close' : 'menu'}
+              initial={{ opacity: 0, rotate: isMobileMenuOpen ? -90 : 90 }}
+              animate={{ opacity: 1, rotate: 0 }}
+              exit={{ opacity: 0, rotate: isMobileMenuOpen ? 90 : -90 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="absolute"
+            >
+              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </motion.div>
+          </AnimatePresence>
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div 
+            initial={{ opacity: 0, height: 0, y: -20 }}
+            animate={{ opacity: 1, height: 'auto', y: 0 }}
+            exit={{ opacity: 0, height: 0, y: -20 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="absolute top-full left-0 right-0 bg-brand-600 border-t border-white/10 shadow-2xl md:hidden overflow-hidden"
+          >
+            <motion.div 
+              initial="closed"
+              animate="open"
+              variants={{
+                open: { transition: { staggerChildren: 0.05, delayChildren: 0.1 } },
+                closed: { transition: { staggerChildren: 0.05, staggerDirection: -1 } }
+              }}
+              className="p-6 flex flex-col gap-4"
+            >
+              {navLinks.map((link) => (
+                <React.Fragment key={link.name}>
+                  <motion.a 
+                    href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
+                    variants={{
+                      open: { opacity: 1, x: 0 },
+                      closed: { opacity: 0, x: -10 }
+                    }}
+                    className="text-lg font-medium text-white/80 hover:text-white transition-colors"
+                    
+                  >
+                    {link.name}
+                  </motion.a>
+                  {link.dropdown && (
+                    <div className="pl-4 flex flex-col gap-3 border-l border-white/10 ml-1">
+                      {solutionItems.map((item) => (
+                        <motion.a
+                          key={item.name}
+                          href={item.href}
+                          variants={{
+                            open: { opacity: 1, x: 0 },
+                            closed: { opacity: 0, x: -10 }
+                          }}
+                          className="text-sm font-medium text-white/50 hover:text-white"
+                          
+                        >
+                          {item.name}
+                        </motion.a>
+                      ))}
+                    </div>
+                  )}
+                </React.Fragment>
+              ))}
+              <motion.button 
+                variants={{
+                  open: { opacity: 1, y: 0 },
+                  closed: { opacity: 0, y: 10 }
+                }}
+                className="bg-accent-400 text-brand-600 px-6 py-3 rounded-xl text-center font-bold shadow-lg shadow-accent-400/20"
+              >
+                {t.nav.tryNow}
+              </motion.button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </nav>
+  );
+};
+
+
+export default Navbar;
