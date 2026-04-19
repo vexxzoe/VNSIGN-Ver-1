@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef, Suspense } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { 
-  Monitor, Layout, Clock, Cloud, Shield, Zap, ChevronRight, Menu, X, Play, 
-  CheckCircle2, ArrowLeft, AlertCircle, Tv, Smartphone, Globe, Settings, 
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import {
+  Monitor, Layout, Clock, Cloud, Shield, Zap, ChevronRight, Menu, X, Play,
+  CheckCircle2, ArrowLeft, AlertCircle, Tv, Smartphone, Globe, Settings,
   BarChart3, ChevronDown, FileText, Youtube, Award, Users, Rocket, HeartHandshake
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
@@ -26,7 +26,7 @@ const Navbar = () => {
       // Trigger after scrolling past hero section (approx 80vh)
       const heroHeight = window.innerHeight * 0.8;
       setIsScrolled(window.scrollY > heroHeight);
-      
+
       const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
       const progress = (window.scrollY / totalHeight) * 100;
       setScrollProgress(progress);
@@ -78,15 +78,15 @@ const Navbar = () => {
   ];
 
   const solutionItems = [
-    { 
-      name: t.nav.lcd, 
-      href: '#lcd-screens', 
+    {
+      name: t.nav.lcd,
+      href: '#lcd-screens',
       desc: t.nav.lcdDesc,
       icon: Monitor
     },
-    { 
-      name: t.nav.led, 
-      href: '#led-screens', 
+    {
+      name: t.nav.led,
+      href: '#led-screens',
       desc: t.nav.ledDesc,
       icon: Tv
     },
@@ -95,24 +95,24 @@ const Navbar = () => {
   return (
     <nav className={cn(
       "fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-6 md:px-12 lg:px-24 py-4",
-      isScrolled 
-        ? "bg-brand-600/97 backdrop-blur-lg shadow-xl shadow-brand-950/20 py-3 border-b border-brand-500/30" 
+      isScrolled
+        ? "bg-brand-600/97 backdrop-blur-lg shadow-xl shadow-brand-950/20 py-3 border-b border-brand-500/30"
         : "bg-transparent py-5"
     )}>
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <a href="#" className="flex-shrink-0" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
+        <Link to="/" className="flex-shrink-0">
           <Logo variant="image" logoUrl="/assets/logos/vnsign-white.png" />
-        </a>
+        </Link>
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <div 
-              key={link.name} 
+            <div
+              key={link.name}
               className="relative"
               onMouseEnter={link.dropdown ? handleSolutionsEnter : undefined}
               onMouseLeave={link.dropdown ? handleSolutionsLeave : undefined}
             >
-              <a 
+              <a
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
                 className={cn(
@@ -181,7 +181,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Toggle */}
-        <button 
+        <button
           className="md:hidden text-white relative w-10 h-10 flex items-center justify-center"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
@@ -203,14 +203,14 @@ const Navbar = () => {
       {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, height: 0, y: -20 }}
             animate={{ opacity: 1, height: 'auto', y: 0 }}
             exit={{ opacity: 0, height: 0, y: -20 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
             className="absolute top-full left-0 right-0 bg-brand-600 border-t border-white/10 shadow-2xl md:hidden overflow-hidden"
           >
-            <motion.div 
+            <motion.div
               initial="closed"
               animate="open"
               variants={{
@@ -221,15 +221,15 @@ const Navbar = () => {
             >
               {navLinks.map((link) => (
                 <React.Fragment key={link.name}>
-                  <motion.a 
+                  <motion.a
                     href={link.href}
-                onClick={(e) => handleNavClick(e, link.href)}
+                    onClick={(e) => handleNavClick(e, link.href)}
                     variants={{
                       open: { opacity: 1, x: 0 },
                       closed: { opacity: 0, x: -10 }
                     }}
                     className="text-lg font-medium text-white/80 hover:text-white transition-colors"
-                    
+
                   >
                     {link.name}
                   </motion.a>
@@ -244,7 +244,7 @@ const Navbar = () => {
                             closed: { opacity: 0, x: -10 }
                           }}
                           className="text-sm font-medium text-white/50 hover:text-white"
-                          
+
                         >
                           {item.name}
                         </motion.a>
@@ -253,7 +253,7 @@ const Navbar = () => {
                   )}
                 </React.Fragment>
               ))}
-              <motion.button 
+              <motion.button
                 variants={{
                   open: { opacity: 1, y: 0 },
                   closed: { opacity: 0, y: 10 }
