@@ -26,6 +26,8 @@ const Contact = React.lazy(() => import('./components/sections/Contact'));
 const FeaturesPage = React.lazy(() => import('./pages/FeaturesPage'));
 const DocsPage = React.lazy(() => import('./pages/DocsPage'));
 const AboutPage = React.lazy(() => import('./pages/AboutPage'));
+const PricingPage = React.lazy(() => import('./pages/PricingPage'));
+const ProjectsPage = React.lazy(() => import('./pages/ProjectsPage'));
 
 const FallbackSkeleton = () => (
   <div className="h-64 w-full animate-pulse bg-brand-50/20 rounded-[40px] my-8 max-w-7xl mx-auto" />
@@ -185,6 +187,16 @@ const MainContent = () => {
         <Route path="/about" element={
           <Suspense fallback={<FallbackSkeleton />}>
             <AboutPage />
+          </Suspense>
+        } />
+        <Route path="/pricing" element={
+          <Suspense fallback={<FallbackSkeleton />}>
+            <PricingPage />
+          </Suspense>
+        } />
+        <Route path="/projects" element={
+          <Suspense fallback={<FallbackSkeleton />}>
+            <ProjectsPage />
           </Suspense>
         } />
       </Routes>

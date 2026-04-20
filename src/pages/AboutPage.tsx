@@ -65,10 +65,10 @@ const AboutPage = () => {
             className="w-full h-full object-cover" 
           />
         </div>
-        <div className="absolute inset-0 z-10" style={{ background: 'linear-gradient(to right, rgba(2,34,46,0.95) 0%, rgba(2,34,46,0.8) 50%, rgba(2,34,46,0.4) 100%)' }} />
+        <div className="absolute inset-0 z-10" style={{ background: 'linear-gradient(120deg, rgba(2,34,46,0.97) 0%, rgba(2,34,46,0.85) 60%, rgba(8,103,136,0.4) 100%)' }} />
         
-        <div className="relative z-20 max-w-7xl mx-auto w-full px-6 md:px-12 lg:px-24 pt-32 pb-24">
-          <div className="max-w-3xl">
+        <div className="relative z-20 max-w-7xl mx-auto w-full px-6 md:px-12 lg:px-24 pt-36 pb-28 text-center">
+          <div className="max-w-4xl mx-auto flex flex-col items-center">
             <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}

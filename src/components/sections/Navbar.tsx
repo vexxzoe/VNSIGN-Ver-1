@@ -70,8 +70,8 @@ const Navbar = () => {
   const navLinks = [
     { name: t.nav.features, href: '/features' },
     { name: "Màn hình", href: '#solutions', dropdown: true },
-    { name: t.nav.projects, href: '#case-studies' },
-    { name: t.nav.pricing, href: '#contact' },
+    { name: t.nav.projects, href: '/projects' },
+    { name: t.nav.pricing, href: '/pricing' },
     { name: t.nav.resources, href: '/docs' },
     { name: "Giới thiệu", href: '/about' },
     { name: t.nav.contact, href: '#contact' },
