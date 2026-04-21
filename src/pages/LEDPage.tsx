@@ -119,7 +119,7 @@ const LEDPage = () => {
           >
             Màn hình LED<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-400 via-accent-300 to-accent-400">
-              Chuyên nghiệp & Đẳng cấp
+              Trình chiếu ấn tượng & thu hút mọi ánh nhìn
             </span>
           </motion.h1>
 

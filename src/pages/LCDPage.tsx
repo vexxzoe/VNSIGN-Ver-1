@@ -97,7 +97,7 @@ const LCDPage = () => {
           >
             Màn hình LCD<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-400 via-accent-300 to-accent-400">
-              Chuyên nghiệp & Tương tác
+              Hiển thị chuyên nghiệp & tương tác hiệu quả
             </span>
           </motion.h1>
 
@@ -296,7 +296,7 @@ const ProductCard = ({ product, onQuote }: { product: any; onQuote: (name: strin
 
         {/* Action CTAs */}
         <div className="mt-auto flex flex-col gap-3">
-          <button 
+          <button
             onClick={() => onQuote(product.name)}
             className="w-full bg-brand-950 text-white py-4 rounded-[20px] text-sm font-black hover:bg-brand-600 shadow-xl shadow-brand-950/10 transition-all active:scale-95"
           >
