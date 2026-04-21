@@ -255,7 +255,7 @@ const FeaturesPage = () => {
               className="relative rounded-3xl overflow-hidden shadow-[0_24px_48px_rgba(8,103,136,0.18)] group"
             >
               <img
-                src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=900&q=80"
+                src="/assets/case-studies/CASE-KHAC/z7507825021044_0ae03fb13bd52cc35a2f340b21549b91.jpg"
                 alt="Centralized management dashboard"
                 className="w-full h-[700px] object-cover group-hover:scale-105 transition-transform duration-700"
               />
@@ -314,7 +314,7 @@ const FeaturesPage = () => {
               className="relative rounded-3xl overflow-hidden shadow-[0_24px_48px_rgba(255,193,7,0.2)] group"
             >
               <img
-                src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=900&q=80"
+                src="/assets/case-studies/CASE-KHAC/z7504464998053_c0c1b9a1ad9fb9cb3a4bb4a60f6a055c.jpg"
                 alt="Content management and scheduling"
                 className="w-full h-[700px] object-cover group-hover:scale-105 transition-transform duration-700"
               />
