@@ -8,10 +8,13 @@ import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../../lib/utils';
 import { Logo } from '../Logo';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { useContactModal } from '../../contexts/ModalContext';
 import { LazyVideo } from '../LazyVideo';
 
 const Pricing = () => {
   const { t } = useLanguage();
+  const { openContactModal } = useContactModal();
+
   const plans = [
     {
       name: t.pricing.plans.basic.name,
@@ -79,12 +82,15 @@ const Pricing = () => {
                 ))}
               </ul>
 
-              <button className={cn(
-                "w-full py-5 rounded-2xl font-black transition-all active:scale-95 text-lg uppercase tracking-tight",
-                plan.popular 
-                  ? "bg-accent-400 text-brand-600 hover:bg-black hover:text-white" 
-                  : "bg-brand-600/5 text-brand-600 hover:bg-brand-600 hover:text-white"
-              )}>
+              <button 
+                onClick={() => openContactModal(`Gói ${plan.name}`)}
+                className={cn(
+                  "w-full py-5 rounded-2xl font-black transition-all active:scale-95 text-lg uppercase tracking-tight cursor-pointer",
+                  plan.popular 
+                    ? "bg-accent-400 text-brand-600 hover:bg-black hover:text-white" 
+                    : "bg-brand-600/5 text-brand-600 hover:bg-brand-600 hover:text-white"
+                )}
+              >
                 Liên hệ ngay
               </button>
             </motion.div>

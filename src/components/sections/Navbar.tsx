@@ -9,10 +9,12 @@ import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../../lib/utils';
 import { Logo } from '../Logo';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { useContactModal } from '../../contexts/ModalContext';
 import { LazyVideo } from '../LazyVideo';
 
 const Navbar = () => {
   const { t } = useLanguage();
+  const { openContactModal } = useContactModal();
   const navigate = useNavigate();
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -74,19 +76,19 @@ const Navbar = () => {
     { name: t.nav.pricing, href: '/pricing' },
     { name: t.nav.resources, href: '/docs' },
     { name: "Giới thiệu", href: '/about' },
-    { name: t.nav.contact, href: '#contact' },
+    { name: t.nav.contact, href: '/contact' },
   ];
 
   const solutionItems = [
     {
       name: t.nav.lcd,
-      href: '#lcd-screens',
+      href: '/lcd',
       desc: t.nav.lcdDesc,
       icon: Monitor
     },
     {
       name: t.nav.led,
-      href: '#led-screens',
+      href: '/led',
       desc: t.nav.ledDesc,
       icon: Tv
     },
@@ -140,7 +142,7 @@ const Navbar = () => {
                             key={item.name}
                             href={item.href}
                             className="flex items-start gap-4 p-3 rounded-xl hover:bg-brand-50/50 transition-colors group"
-                            onClick={() => setIsSolutionsOpen(false)}
+                            onClick={(e) => { handleNavClick(e, item.href); setIsSolutionsOpen(false); }}
                           >
                             <div className="w-10 h-10 bg-brand-50 rounded-lg flex items-center justify-center shrink-0 group-hover:bg-brand-600 transition-colors">
                               <item.icon className="w-5 h-5 text-brand-600 group-hover:text-white transition-colors" />
@@ -170,13 +172,17 @@ const Navbar = () => {
             >
               Xem Demo
             </a>
-            <a
-              href="#contact"
-              className="bg-brand-600 text-white px-5 py-2.5 rounded-full text-sm font-bold hover:bg-brand-700 transition-all shadow-lg shadow-brand-600/30 active:scale-95"
-              style={{ background: isScrolled ? '#086788' : 'rgba(255,193,7,1)', color: isScrolled ? '#fff' : '#02222e' }}
+            <button
+              onClick={() => openContactModal('Giải pháp VNSIGN')}
+              className="px-5 py-2.5 rounded-full text-sm font-bold hover:scale-105 transition-all shadow-lg active:scale-95 cursor-pointer"
+              style={{ 
+                background: isScrolled ? '#086788' : 'rgba(255,193,7,1)', 
+                color: isScrolled ? '#fff' : '#02222e',
+                boxShadow: isScrolled ? '0 10px 15px -3px rgba(8,103,136,0.3)' : '0 10px 15px -3px rgba(255,193,7,0.3)'
+              }}
             >
               Nhận báo giá
-            </a>
+            </button>
           </div>
         </div>
 
@@ -239,6 +245,7 @@ const Navbar = () => {
                         <motion.a
                           key={item.name}
                           href={item.href}
+                          onClick={(e) => handleNavClick(e, item.href)}
                           variants={{
                             open: { opacity: 1, x: 0 },
                             closed: { opacity: 0, x: -10 }
@@ -254,11 +261,15 @@ const Navbar = () => {
                 </React.Fragment>
               ))}
               <motion.button
+                onClick={() => {
+                  openContactModal('Giải pháp VNSIGN');
+                  setIsMobileMenuOpen(false);
+                }}
                 variants={{
                   open: { opacity: 1, y: 0 },
                   closed: { opacity: 0, y: 10 }
                 }}
-                className="bg-accent-400 text-brand-600 px-6 py-3 rounded-xl text-center font-bold shadow-lg shadow-accent-400/20"
+                className="bg-accent-400 text-brand-600 px-6 py-3 rounded-xl text-center font-bold shadow-lg shadow-accent-400/20 active:scale-95 cursor-pointer"
               >
                 {t.nav.tryNow}
               </motion.button>

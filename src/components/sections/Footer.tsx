@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, Suspense } from 'react';
+import { Link } from 'react-router-dom';
 import { 
   Monitor, Layout, Clock, Cloud, Shield, Zap, ChevronRight, Menu, X, Play, 
   CheckCircle2, ArrowLeft, AlertCircle, Tv, Smartphone, Globe, Settings, 
@@ -8,10 +9,13 @@ import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../../lib/utils';
 import { Logo } from '../Logo';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { useContactModal } from '../../contexts/ModalContext';
 import { LazyVideo } from '../LazyVideo';
 
 const Footer = () => {
   const { t } = useLanguage();
+  const { openContactModal } = useContactModal();
+
   return (
     <footer className="relative overflow-hidden bg-brand-950" style={{ fontFamily: "'Be Vietnam Pro', sans-serif" }}>
       {/* Gradient top border */}
@@ -28,12 +32,12 @@ const Footer = () => {
             <p className="text-white/40 text-xs font-bold uppercase tracking-widest mb-1">Sẵn sàng triển khai?</p>
             <h3 className="text-white text-xl font-black">Nhận tư vấn & báo giá miễn phí hôm nay</h3>
           </div>
-          <a
-            href="#contact"
-            className="shrink-0 bg-accent-400 text-brand-950 px-8 py-3 rounded-full font-black text-sm uppercase tracking-widest hover:bg-accent-500 hover:scale-105 transition-all shadow-lg shadow-accent-400/20 active:scale-95 whitespace-nowrap"
+          <button
+            onClick={() => openContactModal('Giải pháp VNSIGN')}
+            className="shrink-0 bg-accent-400 text-brand-950 px-8 py-3 rounded-full font-black text-sm uppercase tracking-widest hover:bg-accent-500 hover:scale-105 transition-all shadow-lg shadow-accent-400/20 active:scale-95 whitespace-nowrap cursor-pointer"
           >
             Liên hệ ngay →
-          </a>
+          </button>
         </div>
 
         <div className="grid md:grid-cols-12 gap-12 mb-16">
@@ -87,17 +91,28 @@ const Footer = () => {
             <h4 className="font-black text-white text-xs uppercase tracking-[0.18em] mb-6">{t.footer.quickLinks}</h4>
             <ul className="space-y-3 text-white/40 text-sm font-medium">
               {[
-                { label: t.nav.features, href: '#features' },
-                { label: t.nav.pricing, href: '#contact' },
-                { label: t.nav.projects, href: '#case-studies' },
+                { label: t.nav.features, href: '/features' },
+                { label: t.nav.pricing, href: '/pricing' },
+                { label: t.nav.projects, href: '/projects' },
                 { label: t.nav.process, href: '#how-it-works' },
-                { label: t.nav.contact, href: '#contact' },
+                { label: t.nav.contact, href: '/contact' },
               ].map((link, i) => (
                 <li key={i}>
-                  <a href={link.href} className="hover:text-accent-400 transition-colors flex items-center gap-2 group">
+                  <Link 
+                    to={link.href} 
+                    className="hover:text-accent-400 transition-colors flex items-center gap-2 group"
+                    onClick={(e) => {
+                      if (link.href.startsWith('#')) {
+                        e.preventDefault();
+                        const id = link.href.substring(1);
+                        const element = document.getElementById(id);
+                        if (element) element.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    }}
+                  >
                     <ChevronRight className="w-3 h-3 opacity-0 group-hover:opacity-100 -ml-4 group-hover:ml-0 transition-all" />
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -119,6 +134,5 @@ const Footer = () => {
     </footer>
   );
 };
-
 
 export default Footer;

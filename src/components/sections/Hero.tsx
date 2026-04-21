@@ -8,10 +8,12 @@ import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../../lib/utils';
 import { Logo } from '../Logo';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { useContactModal } from '../../contexts/ModalContext';
 import { LazyVideo } from '../LazyVideo';
 
 const Hero = () => {
   const { t } = useLanguage();
+  const { openContactModal } = useContactModal();
 
   return (
     <section
@@ -107,12 +109,12 @@ const Hero = () => {
             <Play className="w-4 h-4" />
             Xem Demo
           </a>
-          <a
-            href="#contact"
-            className="inline-flex items-center justify-center gap-2 bg-accent-400 text-brand-950 px-8 py-3.5 rounded-full text-base font-black hover:bg-accent-500 hover:scale-105 transition-all shadow-xl shadow-accent-400/25 active:scale-95"
+          <button
+            onClick={() => openContactModal('Giải pháp VNSIGN')}
+            className="inline-flex items-center justify-center gap-2 bg-accent-400 text-brand-950 px-8 py-3.5 rounded-full text-base font-black hover:bg-accent-500 hover:scale-105 transition-all shadow-xl shadow-accent-400/25 active:scale-95 cursor-pointer"
           >
             Nhận báo giá →
-          </a>
+          </button>
         </motion.div>
 
         {/* Tagline pills */}

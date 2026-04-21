@@ -1,6 +1,8 @@
 import React, { useState, useEffect, Suspense } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { LanguageProvider, useLanguage } from './contexts/LanguageContext';
+import { ModalProvider, useContactModal } from './contexts/ModalContext';
+import { QuoteModal } from './components/QuoteModal';
 import { Chatbot } from './components/Chatbot';
 import { LazySection } from './components/LazySection';
 
@@ -28,6 +30,11 @@ const DocsPage = React.lazy(() => import('./pages/DocsPage'));
 const AboutPage = React.lazy(() => import('./pages/AboutPage'));
 const PricingPage = React.lazy(() => import('./pages/PricingPage'));
 const ProjectsPage = React.lazy(() => import('./pages/ProjectsPage'));
+const LCDPage = React.lazy(() => import('./pages/LCDPage'));
+const LEDPage = React.lazy(() => import('./pages/LEDPage'));
+const ContactPage = React.lazy(() => import('./pages/ContactPage'));
+const ProductDetailPage = React.lazy(() => import('./pages/ProductDetailPage'));
+const ProjectDetailPage = React.lazy(() => import('./pages/ProjectDetailPage'));
 
 const FallbackSkeleton = () => (
   <div className="h-64 w-full animate-pulse bg-brand-50/20 rounded-[40px] my-8 max-w-7xl mx-auto" />
@@ -73,21 +80,12 @@ const ScrollToTop = () => {
   return null;
 };
 
-const Home = ({ selectedProject, setSelectedProject }: any) => {
-  if (selectedProject) {
-    return (
-      <ProjectDetail 
-        project={selectedProject} 
-        onBack={() => setSelectedProject(null)} 
-      />
-    );
-  }
-
+const Home = () => {
   return (
     <main>
       {/* Above the fold, loaded immediately */}
       <Hero />
-      
+
       {/* Below the fold, loaded lazily and only when scrolled into view */}
       <LazySection id="features">
         <Suspense fallback={<FallbackSkeleton />}>
@@ -115,7 +113,7 @@ const Home = ({ selectedProject, setSelectedProject }: any) => {
 
       <LazySection id="case-studies">
         <Suspense fallback={<FallbackSkeleton />}>
-          <CaseStudies onProjectClick={(p: any) => setSelectedProject(p)} />
+          <CaseStudies />
         </Suspense>
       </LazySection>
 
@@ -159,21 +157,13 @@ const Home = ({ selectedProject, setSelectedProject }: any) => {
 };
 
 const MainContent = () => {
-  const [selectedProject, setSelectedProject] = useState<any>(null);
-
-  useEffect(() => {
-    if (selectedProject) {
-      window.scrollTo(0, 0);
-    }
-  }, [selectedProject]);
-
   return (
     <div className="min-h-screen selection:bg-brand-200 selection:text-brand-700">
       <ScrollToTop />
       <ScrollToHash />
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home selectedProject={selectedProject} setSelectedProject={setSelectedProject} />} />
+        <Route path="/" element={<Home />} />
         <Route path="/features" element={
           <Suspense fallback={<FallbackSkeleton />}>
             <FeaturesPage />
@@ -199,17 +189,61 @@ const MainContent = () => {
             <ProjectsPage />
           </Suspense>
         } />
+        <Route path="/projects/:id" element={
+          <Suspense fallback={<FallbackSkeleton />}>
+            <ProjectDetailPage />
+          </Suspense>
+        } />
+        <Route path="/lcd" element={
+          <Suspense fallback={<FallbackSkeleton />}>
+            <LCDPage />
+          </Suspense>
+        } />
+        <Route path="/led" element={
+          <Suspense fallback={<FallbackSkeleton />}>
+            <LEDPage />
+          </Suspense>
+        } />
+        <Route path="/contact" element={
+          <Suspense fallback={<FallbackSkeleton />}>
+            <ContactPage />
+          </Suspense>
+        } />
+        <Route path="/lcd/:id" element={
+          <Suspense fallback={<FallbackSkeleton />}>
+            <ProductDetailPage />
+          </Suspense>
+        } />
+        <Route path="/led/:id" element={
+          <Suspense fallback={<FallbackSkeleton />}>
+            <ProductDetailPage />
+          </Suspense>
+        } />
       </Routes>
       <Footer />
-      {!selectedProject && <Chatbot />}
+      <Chatbot />
+      <GlobalModal />
     </div>
+  );
+};
+
+const GlobalModal = () => {
+  const { isContactModalOpen, closeContactModal, productName } = useContactModal();
+  return (
+    <QuoteModal 
+      isOpen={isContactModalOpen} 
+      onClose={closeContactModal} 
+      productName={productName} 
+    />
   );
 };
 
 export default function App() {
   return (
     <LanguageProvider>
-      <MainContent />
+      <ModalProvider>
+        <MainContent />
+      </ModalProvider>
     </LanguageProvider>
   );
 }

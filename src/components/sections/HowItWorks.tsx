@@ -8,10 +8,13 @@ import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../../lib/utils';
 import { Logo } from '../Logo';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { useContactModal } from '../../contexts/ModalContext';
 import { LazyVideo } from '../LazyVideo';
 
 const HowItWorks = () => {
   const { t } = useLanguage();
+  const { openContactModal } = useContactModal();
+  
   const steps = [
     {
       number: "01",
@@ -91,12 +94,12 @@ const HowItWorks = () => {
           transition={{ delay: 0.5 }}
           className="text-center mt-16"
         >
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-2 bg-brand-600 text-white px-10 py-4 rounded-full font-black text-sm uppercase tracking-widest hover:bg-brand-700 hover:scale-105 transition-all shadow-xl shadow-brand-600/20 active:scale-95"
+          <button
+            onClick={() => openContactModal('Dùng thử VNSIGN')}
+            className="inline-flex items-center gap-2 bg-brand-600 text-white px-10 py-4 rounded-full font-black text-sm uppercase tracking-widest hover:bg-brand-700 hover:scale-105 transition-all shadow-xl shadow-brand-600/20 active:scale-95 cursor-pointer"
           >
             Bắt đầu ngay <ChevronRight className="w-4 h-4" />
-          </a>
+          </button>
         </motion.div>
       </div>
     </section>

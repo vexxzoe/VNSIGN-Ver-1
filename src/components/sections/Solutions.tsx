@@ -8,17 +8,21 @@ import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../../lib/utils';
 import { Logo } from '../Logo';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { useContactModal } from '../../contexts/ModalContext';
 import { LazyVideo } from '../LazyVideo';
+import { Link } from 'react-router-dom';
 
 const Solutions = () => {
   const { t } = useLanguage();
+  const { openContactModal } = useContactModal();
+  
   return (
     <section id="solutions" className="section-padding bg-brand-50/50">
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="order-2 lg:order-1">
             <div className="grid grid-cols-2 gap-4">
-              <a href="#lcd-screens" className="space-y-4 group">
+              <Link to="/lcd" className="space-y-4 group">
                 <div className="relative overflow-hidden rounded-3xl aspect-[3/4]">
                   <video 
                     autoPlay 
@@ -30,7 +34,7 @@ const Solutions = () => {
                     <source src="/assets/videos/VID_20260310_093518_HDR10PLUS.mp4" type="video/mp4" />
                   </video>
                 </div>
-              </a>
+              </Link>
               <div className="space-y-4 pt-12">
                 <div className="relative overflow-hidden rounded-3xl aspect-[3/4] group shadow-xl">
                   <video 
@@ -48,7 +52,7 @@ const Solutions = () => {
                     <div className="text-sm text-white/80">{t.solutions.kioskSub}</div>
                   </div>
                 </div>
-                <a href="#led-screens" className="relative overflow-hidden rounded-3xl aspect-[3/4] block group shadow-xl">
+                <Link to="/led" className="relative overflow-hidden rounded-3xl aspect-[3/4] block group shadow-xl">
                   <video 
                     autoPlay 
                     loop 
@@ -64,7 +68,7 @@ const Solutions = () => {
                       <div className="text-sm opacity-80">{t.solutions.led}</div>
                     </div>
                   </div>
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -79,32 +83,48 @@ const Solutions = () => {
             
             <div className="space-y-6 mb-10">
               {[
-                { title: t.solutions.lcd, desc: t.solutions.lcdSub, href: "#lcd-screens" },
-                { title: t.solutions.led, desc: t.solutions.ledSub, href: "#led-screens" },
-                { title: t.solutions.menu, desc: t.solutions.menuSub, href: "#contact" },
-                { title: t.solutions.kiosk, desc: t.solutions.kioskSub, href: "#contact" }
+                { title: t.solutions.lcd, desc: t.solutions.lcdSub, href: "/lcd" },
+                { title: t.solutions.led, desc: t.solutions.ledSub, href: "/led" },
+                { title: t.solutions.menu, desc: t.solutions.menuSub, href: "#contact", modal: true },
+                { title: t.solutions.kiosk, desc: t.solutions.kioskSub, href: "#contact", modal: true }
               ].map((item, i) => (
-                <a 
-                  key={i} 
-                  href={item.href}
-                  className="flex gap-4 p-4 rounded-2xl hover:bg-brand-50/50 transition-colors group cursor-pointer border border-transparent hover:border-slate-200"
-                >
-                  <div className="mt-1">
-                    <CheckCircle2 className="w-6 h-6 text-brand-600 group-hover:scale-110 transition-transform" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-brand-950 group-hover:text-brand-600 transition-colors">{item.title}</h4>
-                    <p className="text-brand-500 text-sm">{item.desc}</p>
-                  </div>
-                </a>
+                item.modal ? (
+                  <button 
+                    key={i} 
+                    onClick={() => openContactModal(item.title)}
+                    className="w-full flex gap-4 p-4 rounded-2xl hover:bg-brand-50/50 transition-colors group cursor-pointer border border-transparent hover:border-slate-200 text-left"
+                  >
+                    <div className="mt-1">
+                      <CheckCircle2 className="w-6 h-6 text-brand-600 group-hover:scale-110 transition-transform" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-brand-950 group-hover:text-brand-600 transition-colors">{item.title}</h4>
+                      <p className="text-brand-500 text-sm">{item.desc}</p>
+                    </div>
+                  </button>
+                ) : (
+                  <Link 
+                    key={i} 
+                    to={item.href}
+                    className="flex gap-4 p-4 rounded-2xl hover:bg-brand-50/50 transition-colors group cursor-pointer border border-transparent hover:border-slate-200"
+                  >
+                    <div className="mt-1">
+                      <CheckCircle2 className="w-6 h-6 text-brand-600 group-hover:scale-110 transition-transform" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-brand-950 group-hover:text-brand-600 transition-colors">{item.title}</h4>
+                      <p className="text-brand-500 text-sm">{item.desc}</p>
+                    </div>
+                  </Link>
+                )
               ))}
             </div>
-            <a 
-              href="#contact"
-              className="inline-flex items-center gap-2 bg-brand-600 text-white px-8 py-4 rounded-full font-bold hover:bg-brand-700 transition-all shadow-lg shadow-brand-200 group"
+            <button 
+              onClick={() => openContactModal('Giải pháp VNSIGN')}
+              className="inline-flex items-center gap-2 bg-brand-600 text-white px-8 py-4 rounded-full font-bold hover:bg-brand-700 transition-all shadow-lg shadow-brand-200 group cursor-pointer"
             >
               {t.hero.ctaStart} <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </a>
+            </button>
           </div>
         </div>
       </div>

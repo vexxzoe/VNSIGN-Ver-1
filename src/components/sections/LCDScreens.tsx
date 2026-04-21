@@ -8,10 +8,13 @@ import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../../lib/utils';
 import { Logo } from '../Logo';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { useContactModal } from '../../contexts/ModalContext';
 import { LazyVideo } from '../LazyVideo';
 
 const LCDScreens = () => {
   const { t } = useLanguage();
+  const { openContactModal } = useContactModal();
+
   return (
     <section id="lcd-screens" className="section-padding bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto">
@@ -74,12 +77,12 @@ const LCDScreens = () => {
                 </li>
               ))}
             </ul>
-            <a 
-              href="#contact"
-              className="inline-flex items-center gap-2 bg-brand-600 text-white px-8 py-4 rounded-full font-bold hover:bg-brand-700 transition-all shadow-lg shadow-brand-200 group"
+            <button 
+              onClick={() => openContactModal('Màn hình LCD')}
+              className="inline-flex items-center gap-2 bg-brand-600 text-white px-8 py-4 rounded-full font-bold hover:bg-brand-700 transition-all shadow-lg shadow-brand-200 group cursor-pointer"
             >
               {t.hero.requestConsult} <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </a>
+            </button>
           </div>
         </div>
       </div>

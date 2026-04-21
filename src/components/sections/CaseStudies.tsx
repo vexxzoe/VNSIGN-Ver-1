@@ -9,9 +9,11 @@ import { cn } from '../../lib/utils';
 import { Logo } from '../Logo';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { LazyVideo } from '../LazyVideo';
+import { useNavigate } from 'react-router-dom';
 
-const CaseStudies = ({ onProjectClick }: { onProjectClick: (project: any) => void }) => {
+const CaseStudies = () => {
   const { t } = useLanguage();
+  const navigate = useNavigate();
   const projects = [
     {
       id: 'tan-son-nhat-t3',
@@ -52,7 +54,10 @@ const CaseStudies = ({ onProjectClick }: { onProjectClick: (project: any) => voi
               {t.caseStudies.subtitle}
             </p>
           </div>
-          <button className="bg-brand-600 text-white px-8 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-black transition-all shadow-xl shadow-brand-600/20 group flex items-center gap-2">
+          <button 
+            onClick={() => navigate('/projects')}
+            className="bg-brand-600 text-white px-8 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-black transition-all shadow-xl shadow-brand-600/20 group flex items-center gap-2"
+          >
             {t.caseStudies.viewAll} <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
@@ -65,7 +70,7 @@ const CaseStudies = ({ onProjectClick }: { onProjectClick: (project: any) => voi
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              onClick={() => onProjectClick(project)}
+              onClick={() => navigate(`/projects/${project.id}`)}
               className="group cursor-pointer bg-white rounded-[40px] overflow-hidden border border-brand-100 hover:shadow-[0_20px_50px_rgba(8,103,136,0.15)] transition-all duration-500"
             >
               <div className="relative aspect-[3/4] overflow-hidden">

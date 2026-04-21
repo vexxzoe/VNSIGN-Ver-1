@@ -8,10 +8,12 @@ import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../../lib/utils';
 import { Logo } from '../Logo';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { useContactModal } from '../../contexts/ModalContext';
 import { LazyVideo } from '../LazyVideo';
 
 const CTA = () => {
   const { t } = useLanguage();
+  const { openContactModal } = useContactModal();
   
   return (
     <section className="relative overflow-hidden" style={{ fontFamily: "'Be Vietnam Pro', sans-serif" }}>
@@ -43,18 +45,18 @@ const CTA = () => {
             {t.cta.subtitle}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a 
-              href="#contact"
-              className="inline-flex items-center justify-center gap-2 bg-accent-400 text-brand-950 px-10 py-4 rounded-full text-base font-black hover:bg-white hover:scale-105 transition-all shadow-2xl shadow-accent-400/25 active:scale-95"
+            <button 
+              onClick={() => openContactModal('Dùng thử VNSIGN')}
+              className="inline-flex items-center justify-center gap-2 bg-accent-400 text-brand-950 px-10 py-4 rounded-full text-base font-black hover:bg-white hover:scale-105 transition-all shadow-2xl shadow-accent-400/25 active:scale-95 cursor-pointer"
             >
               {t.cta.primary} <ChevronRight className="w-5 h-5" />
-            </a>
-            <a 
-              href="#features"
-              className="inline-flex items-center justify-center gap-2 border-2 border-white/40 text-white px-10 py-4 rounded-full text-base font-bold hover:bg-white/10 hover:border-white transition-all backdrop-blur-sm active:scale-95"
+            </button>
+            <button 
+              onClick={() => openContactModal('Tư vấn Giải pháp VNSIGN')}
+              className="inline-flex items-center justify-center gap-2 border-2 border-white/40 text-white px-10 py-4 rounded-full text-base font-bold hover:bg-white/10 hover:border-white transition-all backdrop-blur-sm active:scale-95 cursor-pointer"
             >
               {t.cta.secondary}
-            </a>
+            </button>
           </div>
         </motion.div>
       </div>

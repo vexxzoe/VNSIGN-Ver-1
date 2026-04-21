@@ -5,6 +5,7 @@ import {
   ShieldCheck, Clock, Users, Cloud, BarChart3,
   Headphones, Star
 } from 'lucide-react';
+import { useContactModal } from '../contexts/ModalContext';
 
 /* ─────────────────────────────────────────────
    PLAN DATA
@@ -86,6 +87,7 @@ const trustItems = [
    MAIN COMPONENT
 ───────────────────────────────────────────── */
 const PricingPage = () => {
+  const { openContactModal } = useContactModal();
   return (
     <div className="min-h-screen bg-brand-50" style={{ fontFamily: "'Be Vietnam Pro', sans-serif" }}>
 
@@ -247,7 +249,8 @@ const PricingPage = () => {
 
                   {/* CTA Button */}
                   <button
-                    className={`w-full py-4 rounded-2xl font-black text-base transition-all duration-300 active:scale-95 flex items-center justify-center gap-2 ${
+                    onClick={() => openContactModal(plan.name)}
+                    className={`w-full py-4 rounded-2xl font-black text-base transition-all duration-300 active:scale-95 flex items-center justify-center gap-2 cursor-pointer ${
                       plan.highlight
                         ? 'bg-accent-400 text-brand-950 hover:bg-accent-500 shadow-xl shadow-accent-400/25 hover:scale-105'
                         : 'bg-brand-50 text-brand-600 border border-brand-200 hover:bg-brand-600 hover:text-white hover:border-brand-600'
@@ -386,10 +389,16 @@ const PricingPage = () => {
               Đội ngũ VNSIGN sẽ phân tích nhu cầu thực tế và đề xuất gói tối ưu nhất — không ép buộc, không phí ẩn.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4 mb-8">
-              <button className="bg-accent-400 text-brand-950 px-8 py-4 rounded-full font-black hover:bg-accent-500 transition-all text-lg shadow-xl shadow-accent-400/20 hover:scale-105 active:scale-95 flex items-center justify-center gap-2">
+              <button 
+                onClick={() => openContactModal('Giải pháp VNSIGN')}
+                className="bg-accent-400 text-brand-950 px-8 py-4 rounded-full font-black hover:bg-accent-500 transition-all text-lg shadow-xl shadow-accent-400/20 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 cursor-pointer"
+              >
                 <Phone className="w-5 h-5" /> Gọi ngay: 0888 99 8181
               </button>
-              <button className="bg-white/10 text-white border border-white/20 px-8 py-4 rounded-full font-bold hover:bg-white/20 transition-all text-lg backdrop-blur hover:scale-105 active:scale-95">
+              <button 
+                onClick={() => openContactModal('Dùng thử miễn phí')}
+                className="bg-white/10 text-white border border-white/20 px-8 py-4 rounded-full font-bold hover:bg-white/20 transition-all text-lg backdrop-blur hover:scale-105 active:scale-95 cursor-pointer"
+              >
                 ✨ Dùng thử miễn phí 30 ngày
               </button>
             </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, Suspense } from 'react';
-import { 
-  Monitor, Layout, Clock, Cloud, Shield, Zap, ChevronRight, Menu, X, Play, 
-  CheckCircle2, ArrowLeft, AlertCircle, Tv, Smartphone, Globe, Settings, 
+import {
+  Monitor, Layout, Clock, Cloud, Shield, Zap, ChevronRight, Menu, X, Play,
+  CheckCircle2, ArrowLeft, AlertCircle, Tv, Smartphone, Globe, Settings,
   BarChart3, ChevronDown, FileText, Youtube, Award, Users, Rocket, HeartHandshake
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
@@ -12,28 +12,6 @@ import { LazyVideo } from '../LazyVideo';
 
 const Contact = () => {
   const { t } = useLanguage();
-  const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '', product: '' });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-  const products = [
-    { id: 'lcd', label: 'Màn hình LCD Signage' },
-    { id: 'led', label: 'Màn hình LED Wall' },
-    { id: 'kiosk', label: 'Kiosk Tương tác' },
-    { id: 'standee', label: 'Standee Chân đứng' },
-    { id: 'other', label: 'Giải pháp khác' }
-  ];
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    setIsSubmitting(false);
-    setIsSuccess(true);
-    setFormData({ name: '', email: '', phone: '', message: '', product: '' });
-  };
 
   return (
     <section id="contact" className="section-padding bg-brand-950 relative overflow-hidden text-white pb-32 md:pb-20">
@@ -53,12 +31,12 @@ const Contact = () => {
               {t.contact.title}
             </div>
             <h2 className="text-5xl md:text-7xl font-black text-white mb-8 leading-[1.1] tracking-tighter">
-              Bắt đầu hành trình <span className="text-accent-400">Vivid</span> của bạn
+              Bắt đầu hành trình <span className="text-accent-400">Video</span> của bạn
             </h2>
             <p className="text-white/60 text-xl mb-12 font-medium leading-relaxed max-w-lg lg:text-left text-center mx-auto lg:mx-0">
               {t.contact.subtitle}
             </p>
-            
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-12 lg:mb-0">
               <div className="p-8 rounded-[32px] bg-white/5 border border-white/10 hover:bg-white/10 transition-colors group">
                 <div className="w-12 h-12 bg-accent-400 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-accent-400/20 group-hover:scale-110 transition-transform">
@@ -67,7 +45,7 @@ const Contact = () => {
                 <div className="text-white/40 text-[10px] font-black uppercase tracking-widest mb-2">{t.contact.hotline}</div>
                 <div className="text-white text-xl font-bold">0888 998 181</div>
               </div>
-              
+
               <div className="p-8 rounded-[32px] bg-white/5 border border-white/10 hover:bg-white/10 transition-colors group">
                 <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center mb-6 border border-white/20 group-hover:scale-110 transition-transform">
                   <Globe className="w-6 h-6 text-accent-400" />
@@ -78,130 +56,22 @@ const Contact = () => {
             </div>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="p-1 md:p-1.5 rounded-[48px] bg-gradient-to-b from-white/20 to-transparent shadow-2xl"
           >
-            <div className="bg-[#0a0f18] rounded-[42px] p-8 md:p-12 border border-white/5">
-              {isSuccess ? (
-                <div className="text-center py-20">
-                  <div className="w-24 h-24 bg-accent-400 rounded-full flex items-center justify-center mx-auto mb-8 shadow-2xl shadow-accent-400/40">
-                    <CheckCircle2 className="w-12 h-12 text-brand-950" />
-                  </div>
-                  <h3 className="text-3xl font-black text-white mb-4">{t.contact.successTitle}</h3>
-                  <p className="text-white/60 font-medium mb-10">{t.contact.successDesc}</p>
-                  <button 
-                    onClick={() => setIsSuccess(false)}
-                    className="px-8 py-4 rounded-2xl bg-white/5 border border-white/10 text-white font-bold hover:bg-white/10 transition-all"
-                  >
-                    Gửi lại yêu cầu mới
-                  </button>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-8">
-                  <div className="space-y-4 relative">
-                    <label className="text-sm font-black uppercase tracking-widest text-accent-400 ml-1">Tôi đang quan tâm đến:</label>
-                    
-                    <div className="relative">
-                      <button
-                        type="button"
-                        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                        className={cn(
-                          "w-full px-6 py-5 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-between transition-all",
-                          isDropdownOpen ? "border-accent-400 bg-white/10" : "hover:border-white/20"
-                        )}
-                      >
-                        <span className={cn("font-bold", formData.product ? "text-white" : "text-white/30")}>
-                          {formData.product ? products.find(p => p.id === formData.product)?.label : "Chọn loại màn hình..."}
-                        </span>
-                        <ChevronDown className={cn("w-5 h-5 text-accent-400 transition-transform duration-300", isDropdownOpen ? "rotate-180" : "")} />
-                      </button>
-
-                      <AnimatePresence>
-                        {isDropdownOpen && (
-                          <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: "auto", opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            className="absolute z-50 left-0 right-0 mt-3 bg-[#111827] border border-white/10 rounded-2xl overflow-hidden shadow-2xl"
-                          >
-                            <div className="max-h-[220px] overflow-y-auto custom-scrollbar">
-                              {products.map((p) => (
-                                <button
-                                  key={p.id}
-                                  type="button"
-                                  onClick={() => {
-                                    setFormData({...formData, product: p.id});
-                                    setIsDropdownOpen(false);
-                                  }}
-                                  className={cn(
-                                    "w-full px-6 py-4 text-left transition-colors flex items-center justify-between group",
-                                    formData.product === p.id ? "bg-accent-400 text-brand-950" : "text-white/60 hover:bg-white/5 hover:text-white"
-                                  )}
-                                >
-                                  <span className="font-bold text-sm uppercase tracking-tight">{p.label}</span>
-                                  {formData.product === p.id && <CheckCircle2 className="w-5 h-5" />}
-                                </button>
-                              ))}
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  </div>
-
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <input 
-                        type="text" 
-                        placeholder={t.contact.form.namePlaceholder}
-                        required
-                        className="w-full px-6 py-5 rounded-2xl bg-white/5 border border-white/10 outline-none focus:border-accent-400 focus:bg-white/10 transition-all font-bold text-white placeholder-white/30"
-                        value={formData.name}
-                        onChange={(e) => setFormData({...formData, name: e.target.value})}
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <input 
-                        type="tel" 
-                        placeholder={t.contact.form.phonePlaceholder}
-                        required
-                        className="w-full px-6 py-5 rounded-2xl bg-white/5 border border-white/10 outline-none focus:border-accent-400 focus:bg-white/10 transition-all font-bold text-white placeholder-white/30"
-                        value={formData.phone}
-                        onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                      />
-                    </div>
-                  </div>
-                  <input 
-                    type="email" 
-                    placeholder={t.contact.form.emailPlaceholder}
-                    required
-                    className="w-full px-6 py-5 rounded-2xl bg-white/5 border border-white/10 outline-none focus:border-accent-400 focus:bg-white/10 transition-all font-bold text-white placeholder-white/30"
-                    value={formData.email}
-                    onChange={(e) => setFormData({...formData, email: e.target.value})}
-                  />
-                  <textarea 
-                    placeholder={t.contact.form.messagePlaceholder}
-                    required
-                    className="w-full px-6 py-5 rounded-2xl bg-white/5 border border-white/10 outline-none focus:border-accent-400 focus:bg-white/10 transition-all font-bold text-white placeholder-white/30 h-32 resize-none"
-                    value={formData.message}
-                    onChange={(e) => setFormData({...formData, message: e.target.value})}
-                  />
-                  <button 
-                    disabled={isSubmitting}
-                    className="w-full bg-accent-400 text-brand-950 py-6 rounded-2xl font-black text-lg uppercase tracking-widest hover:bg-white transition-all shadow-2xl shadow-accent-400/30 disabled:opacity-50 group flex items-center justify-center gap-3"
-                  >
-                    {isSubmitting ? "Đang gửi..." : (
-                      <>
-                        {t.contact.form.submit}
-                        <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
-                      </>
-                    )}
-                  </button>
-                </form>
-              )}
+            <div className="bg-[#0a0f18] rounded-[42px] p-2 md:p-4 border border-white/5 overflow-hidden">
+              <div className="rounded-[32px] overflow-hidden bg-white/5 shadow-2xl">
+                <iframe
+                  src="https://znc.vncrm.net/crm/formdata?l=znc&s=b94a65f1-3b2e-4da8-9728-f8389d4249eb&d=6%2fqi1SbOFnz8JASKA0AXUFqw6ODBXZSq7SbSJna2IxBD001d4ADbRiWiCMEJ5Y6eX%2fqTgveHsUjZjYIyk6y%2bwt9Llm09RBB8skThNQQY%2fqdr0LkBScVOmg8eFjuaX%2bCXacWP%2fVGS0gi1I5pY%2fDeVug%2fD77dYoMwAHFRKmGZYVFGE%2btsSIbL5f05lYJZUXSC3tGvZuxjvm8VEIG1LkLlBJERiT2nITAvKmO3SLihTAmfQVTrB9edh0Y75g65wmrabdQodB8Ax8SYwYw4029if%2feaEBnnRFQwVPyFweoH%2fxGHIwXoGXJ9UHnHA00wfagAzMqz7p9dhTamnjeZTmn6Pfe4PdagU4ZrZUjy8wT0mu1PgwbEzr2eQLIja0kygx0Uqt5iePGaKbGs%2be5dYkMrFUl9ivUHuWC2YQoUjLj2a45BKWU8tdz37d30RCW3JfpUVkJ3Ajl9sTwt0kpod82HxGYS3jzuEOxC4%2foBD1lV%2fYyBfV1Iw6dbBgf50O%2fpeM7AINkwD2eez579Lb6oTXv4TEZoUqwqV1YI5ETeCOa4W5UO1n3BW3ufG6u%2bpphUrIHkDoKBL2lcH2rGJQcbp10YKl9IIj%2bQ2fvm5pyaM8JwEBW7b03wA%2fREgBYHh53apjSgmayQ6DAf0PMF0F2EaWJgnsRHMjGuX2lNjzM4XDaKk8IaeiGmGhZxOErfNjds8LLVyK5%2foeJ0zpB3mjcmsPJv6FbGWggwws2YYVyIMVHBg6GI1xxBQX54f7m2EKbcTFwRmBAeIUK0CRXDIwh%2fGiNFpOGVh7GoyzV%2bBHl9zhyrYkWwWcs4cfWXBRTwvdTtWOn52DvQlX92BvODWKfTb2ei%2b2wzZ1xLDfZFcZiYMUa%2bMZEH9Hr2DEepK%2buebFv%2fqc%2fPkts8h%2brjKfjyLNHDTiQpfZ2imyxuBbwD%2byJKqTf0FQFuF3bssjyBZbRSVJqqrj3eWd4jUmCqBFit3wY0Mm4b32kHlwRobLkb6INzlIDxAUbQ%3d"
+                  style={{ width: '100%', height: '100%', border: 'none', minHeight: '720px' }}
+                  frameBorder="0"
+                  scrolling="no"
+                  title="CRM Contact Form"
+                />
+              </div>
             </div>
           </motion.div>
         </div>
@@ -209,6 +79,5 @@ const Contact = () => {
     </section>
   );
 };
-
 
 export default Contact;
