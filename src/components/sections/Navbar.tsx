@@ -13,7 +13,7 @@ import { useContactModal } from '../../contexts/ModalContext';
 import { LazyVideo } from '../LazyVideo';
 
 const Navbar = () => {
-  const { t } = useLanguage();
+  const { t, language, setLanguage } = useLanguage();
   const { openContactModal } = useContactModal();
   const navigate = useNavigate();
   const location = useLocation();
@@ -161,8 +161,13 @@ const Navbar = () => {
             </div>
           ))}
           <div className="flex items-center gap-3">
-            <button className="text-white hover:text-accent-400 transition-colors">
-              <Globe className="w-5 h-5" />
+            <button 
+              onClick={() => setLanguage(language === 'vi' ? 'en' : 'vi')}
+              className="text-white hover:text-accent-400 transition-all flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-white/10 active:scale-95 group"
+              title={language === 'vi' ? 'Switch to English' : 'Chuyển sang Tiếng Việt'}
+            >
+              <Globe className="w-5 h-5 group-hover:rotate-12 transition-transform" />
+              <span className="text-xs font-black tracking-widest uppercase">{language}</span>
             </button>
             <a
               href="https://www.tiktok.com/@vnvar.vn?is_from_webapp=1&sender_device=pc"
