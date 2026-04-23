@@ -61,15 +61,20 @@ export const LCD_PRODUCTS: Product[] = [
     name: 'VNSIGN G32LA – Màn hình LCD 32 inch',
     image: '/assets/products/LCD/man-treo-tuong/VNSIGN G32LA – Màn hình LCD 32 inch.png',
     description: 'Màn hình quảng cáo treo tường siêu mỏng, viền tinh tế, hoạt động bền bỉ.',
-    specs: { size: '32 inch', brightness: '450 cd/m²', warranty: '24 Tháng' },
+    specs: { size: '32 inch', brightness: '500 cd/m²', warranty: '24 Tháng' },
     details: {
       'Kích thước': '32 inch',
       'Độ phân giải': '1920 x 1080 (Full HD)',
-      'Độ sáng': '450 cd/m²',
-      'Tỷ lệ tương phản': '1200:1',
-      'Hệ điều hành': 'Android 11 / Windows (Tùy chọn)',
-      'Góc nhìn': '178°/178°',
-      'Thời gian đáp ứng': '6ms'
+      'Độ sáng': '500 cd/m² ',
+      'Tỷ lệ tương phản': '1100:1 và hiển thị 16.7 triệu màu',
+      'Hệ điều hành': 'Android 9.0',
+      'CPU': '4 nhân',
+      'RAM': '2GB',
+      'Bộ nhớ trong': '16GB',
+      'Hệ thống âm thanh': 'bao gồm loa 8Ω, công suất 5W x 2',
+      'Các cổng kết nối': 'RJ45 x 1, USB x 2, TF card x 1, HDMI input x 1, RS232 và 3.5mm audio output',
+      'Kích thước máy': '712 x 409 x 57 mm',
+      'Trọng lượng': '10 kg',
     }
   },
   {
@@ -80,7 +85,20 @@ export const LCD_PRODUCTS: Product[] = [
     name: 'VNSIGN G32LB – Màn hình LCD 32 inch',
     image: '/assets/products/LCD/man-treo-tuong/VNSIGN G32LB – Màn hình LCD 32 inch.png',
     description: 'Thiết kế hiện đại, độ phân giải Full HD, phù hợp cho thang máy và cửa hàng.',
-    specs: { size: '32 inch', brightness: '450 cd/m²', warranty: '24 Tháng' }
+    specs: { size: '32 inch', brightness: '350 cd/m²', warranty: '24 Tháng' },
+    details: {
+      'Kích thước': '32 inch',
+      'Độ phân giải': '1366 x 768',
+      'Độ sáng': '350 cd/m²',
+      'Tỷ lệ tương phản': '1200:1',
+      'Hệ điều hành': 'Android 12',
+      'CPU': '4 nhân',
+      'RAM': '2GB',
+      'Hệ thống âm thanh': 'bao gồm 2 loa công suất 10W mỗi loa',
+      'Các cổng kết nối': 'Các cổng kết nối đa dạng như RJ45, 2 cổng USB, RS232, 2 cổng HDMI và cổng Audio In/Out',
+      'Kích thước máy': '719 x 412.2 x 69.7 mm',
+      'Trọng lượng': '3.13 kg',
+    }
   },
   {
     id: 21,
@@ -90,7 +108,20 @@ export const LCD_PRODUCTS: Product[] = [
     name: 'VNSIGN G43LA – Màn hình LCD 43 inch',
     image: '/assets/products/LCD/man-treo-tuong/VNSIGN G43LA – Màn hình LCD 43 inch.png',
     description: 'Kích thước phổ biến cho các điểm bán lẻ, hiển thị màu sắc trung thực.',
-    specs: { size: '43 inch', brightness: '500 cd/m²', warranty: '24 Tháng' }
+    specs: { size: '43 inch', brightness: '500 cd/m²', warranty: '24 Tháng' },
+    details: {
+      'Kích thước': '43 inch',
+      'Độ phân giải': '1920 x 1080 (Full HD)',
+      'Độ sáng': '500 cd/m² ',
+      'Tỷ lệ tương phản': '1100:1 và hiển thị 16.7 triệu màu',
+      'Hệ điều hành': 'Android 9.0',
+      'CPU': '4 nhân',
+      'RAM': '2GB',
+      'Hệ thống âm thanh': 'bao gồm loa 8Ω, công suất 5W x 2',
+      'Các cổng kết nối': 'RJ45 x 1, USB x 2, TF card x 1, HDMI input x 1, RS232 và 3.5mm audio output',
+      'Kích thước máy': '954 x 543 x 57 mm',
+      'Trọng lượng': '16 kg',
+    }
   },
   {
     id: 22,
@@ -100,7 +131,20 @@ export const LCD_PRODUCTS: Product[] = [
     name: 'VNSIGN G43LB – Màn hình LCD 43 inch',
     image: '/assets/products/LCD/man-treo-tuong/VNSIGN G43LB – Màn hình LCD 43 inch.png',
     description: 'Hiệu năng cao, tiết kiệm điện năng, quản lý tập trung qua Cloud CMS.',
-    specs: { size: '43 inch', brightness: '500 cd/m²', warranty: '24 Tháng' }
+    specs: { size: '43 inch', brightness: '500 cd/m²', warranty: '24 Tháng' },
+    details: {
+      'Kích thước': '43 inch',
+      'Độ phân giải': '1920 x 1080 (Full HD)',
+      'Độ sáng': '500 cd/m² ',
+      'Tỷ lệ tương phản': '1200:1',
+      'Hệ điều hành': 'Android 12',
+      'CPU': '4 nhân',
+      'RAM': '2GB',
+      'Hệ thống âm thanh': 'bao gồm 2 loa công suất 10W mỗi loa',
+      'Các cổng kết nối': 'RJ45 x 1, USB x 2, TF card x 1, HDMI input x 1, RS232 và 3.5mm audio output',
+      'Kích thước máy': '954.5 x 555.9 x 71.6 mm',
+      'Trọng lượng': '5.15 kg',
+    }
   },
   {
     id: 23,
@@ -110,7 +154,20 @@ export const LCD_PRODUCTS: Product[] = [
     name: 'VNSIGN G50LA – Màn hình LCD 50 inch',
     image: '/assets/products/LCD/man-treo-tuong/VNSIGN G50LA – Màn hình LCD 50 inch.png',
     description: 'Màn hình khổ trung bình, lý tưởng cho sảnh chờ và hành lang.',
-    specs: { size: '50 inch', brightness: '500 cd/m²', warranty: '24 Tháng' }
+    specs: { size: '50 inch', brightness: '500 cd/m²', warranty: '24 Tháng' },
+    details: {
+      'Kích thước': '50 inch',
+      'Độ phân giải': '3840 x 2160',
+      'Độ sáng': '500 cd/m² ',
+      'Tỷ lệ tương phản': '1100:1 và hiển thị 16.7 triệu màu',
+      'Hệ điều hành': 'Android 9.0',
+      'CPU': '4 nhân',
+      'RAM': '2GB',
+      'Hệ thống âm thanh': 'bao gồm loa 8Ω, công suất 5W x 2',
+      'Các cổng kết nối': 'RJ45 x 1, USB x 2, TF card x 1, HDMI input x 1, RS232 và 3.5mm audio output',
+      'Kích thước máy': '1110 x 632 x 58 mm',
+      'Trọng lượng': '19.5 kg ',
+    }
   },
   {
     id: 24,
@@ -120,7 +177,20 @@ export const LCD_PRODUCTS: Product[] = [
     name: 'VNSIGN G55LA – Màn hình LCD 55 inch',
     image: '/assets/products/LCD/man-treo-tuong/VNSIGN G55LA – Màn hình LCD 55 inch.png',
     description: 'Độ sáng cao, thu hút ánh nhìn từ xa, hỗ trợ phát 4K mượt mà.',
-    specs: { size: '55 inch', brightness: '500 cd/m²', warranty: '24 Tháng' }
+    specs: { size: '55 inch', brightness: '500 cd/m²', warranty: '24 Tháng' },
+    details: {
+      'Kích thước': '50 inch',
+      'Độ phân giải': '3840 x 2160',
+      'Độ sáng': '500 cd/m² ',
+      'Tỷ lệ tương phản': '1100:1 và hiển thị 16.7 triệu màu',
+      'Hệ điều hành': 'Android 9.0',
+      'CPU': '4 nhân',
+      'RAM': '2GB',
+      'Hệ thống âm thanh': 'bao gồm loa 8Ω, công suất 5W x 2',
+      'Các cổng kết nối': 'RJ45 x 1, USB x 2, TF card x 1, HDMI input x 1, RS232 và 3.5mm audio output',
+      'Kích thước máy': '1110 x 632 x 58 mm',
+      'Trọng lượng': '19.5 kg ',
+    }
   },
   {
     id: 25,
@@ -128,6 +198,46 @@ export const LCD_PRODUCTS: Product[] = [
     category: 'man-hinh-standee',
     subcategory: 'Màn hình standee',
     name: 'VNSIGN S43L – Standee Điện Tử 43 inch',
+    image: '/assets/products/LCD/man-hinh-standee/VNSIGN S43L – Standee Điện Tử 43 inch.png',
+    description: 'Màn hình standee đứng hiện đại, thu hút sự chú ý tại sảnh TTTM, khách sạn.',
+    specs: { size: '43 inch', brightness: '500 cd/m²', warranty: '24 Tháng' }
+  },
+  {
+    id: 26,
+    slug: 'vnsign-s43l-standee-dien-tu-43-inch',
+    category: 'man-hinh-standee',
+    subcategory: 'Màn hình standee',
+    name: 'VNSIGN S44L – Standee Điện Tử 43 inch',
+    image: '/assets/products/LCD/man-hinh-standee/VNSIGN S43L – Standee Điện Tử 43 inch.png',
+    description: 'Màn hình standee đứng hiện đại, thu hút sự chú ý tại sảnh TTTM, khách sạn.',
+    specs: { size: '43 inch', brightness: '500 cd/m²', warranty: '24 Tháng' }
+  },
+  {
+    id: 27,
+    slug: 'vnsign-s43l-standee-dien-tu-43-inch',
+    category: 'man-hinh-standee',
+    subcategory: 'Màn hình standee',
+    name: 'VNSIGN S45L – Standee Điện Tử 43 inch',
+    image: '/assets/products/LCD/man-hinh-standee/VNSIGN S43L – Standee Điện Tử 43 inch.png',
+    description: 'Màn hình standee đứng hiện đại, thu hút sự chú ý tại sảnh TTTM, khách sạn.',
+    specs: { size: '43 inch', brightness: '500 cd/m²', warranty: '24 Tháng' }
+  },
+  {
+    id: 28,
+    slug: 'vnsign-s43l-standee-dien-tu-43-inch',
+    category: 'man-hinh-standee',
+    subcategory: 'Màn hình standee',
+    name: 'VNSIGN S46L – Standee Điện Tử 43 inch',
+    image: '/assets/products/LCD/man-hinh-standee/VNSIGN S43L – Standee Điện Tử 43 inch.png',
+    description: 'Màn hình standee đứng hiện đại, thu hút sự chú ý tại sảnh TTTM, khách sạn.',
+    specs: { size: '43 inch', brightness: '500 cd/m²', warranty: '24 Tháng' }
+  },
+  {
+    id: 29,
+    slug: 'vnsign-s43l-standee-dien-tu-43-inch',
+    category: 'man-hinh-standee',
+    subcategory: 'Màn hình standee',
+    name: 'VNSIGN S47L – Standee Điện Tử 43 inch',
     image: '/assets/products/LCD/man-hinh-standee/VNSIGN S43L – Standee Điện Tử 43 inch.png',
     description: 'Màn hình standee đứng hiện đại, thu hút sự chú ý tại sảnh TTTM, khách sạn.',
     specs: { size: '43 inch', brightness: '500 cd/m²', warranty: '24 Tháng' }
