@@ -209,7 +209,13 @@ const MainContent = () => {
             <ContactPage />
           </Suspense>
         } />
+        <Route path="/product/:slug" element={
+          <Suspense fallback={<FallbackSkeleton />}>
+            <ProductDetailPage />
+          </Suspense>
+        } />
         <Route path="/lcd/:id" element={
+
           <Suspense fallback={<FallbackSkeleton />}>
             <ProductDetailPage />
           </Suspense>

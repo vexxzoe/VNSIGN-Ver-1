@@ -5,8 +5,16 @@ import { useContactModal } from '../contexts/ModalContext';
 import { LCD_PRODUCTS } from '../data/products';
 import { Link } from 'react-router-dom';
 
+const LCD_CATEGORIES = [
+  { id: 'man-treo-tuong', name: 'Màn treo tường' },
+  { id: 'man-hinh-standee', name: 'Màn hình standee' },
+  { id: 'man-hinh-tuong-tac', name: 'Màn hình tương tác' },
+];
+
+const ALL_PRODUCTS = Array.isArray(LCD_PRODUCTS) ? LCD_PRODUCTS : [];
+
 const LCDPage = () => {
-  const ITEMS_PER_PAGE = 12;
+  const ITEMS_PER_PAGE = 8;
   const [activeCategory, setActiveCategory] = React.useState('all');
   const [currentPage, setCurrentPage] = React.useState(1);
   const { openContactModal } = useContactModal();
@@ -16,14 +24,18 @@ const LCDPage = () => {
     console.log('LCDPage mounted');
   }, []);
 
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [activeCategory]);
+
   const handleCategoryChange = (catId: string) => {
     setActiveCategory(catId);
-    setCurrentPage(1);
     scrollToProducts();
   };
 
   const handlePageChange = (page: number) => {
-    setCurrentPage(page);
+    const safePage = Math.max(1, Math.min(page, totalPages));
+    setCurrentPage(safePage);
     scrollToProducts();
   };
 
@@ -43,12 +55,22 @@ const LCDPage = () => {
   };
 
   const filteredProducts = activeCategory === 'all'
-    ? products
-    : products.filter(p => p.category === activeCategory);
+    ? ALL_PRODUCTS
+    : ALL_PRODUCTS.filter(p => p.category === activeCategory);
 
   const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const paginatedProducts = filteredProducts.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+
+  useEffect(() => {
+    if (totalPages > 0 && currentPage > totalPages) {
+      setCurrentPage(1);
+    }
+  }, [totalPages, currentPage]);
+
+  console.log("LCDPage - currentPage:", currentPage);
+  console.log("LCDPage - filteredCount:", filteredProducts.length);
+  console.log("LCDPage - paginatedProducts:", paginatedProducts);
 
   const handleQuote = (productName: string) => {
     openContactModal(productName);
@@ -189,7 +211,7 @@ const LCDPage = () => {
         {totalPages > 1 && (
           <div className="mt-24 flex justify-center items-center gap-3">
             <button
-              onClick={() => handlePageChange(currentPage - 1)}
+              onClick={() => handlePageChange(Math.max(currentPage - 1, 1))}
               disabled={currentPage === 1}
               className="w-14 h-14 flex items-center justify-center rounded-[20px] border border-brand-100 bg-white text-brand-950 disabled:opacity-20 disabled:cursor-not-allowed hover:bg-brand-950 hover:text-white transition-all shadow-sm active:scale-95"
             >
@@ -212,7 +234,7 @@ const LCDPage = () => {
             </div>
 
             <button
-              onClick={() => handlePageChange(currentPage + 1)}
+              onClick={() => handlePageChange(Math.min(currentPage + 1, totalPages))}
               disabled={currentPage === totalPages}
               className="w-14 h-14 flex items-center justify-center rounded-[20px] border border-brand-100 bg-white text-brand-950 disabled:opacity-20 disabled:cursor-not-allowed hover:bg-brand-950 hover:text-white transition-all shadow-sm active:scale-95"
             >
@@ -253,7 +275,7 @@ const ProductCard = ({ product, onQuote }: { product: any; onQuote: (name: strin
         {/* Premium Overlay */}
         <div className="absolute inset-0 bg-brand-950/60 opacity-0 group-hover:opacity-100 backdrop-blur-[4px] transition-all duration-500 flex flex-col items-center justify-center gap-4">
           <Link
-            to={`/lcd/${product.id}`}
+            to={`/product/${product.slug}`}
             className="bg-white text-brand-950 px-8 py-3 rounded-full text-sm font-black shadow-2xl hover:bg-accent-400 transition-all transform translate-y-8 group-hover:translate-y-0 duration-500"
           >
             Xem chi tiết
@@ -268,7 +290,7 @@ const ProductCard = ({ product, onQuote }: { product: any; onQuote: (name: strin
             {product.name}
           </h3>
           <p className="text-slate-500 text-sm md:text-base font-medium leading-relaxed line-clamp-3">
-            {product.desc}
+            {product.description}
           </p>
         </div>
 
@@ -312,13 +334,5 @@ const ProductCard = ({ product, onQuote }: { product: any; onQuote: (name: strin
 };
 
 
-
-const LCD_CATEGORIES = [
-  { id: 'man-treo-tuong', name: 'Màn treo tường' },
-  { id: 'man-hinh-standee', name: 'Màn hình standee' },
-  { id: 'man-hinh-tuong-tac', name: 'Màn hình tương tác' },
-];
-
-const products = LCD_PRODUCTS;
 
 export default LCDPage;

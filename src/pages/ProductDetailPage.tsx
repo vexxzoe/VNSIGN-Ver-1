@@ -9,16 +9,21 @@ import { ALL_DATA, Product } from '../data/products';
 import { useContactModal } from '../contexts/ModalContext';
 
 const ProductDetailPage = () => {
-  const { id } = useParams<{ id: string }>();
+  const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const [product, setProduct] = useState<Product | null>(null);
   const { openContactModal } = useContactModal();
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    const foundProduct = ALL_DATA.find(p => p.id === id);
+    console.log("URL slug:", slug);
+    // Find by slug first (New way)
+    const safeData = Array.isArray(ALL_DATA) ? ALL_DATA : [];
+    const foundProduct = safeData.find(p => p.slug === slug);
+    console.log("Found product:", foundProduct);
+    
     setProduct(foundProduct || null);
-  }, [id]);
+  }, [slug]);
 
   if (!product) {
     return (
@@ -37,6 +42,8 @@ const ProductDetailPage = () => {
       </div>
     );
   }
+
+  const isLED = product.slug.includes('led') || product.category === 'display' || product.category === 'control';
 
   return (
     <div className="min-h-screen bg-brand-50" style={{ fontFamily: "'Be Vietnam Pro', sans-serif" }}>
@@ -80,7 +87,7 @@ const ProductDetailPage = () => {
               transition={{ duration: 0.8 }}
             >
               <div className="inline-flex items-center gap-2 mb-8 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-xl">
-                {product.id.startsWith('led') ? <Tv className="w-4 h-4 text-accent-400" /> : <Monitor className="w-4 h-4 text-accent-400" />}
+                {isLED ? <Tv className="w-4 h-4 text-accent-400" /> : <Monitor className="w-4 h-4 text-accent-400" />}
                 <span className="text-white/90 text-[10px] font-black tracking-[0.25em] uppercase">{product.subcategory}</span>
               </div>
 
@@ -89,7 +96,7 @@ const ProductDetailPage = () => {
               </h1>
 
               <p className="text-lg md:text-xl text-white/70 mb-12 font-medium leading-relaxed max-w-xl">
-                {product.desc}
+                {product.description}
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">

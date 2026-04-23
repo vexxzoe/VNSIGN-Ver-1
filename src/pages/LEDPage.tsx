@@ -11,10 +11,10 @@ const LED_CATEGORIES = [
   { id: 'accessory', name: 'Phụ kiện' },
 ];
 
-const ALL_PRODUCTS = LED_PRODUCTS;
+const ALL_PRODUCTS = Array.isArray(LED_PRODUCTS) ? LED_PRODUCTS : [];
 
 const LEDPage = () => {
-  const ITEMS_PER_PAGE = 12;
+  const ITEMS_PER_PAGE = 8;
   const [activeCategory, setActiveCategory] = React.useState('all');
   const [activeSubCategory, setActiveSubCategory] = React.useState('all');
   const [currentPage, setCurrentPage] = React.useState(1);
@@ -25,16 +25,24 @@ const LEDPage = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [activeCategory, activeSubCategory]);
+
   const handleCategoryChange = (catId: string) => {
     setActiveCategory(catId);
     setActiveSubCategory('all');
-    setCurrentPage(1);
     scrollToProducts();
   };
 
   const handleSubCategoryChange = (subId: string) => {
     setActiveSubCategory(subId);
-    setCurrentPage(1);
+    scrollToProducts();
+  };
+
+  const handlePageChange = (page: number) => {
+    const safePage = Math.max(1, Math.min(page, totalPages));
+    setCurrentPage(safePage);
     scrollToProducts();
   };
 
@@ -71,6 +79,16 @@ const LEDPage = () => {
   const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const paginatedProducts = filteredProducts.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+
+  useEffect(() => {
+    if (totalPages > 0 && currentPage > totalPages) {
+      setCurrentPage(1);
+    }
+  }, [totalPages, currentPage]);
+
+  console.log("LEDPage - currentPage:", currentPage);
+  console.log("LEDPage - filteredCount:", filteredProducts.length);
+  console.log("LEDPage - paginatedProducts:", paginatedProducts);
 
   const handleQuote = (productName: string) => {
     openContactModal(productName);
@@ -215,7 +233,7 @@ const LEDPage = () => {
         <div className="relative min-h-[700px]">
           <AnimatePresence mode="wait">
             <motion.div
-              key={activeCategory + currentPage}
+              key={activeCategory + activeSubCategory + currentPage}
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 1.02 }}
@@ -243,7 +261,7 @@ const LEDPage = () => {
         {totalPages > 1 && (
           <div className="mt-32 flex justify-center items-center gap-4">
             <button
-              onClick={() => handlePageChange(currentPage - 1)}
+              onClick={() => handlePageChange(Math.max(currentPage - 1, 1))}
               disabled={currentPage === 1}
               className="w-16 h-16 flex items-center justify-center rounded-[24px] border border-brand-100 bg-white text-brand-950 disabled:opacity-20 disabled:cursor-not-allowed hover:bg-brand-950 hover:text-white transition-all shadow-sm active:scale-95"
             >
@@ -266,7 +284,7 @@ const LEDPage = () => {
             </div>
 
             <button
-              onClick={() => handlePageChange(currentPage + 1)}
+              onClick={() => handlePageChange(Math.min(currentPage + 1, totalPages))}
               disabled={currentPage === totalPages}
               className="w-16 h-16 flex items-center justify-center rounded-[24px] border border-brand-100 bg-white text-brand-950 disabled:opacity-20 disabled:cursor-not-allowed hover:bg-brand-950 hover:text-white transition-all shadow-sm active:scale-95"
             >
@@ -307,7 +325,7 @@ const ProductCard = ({ product, onQuote }: { product: any; onQuote: (name: strin
         {/* Premium Overlay */}
         <div className="absolute inset-0 bg-brand-950/60 opacity-0 group-hover:opacity-100 backdrop-blur-[4px] transition-all duration-500 flex flex-col items-center justify-center gap-4">
           <Link
-            to={`/led/${product.id}`}
+            to={`/product/${product.slug}`}
             className="bg-white text-brand-950 px-8 py-3 rounded-full text-sm font-black shadow-2xl hover:bg-accent-400 transition-all transform translate-y-8 group-hover:translate-y-0 duration-500"
           >
             Xem chi tiết
@@ -318,13 +336,13 @@ const ProductCard = ({ product, onQuote }: { product: any; onQuote: (name: strin
       {/* Content Body - Compact Layout */}
       <div className="p-8 md:p-10 flex flex-col flex-1">
         <div className="mb-6">
-          <Link to={`/led/${product.id}`}>
+          <Link to={`/product/${product.slug}`}>
             <h3 className="font-black text-brand-950 text-xl sm:text-2xl leading-[1.2] mb-3 group-hover:text-brand-600 transition-colors line-clamp-2 min-h-[3rem]">
               {product.name}
             </h3>
           </Link>
           <p className="text-slate-500 text-sm md:text-base font-medium leading-relaxed line-clamp-3">
-            {product.desc}
+            {product.description}
           </p>
         </div>
 
