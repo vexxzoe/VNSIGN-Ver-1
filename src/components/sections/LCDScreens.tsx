@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, Suspense } from 'react';
-import { 
-  Monitor, Layout, Clock, Cloud, Shield, Zap, ChevronRight, Menu, X, Play, 
-  CheckCircle2, ArrowLeft, AlertCircle, Tv, Smartphone, Globe, Settings, 
+import {
+  Monitor, Layout, Clock, Cloud, Shield, Zap, ChevronRight, Menu, X, Play,
+  CheckCircle2, ArrowLeft, AlertCircle, Tv, Smartphone, Globe, Settings,
   BarChart3, ChevronDown, FileText, Youtube, Award, Users, Rocket, HeartHandshake
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
@@ -29,30 +29,22 @@ const LCDScreens = () => {
         <div className="grid lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-7 grid grid-cols-2 gap-4">
             <div className="relative rounded-[32px] overflow-hidden shadow-2xl group aspect-[4/5]">
-              <video 
-                autoPlay 
-                loop 
-                muted 
-                playsInline 
+              <img
+                src="/assets/case-studies/CASE-KHAC/z7504464998053_c0c1b9a1ad9fb9cb3a4bb4a60f6a055c.jpg"
+                alt="LCD Wall"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[5s]"
-              >
-                <source src="/assets/case-studies/AEON-BETA/VIDEO/7517328916682.mp4" type="video/mp4" />
-              </video>
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-brand-600/40 to-transparent flex items-end p-6">
                 <span className="text-white font-bold text-xs uppercase tracking-widest">Digital Signage</span>
               </div>
             </div>
             <div className="space-y-4 pt-8">
               <div className="relative rounded-[32px] overflow-hidden shadow-2xl group aspect-[4/5]">
-                <video 
-                  autoPlay 
-                  loop 
-                  muted 
-                  playsInline 
+                <img
+                  src="/assets/case-studies/CASE-KHAC/z7507825042643_9c2b660644b896e963a813098cfa7dd9.jpg"
+                  alt="LCD Wall"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[5s]"
-                >
-                  <source src="/assets/case-studies/AEON-BETA/VIDEO/7517328935568.mp4" type="video/mp4" />
-                </video>
+                />
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors" />
               </div>
               <div className="bg-brand-600 p-6 rounded-[32px] text-white shadow-xl">
@@ -65,7 +57,7 @@ const LCDScreens = () => {
             <div>
               <h3 className="text-3xl font-black text-brand-950 mb-6 uppercase tracking-tight">{t.lcd.featuresTitle}</h3>
               <p className="text-brand-500 mb-8 leading-relaxed">
-                Hệ thống màn hình LCD của VNSIGN được tối ưu cho việc hiển thị nội dung quảng cáo sắc nét, 
+                Hệ thống màn hình LCD của VNSIGN được tối ưu cho việc hiển thị nội dung quảng cáo sắc nét,
                 hoạt động bền bỉ trong môi trường trung tâm thương mại và cửa hàng bán lẻ.
               </p>
             </div>
@@ -77,7 +69,7 @@ const LCDScreens = () => {
                 </li>
               ))}
             </ul>
-            <button 
+            <button
               onClick={() => openContactModal('Màn hình LCD')}
               className="inline-flex items-center gap-2 bg-brand-600 text-white px-8 py-4 rounded-full font-bold hover:bg-brand-700 transition-all shadow-lg shadow-brand-200 group cursor-pointer"
             >

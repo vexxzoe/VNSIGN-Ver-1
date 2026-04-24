@@ -169,7 +169,7 @@ export const translations = {
       reviews: [
         {
           text: 'Chỉ cần vài thao tác trên nền tảng cloud là có thể cập nhật video, hình ảnh, thông báo cho tất cả các màn hình. Giao diện trực quan, rất dễ sử dụng.',
-          author: 'Highland Coffee',
+          author: 'Trang sức Doji',
           rating: 5,
           image: '/assets/case-studies/AEON-BETA/IMG/z7517266120531_56f79a3c8cbef01d028811270cef752c.jpg',
         },

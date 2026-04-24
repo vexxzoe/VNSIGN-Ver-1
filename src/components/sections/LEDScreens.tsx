@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, Suspense } from 'react';
-import { 
-  Monitor, Layout, Clock, Cloud, Shield, Zap, ChevronRight, Menu, X, Play, 
-  CheckCircle2, ArrowLeft, AlertCircle, Tv, Smartphone, Globe, Settings, 
+import {
+  Monitor, Layout, Clock, Cloud, Shield, Zap, ChevronRight, Menu, X, Play,
+  CheckCircle2, ArrowLeft, AlertCircle, Tv, Smartphone, Globe, Settings,
   BarChart3, ChevronDown, FileText, Youtube, Award, Users, Rocket, HeartHandshake
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
@@ -31,7 +31,7 @@ const LEDScreens = () => {
             <div>
               <h3 className="text-3xl font-black text-brand-950 mb-6 uppercase tracking-tight">{t.led.advantagesTitle}</h3>
               <p className="text-brand-500 mb-8 leading-relaxed">
-                Giải pháp màn hình LED khổ lớn của VNSIGN mang đến khả năng hiển thị ấn tượng với độ sáng cực cao, 
+                Giải pháp màn hình LED khổ lớn của VNSIGN mang đến khả năng hiển thị ấn tượng với độ sáng cực cao,
                 phù hợp cho cả không gian trong nhà và ngoài trời với kích thước không giới hạn.
               </p>
             </div>
@@ -43,7 +43,7 @@ const LEDScreens = () => {
                 </li>
               ))}
             </ul>
-            <button 
+            <button
               onClick={() => openContactModal('Màn hình LED')}
               className="inline-flex items-center gap-2 bg-brand-600 text-white px-8 py-4 rounded-full font-bold hover:bg-brand-700 transition-all shadow-lg shadow-brand-200 group cursor-pointer"
             >
@@ -57,27 +57,19 @@ const LEDScreens = () => {
                 <div className="text-[10px] font-bold opacity-60 uppercase tracking-widest">Waterproof</div>
               </div>
               <div className="relative rounded-[32px] overflow-hidden shadow-2xl group aspect-[4/5]">
-                <video 
-                  autoPlay 
-                  loop 
-                  muted 
-                  playsInline 
+                <img
+                  src="/assets/case-studies/AEON-BETA/IMG/Screenshot 2026-04-24 154644.png"
+                  alt="Outdoor LED Wall"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[5s]"
-                >
-                  <source src="/assets/case-studies/AEON-BETA/VIDEO/7517328953625.mp4" type="video/mp4" />
-                </video>
+                />
               </div>
             </div>
             <div className="relative rounded-[32px] overflow-hidden shadow-2xl group aspect-[4/5]">
-              <video 
-                autoPlay 
-                loop 
-                muted 
-                playsInline 
+              <img
+                src="/assets/case-studies/AEON-BETA/IMG/Screenshot 2026-04-24 154445.png"
+                alt="Outdoor LED Wall"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[5s]"
-              >
-                <source src="/assets/case-studies/AEON-BETA/VIDEO/7517328820085.mp4" type="video/mp4" />
-              </video>
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
                 <span className="text-white font-bold text-xs uppercase tracking-widest">Outdoor LED Wall</span>
               </div>

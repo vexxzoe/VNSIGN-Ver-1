@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, Suspense } from 'react';
-import { 
-  Monitor, Layout, Clock, Cloud, Shield, Zap, ChevronRight, Menu, X, Play, 
-  CheckCircle2, ArrowLeft, AlertCircle, Tv, Smartphone, Globe, Settings, 
+import {
+  Monitor, Layout, Clock, Cloud, Shield, Zap, ChevronRight, Menu, X, Play,
+  CheckCircle2, ArrowLeft, AlertCircle, Tv, Smartphone, Globe, Settings,
   BarChart3, ChevronDown, FileText, Youtube, Award, Users, Rocket, HeartHandshake
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
@@ -9,13 +9,12 @@ import { cn } from '../../lib/utils';
 import { Logo } from '../Logo';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { useContactModal } from '../../contexts/ModalContext';
-import { LazyVideo } from '../LazyVideo';
 import { Link } from 'react-router-dom';
 
 const Solutions = () => {
   const { t } = useLanguage();
   const { openContactModal } = useContactModal();
-  
+
   return (
     <section id="solutions" className="section-padding bg-brand-50/50">
       <div className="max-w-7xl mx-auto">
@@ -24,44 +23,32 @@ const Solutions = () => {
             <div className="grid grid-cols-2 gap-4">
               <Link to="/lcd" className="space-y-4 group">
                 <div className="relative overflow-hidden rounded-3xl aspect-[3/4]">
-                  <video 
-                    autoPlay 
-                    loop 
-                    muted 
-                    playsInline 
+                  <img
+                    src="/assets/case-studies/AEON-BETA/IMG/z7520683894147_0bd90845c4c1311798efe7477cd7bba0.jpg"
+                    alt="LCD Screen Solution"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  >
-                    <source src="/assets/videos/VID_20260310_093518_HDR10PLUS.mp4" type="video/mp4" />
-                  </video>
+                  />
                 </div>
               </Link>
               <div className="space-y-4 pt-12">
                 <div className="relative overflow-hidden rounded-3xl aspect-[3/4] group shadow-xl">
-                  <video 
-                    autoPlay 
-                    loop 
-                    muted 
-                    playsInline 
+                  <img
+                    src="/assets/case-studies/AEON-BETA/IMG/z7517266145563_09336c8d4d36092af06c5ec568aaf682.jpg"
+                    alt="Kiosk Solution"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  >
-                    <source src="/assets/case-studies/AEON-BETA/VIDEO/7517328967641.mp4" type="video/mp4" />
-                  </video>
-                  <div className="absolute inset-0 bg-brand-950/60 group-hover:bg-brand-950/40 transition-colors p-6 flex flex-col justify-end">
+                  />
+                  <div className="absolute inset-0 bg-brand-950/30 group-hover:bg-brand-950/40 transition-colors p-6 flex flex-col justify-end">
                     <Smartphone className="w-8 h-8 mb-4 text-accent-400" />
                     <div className="text-2xl font-bold text-white uppercase tracking-tight">{t.solutions.kiosk}</div>
                     <div className="text-sm text-white/80">{t.solutions.kioskSub}</div>
                   </div>
                 </div>
                 <Link to="/led" className="relative overflow-hidden rounded-3xl aspect-[3/4] block group shadow-xl">
-                  <video 
-                    autoPlay 
-                    loop 
-                    muted 
-                    playsInline 
+                  <img
+                    src="/assets/case-studies/AEON-BETA/IMG/z7517266156681_5ebe3cf13cc6e268f2c478955f5f65f3.jpg"
+                    alt="LED Screen Solution"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  >
-                    <source src="/assets/videos/VID_20260310_093535_HDR10PLUS.mp4" type="video/mp4" />
-                  </video>
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-6">
                     <div className="text-white">
                       <div className="text-2xl font-bold uppercase tracking-tight">LED & Large Scale</div>
@@ -72,7 +59,7 @@ const Solutions = () => {
               </div>
             </div>
           </div>
-          
+
           <div className="order-1 lg:order-2">
             <h2 className="text-4xl md:text-5xl font-extrabold text-brand-950 mb-6">
               {t.solutions.title}
@@ -80,7 +67,7 @@ const Solutions = () => {
             <p className="text-brand-700 text-lg mb-8 leading-relaxed">
               {t.solutions.desc}
             </p>
-            
+
             <div className="space-y-6 mb-10">
               {[
                 { title: t.solutions.lcd, desc: t.solutions.lcdSub, href: "/lcd" },
@@ -89,8 +76,8 @@ const Solutions = () => {
                 { title: t.solutions.kiosk, desc: t.solutions.kioskSub, href: "#contact", modal: true }
               ].map((item, i) => (
                 item.modal ? (
-                  <button 
-                    key={i} 
+                  <button
+                    key={i}
                     onClick={() => openContactModal(item.title)}
                     className="w-full flex gap-4 p-4 rounded-2xl hover:bg-brand-50/50 transition-colors group cursor-pointer border border-transparent hover:border-slate-200 text-left"
                   >
@@ -103,8 +90,8 @@ const Solutions = () => {
                     </div>
                   </button>
                 ) : (
-                  <Link 
-                    key={i} 
+                  <Link
+                    key={i}
                     to={item.href}
                     className="flex gap-4 p-4 rounded-2xl hover:bg-brand-50/50 transition-colors group cursor-pointer border border-transparent hover:border-slate-200"
                   >
@@ -119,7 +106,7 @@ const Solutions = () => {
                 )
               ))}
             </div>
-            <button 
+            <button
               onClick={() => openContactModal('Giải pháp VNSIGN')}
               className="inline-flex items-center gap-2 bg-brand-600 text-white px-8 py-4 rounded-full font-bold hover:bg-brand-700 transition-all shadow-lg shadow-brand-200 group cursor-pointer"
             >

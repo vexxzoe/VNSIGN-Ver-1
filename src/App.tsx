@@ -20,7 +20,7 @@ const LEDScreens = React.lazy(() => import('./components/sections/LEDScreens'));
 const CaseStudies = React.lazy(() => import('./components/sections/CaseStudies'));
 const HowItWorks = React.lazy(() => import('./components/sections/HowItWorks'));
 const USP = React.lazy(() => import('./components/sections/USP'));
-const Pricing = React.lazy(() => import('./components/sections/Pricing'));
+
 const CTA = React.lazy(() => import('./components/sections/CTA'));
 const Testimonials = React.lazy(() => import('./components/sections/Testimonials'));
 const Contact = React.lazy(() => import('./components/sections/Contact'));
@@ -126,12 +126,6 @@ const Home = () => {
       <LazySection>
         <Suspense fallback={<FallbackSkeleton />}>
           <USP />
-        </Suspense>
-      </LazySection>
-
-      <LazySection id="pricing">
-        <Suspense fallback={<FallbackSkeleton />}>
-          <Pricing />
         </Suspense>
       </LazySection>
 
