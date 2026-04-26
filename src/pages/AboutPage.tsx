@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { 
-  Building2, Laptop, Tv, Rocket, Star, 
+import {
+  Building2, Laptop, Tv, Rocket, Star,
   Trophy, Wifi, Handshake, Lightbulb,
   BarChart, MapPin, Settings, Building, FileText
 } from 'lucide-react';
@@ -31,15 +31,14 @@ const AboutPage = () => {
   const { t } = useLanguage();
 
   const timeline = [
-    { year: "2009", icon: Building2, title: "Thành Lập VNDC", desc: "Đội ngũ kỹ sư và kiến trúc sư từ các tập đoàn hàng đầu Nhật Bản — Kajima, Hazama, Obayashi — thành lập VNDC với năng lực xây dựng Hạng 1." },
-    { year: "2014", icon: Laptop, title: "VNDC Technology Ra Đời", desc: "Mở rộng sang lĩnh vực CNTT — cung cấp giải pháp phần mềm và gia công outsourcing cho doanh nghiệp trong và ngoài nước." },
-    { year: "2018", icon: Tv, title: "VNSIGN Được Khai Sinh", desc: "Ra mắt thương hiệu VNSIGN chuyên biệt về Digital Signage — màn hình LED/LCD và phần mềm quản lý nội dung đám mây toàn diện đầu tiên tại Việt Nam.", highlight: true },
-    { year: "2021", icon: Rocket, title: "Mở Rộng Hệ Sinh Thái", desc: "Bổ sung VNVAR (Video Assistant Referee cho thể thao), VNWIFI (WiFi Marketing) và VNCRM (CRM đa kênh) vào danh mục sản phẩm." },
-    { year: "2025", icon: Star, title: "Dẫn Đầu Thị Trường", desc: "500+ dự án LED hoàn thành, 150+ khách hàng doanh nghiệp lớn, VNSIGN Cloud phủ 12 tỉnh thành — vị thế số 1 Digital Signage Việt Nam." }
+    { year: "2016", icon: Building2, title: "Thành Lập VNDC Technology", desc: "Đặt những viên gạch đầu tiên với đội ngũ kỹ sư tâm huyết, tập trung vào nghiên cứu hạ tầng mạng và các giải pháp phần mềm quản trị doanh nghiệp." },
+    { year: "2019", icon: Laptop, title: "Ra Mắt Giải Pháp VNWIFI", desc: "Chính thức giới thiệu giải pháp VNWIFI – nền tảng WiFi Marketing thông minh. Sản phẩm nhanh chóng chiếm lĩnh thị trường, giúp hàng ngàn doanh nghiệp thu thập dữ liệu và tối ưu hóa trải nghiệm khách hàng tại điểm bán." },
+    { year: "2022", icon: Tv, title: "Khai Sinh Hệ Sinh Thái VNSIGN", desc: "Phát triển thương hiệu VNSIGN – chuyên biệt về Digital Signage. VNDC tiên phong cung cấp phần mềm quản lý màn hình tập trung trên Cloud, giúp doanh nghiệp vận hành nội dung quảng cáo từ xa một cách chuyên nghiệp.", highlight: true },
+    { year: "2025", icon: Rocket, title: "Công Nghệ Thể Thao VNVAR", desc: "Đột phá với VNVAR – giải pháp hỗ trợ trọng tài và cắt Highlight tự động cho thể thao và pickleball. Ứng dụng công nghệ xử lý hình ảnh hiện đại để mang lại giá trị gia tăng cho các câu lạc bộ và sân chơi thể thao." },
+    { year: "2026", icon: Star, title: "Tầm Nhìn Dẫn Đầu Màn Hình LED", desc: "Tập trung đẩy mạnh giải pháp màn hình LED thế hệ mới tích hợp quản lý thông minh. VNDC khẳng định vị thế đơn vị tiên phong trong việc đồng bộ hóa phần cứng hiển thị và hệ sinh thái quản lý nội dung tại Việt Nam." }
   ];
 
   const ecosystem = [
-    { id: "construction", icon: Building2, name: "VNDC Construction", tag: "Xây dựng · Hạng 1", desc: ["Tư vấn thiết kế dân dụng & công nghiệp", "Quản lý dự án hạng 1", "Đội ngũ từ Kajima, Hazama, Obayashi", "200+ công trình hoàn thành"] },
     { id: "tech", icon: Laptop, name: "VNDC Technology", tag: "CNTT · Outsourcing", desc: ["Giải pháp CNTT doanh nghiệp", "Gia công phần mềm (Outsourcing)", "Hệ thống ERP & CRM tùy chỉnh", "50+ kỹ sư phần mềm"] },
     { id: "vnsign", icon: Tv, name: "VNSIGN", tag: "⭐ Trọng Tâm Chiến Lược", desc: ["Màn hình LED Indoor & Outdoor", "LCD / Digital Poster chuyên dụng", "VNSIGN Cloud CMS — quản lý tập trung", "500+ dự án đã triển khai"], highlight: true },
     { id: "vnvar", icon: Trophy, name: "VNVAR", tag: "Video · Thể thao", desc: ["Video Assistant Referee (VAR)", "Giải pháp hỗ trợ trọng tài video", "Tích hợp cho giải bóng đá V.League", "Replay & phân tích chuyển động"] },
@@ -59,14 +58,14 @@ const AboutPage = () => {
       {/* ── HERO ── */}
       <section className="relative w-full min-h-[70vh] flex items-center overflow-hidden bg-brand-950">
         <div className="absolute inset-0 z-0 opacity-40">
-          <img 
-            src="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=1800&q=55" 
-            alt="VNDC Construction Heritage" 
-            className="w-full h-full object-cover" 
+          <img
+            src="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=1800&q=55"
+            alt="VNDC Construction Heritage"
+            className="w-full h-full object-cover"
           />
         </div>
         <div className="absolute inset-0 z-10" style={{ background: 'linear-gradient(120deg, rgba(2,34,46,0.97) 0%, rgba(2,34,46,0.85) 60%, rgba(8,103,136,0.4) 100%)' }} />
-        
+
         <div className="relative z-20 max-w-7xl mx-auto w-full px-6 md:px-12 lg:px-24 pt-36 pb-28 text-center">
           <div className="max-w-4xl mx-auto flex flex-col items-center">
             <motion.div
@@ -78,7 +77,7 @@ const AboutPage = () => {
               <Building2 className="w-4 h-4 text-accent-400" />
               <span className="text-white/90 text-sm font-semibold tracking-wider uppercase">Về Chúng Tôi</span>
             </motion.div>
-            
+
             <motion.h1
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
@@ -86,7 +85,7 @@ const AboutPage = () => {
               className="text-4xl sm:text-5xl md:text-6xl font-black leading-[1.1] mb-6 text-white"
             >
               Xây dựng từ<br />
-              <span 
+              <span
                 style={{
                   background: 'linear-gradient(90deg, #ffc107 0%, #ffe066 50%, #ffc107 100%)',
                   WebkitBackgroundClip: 'text',
@@ -98,7 +97,7 @@ const AboutPage = () => {
                 nền tảng vững chắc
               </span>
             </motion.h1>
-            
+
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -116,13 +115,13 @@ const AboutPage = () => {
         <div className="text-center mb-16">
           <div className="text-brand-600 font-bold tracking-widest uppercase text-sm mb-4">Hành Trình Phát Triển</div>
           <h2 className="text-3xl md:text-4xl font-black text-brand-950 mb-6">
-            Di sản 15+ năm<br />kiến tạo tương lai
+            Di sản 10+ năm<br />kiến tạo tương lai
           </h2>
         </div>
 
         <div className="relative border-l-2 border-brand-200 ml-4 md:ml-8 pl-8 md:pl-12 space-y-12">
           {timeline.map((item, i) => (
-            <motion.div 
+            <motion.div
               key={i}
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -135,7 +134,7 @@ const AboutPage = () => {
                 "absolute -left-[41px] md:-left-[57px] top-1 w-5 h-5 rounded-full border-4 border-white shadow-sm",
                 item.highlight ? "bg-accent-400" : "bg-brand-500"
               )} />
-              
+
               <div className="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
                 <div className="text-2xl font-black text-brand-300 w-24 flex-shrink-0 pt-1">{item.year}</div>
                 <div className={cn(
@@ -187,7 +186,7 @@ const AboutPage = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {ecosystem.map((item, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -206,7 +205,7 @@ const AboutPage = () => {
                 </div>
                 <h3 className={cn("text-xl font-bold mb-2", item.highlight ? "text-accent-700" : "text-brand-950")}>{item.name}</h3>
                 <div className={cn("text-sm font-bold uppercase tracking-wider mb-6", item.highlight ? "text-accent-500" : "text-brand-500")}>{item.tag}</div>
-                
+
                 <ul className="space-y-3">
                   {item.desc.map((d, j) => (
                     <li key={j} className="flex items-start text-sm text-brand-700">
@@ -220,7 +219,7 @@ const AboutPage = () => {
           </div>
 
           {/* Core Value Banner */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -246,12 +245,12 @@ const AboutPage = () => {
             <h2 className="text-3xl md:text-4xl font-black text-brand-950 mb-6">
               Những con số<br />nói lên tất cả
             </h2>
-            <p className="text-brand-600 max-w-2xl mx-auto text-lg">Từ Vinamilk đến GS E&C — chúng tôi đã đồng hành cùng những thương hiệu lớn nhất Việt Nam và khu vực.</p>
+            <p className="text-brand-600 max-w-2xl mx-auto text-lg">Từ Beta Cinema đến Trang sức Doji — chúng tôi đã đồng hành cùng những thương hiệu lớn nhất Việt Nam và khu vực.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
             {stats.map((item, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -286,16 +285,16 @@ const AboutPage = () => {
       {/* ── VISION ── */}
       <section className="relative py-32 px-6 md:px-12 lg:px-24 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?auto=format&fit=crop&w=1800&q=55" 
-            alt="City lights vision" 
+          <img
+            src="https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?auto=format&fit=crop&w=1800&q=55"
+            alt="City lights vision"
             className="w-full h-full object-cover"
           />
         </div>
         <div className="absolute inset-0 z-10 bg-brand-950/90" />
-        
+
         <div className="relative z-20 max-w-4xl mx-auto text-center">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -303,8 +302,8 @@ const AboutPage = () => {
           >
             <Star className="w-4 h-4" /> Tầm Nhìn 2030
           </motion.div>
-          
-          <motion.h2 
+
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -315,8 +314,8 @@ const AboutPage = () => {
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-300 to-accent-500">Digital Signage</span><br />
             tại Việt Nam
           </motion.h2>
-          
-          <motion.p 
+
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -325,8 +324,8 @@ const AboutPage = () => {
           >
             Thông qua nền tảng VNSIGN Cloud và hệ sinh thái công nghệ VNDC, chúng tôi cam kết xây dựng hạ tầng màn hình số thông minh phủ rộng toàn quốc — nơi mỗi màn hình LED đều được kết nối, quản lý tập trung và tối ưu hóa tự động.
           </motion.p>
-          
-          <motion.div 
+
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

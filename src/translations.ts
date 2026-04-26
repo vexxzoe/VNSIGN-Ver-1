@@ -355,7 +355,7 @@ export const translations = {
       },
       rights: 'All rights reserved.',
       companyInfo: {
-        name: 'Công ty Cổ phần Công nghệ VNDC Việt Nam',
+        name: 'Công Ty TNHH Công Nghệ VNDC',
         address1: '🏢 Tầng 14, Tòa HM Town, 412 Nguyễn Thị Minh Khai, P.5, Q.3, TP.HCM',
         address2: '🏢 MK Building - 83 A4, P.12, Q.Tân Bình, TP.HCM',
         address3: '🏢 Tầng 4, 164 Nguyễn Tuân, Thanh Xuân, Hà Nội',
