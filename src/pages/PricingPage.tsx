@@ -55,32 +55,16 @@ const plans = [
   },
 ];
 
-/* ─────────────────────────────────────────────
-   COMPARISON TABLE DATA
-───────────────────────────────────────────── */
-const comparisonRows = [
-  { label: 'Quản lý màn hình qua Cloud',       basic: true,  enterprise: true },
-  { label: 'Phát video, hình ảnh, HTML5',       basic: true,  enterprise: true },
-  { label: 'Lập lịch phát nội dung',            basic: true,  enterprise: true },
-  { label: 'Hỗ trợ kỹ thuật',                   basic: true,  enterprise: true },
-  { label: 'Số màn hình quản lý',               basic: 'Cơ bản', enterprise: 'Không giới hạn' },
-  { label: 'Phân quyền người dùng đa cấp',      basic: false, enterprise: true },
-  { label: 'Quản lý đa chi nhánh',              basic: false, enterprise: true },
-  { label: 'Tích hợp POS / ERP / CRM',         basic: false, enterprise: true },
-  { label: 'Tích hợp dữ liệu thời gian thực',  basic: false, enterprise: true },
-  { label: 'SLA & uptime cam kết',              basic: false, enterprise: true },
-  { label: 'Onboarding chuyên sâu',             basic: false, enterprise: true },
-  { label: 'Báo cáo xuất PDF / Excel',          basic: false, enterprise: true },
-];
+
 
 /* ─────────────────────────────────────────────
    TRUST SIGNALS
 ───────────────────────────────────────────── */
 const trustItems = [
   { icon: ShieldCheck, label: 'Uptime 99.9% SLA' },
-  { icon: Clock,       label: 'Triển khai trong 24h' },
-  { icon: Users,       label: '150+ doanh nghiệp tin dùng' },
-  { icon: Headphones,  label: 'Hỗ trợ tiếng Việt 24/7' },
+  { icon: Clock, label: 'Triển khai trong 24h' },
+  { icon: Users, label: '150+ doanh nghiệp tin dùng' },
+  { icon: Headphones, label: 'Hỗ trợ tiếng Việt 24/7' },
 ];
 
 /* ─────────────────────────────────────────────
@@ -180,11 +164,10 @@ const PricingPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.15, duration: 0.6 }}
-                className={`relative flex flex-col rounded-[40px] overflow-hidden border transition-all duration-500 ${
-                  plan.highlight
-                    ? 'bg-brand-950 border-accent-400 shadow-[0_24px_60px_rgba(255,193,7,0.25)]'
-                    : 'bg-white border-brand-100 shadow-[0_8px_32px_rgba(8,103,136,0.08)]'
-                }`}
+                className={`relative flex flex-col rounded-[40px] overflow-hidden border transition-all duration-500 ${plan.highlight
+                  ? 'bg-brand-950 border-accent-400 shadow-[0_24px_60px_rgba(255,193,7,0.25)]'
+                  : 'bg-white border-brand-100 shadow-[0_8px_32px_rgba(8,103,136,0.08)]'
+                  }`}
               >
                 {/* Top accent bar */}
                 {plan.highlight && (
@@ -194,17 +177,15 @@ const PricingPage = () => {
                 <div className="p-10 flex flex-col flex-1">
                   {/* Badge */}
                   <div className="flex items-center justify-between mb-8">
-                    <div className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-black tracking-widest uppercase ${
-                      plan.highlight
-                        ? 'bg-accent-400/20 text-accent-400 border border-accent-400/30'
-                        : 'bg-brand-50 text-brand-600 border border-brand-200'
-                    }`}>
+                    <div className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-black tracking-widest uppercase ${plan.highlight
+                      ? 'bg-accent-400/20 text-accent-400 border border-accent-400/30'
+                      : 'bg-brand-50 text-brand-600 border border-brand-200'
+                      }`}>
                       <Star className="w-3 h-3" />
                       {plan.badge}
                     </div>
-                    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${
-                      plan.highlight ? 'bg-accent-400/15' : 'bg-brand-50'
-                    }`}>
+                    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${plan.highlight ? 'bg-accent-400/15' : 'bg-brand-50'
+                      }`}>
                       <Icon className={`w-6 h-6 ${plan.highlight ? 'text-accent-400' : 'text-brand-600'}`} />
                     </div>
                   </div>
@@ -250,11 +231,10 @@ const PricingPage = () => {
                   {/* CTA Button */}
                   <button
                     onClick={() => openContactModal(plan.name)}
-                    className={`w-full py-4 rounded-2xl font-black text-base transition-all duration-300 active:scale-95 flex items-center justify-center gap-2 cursor-pointer ${
-                      plan.highlight
-                        ? 'bg-accent-400 text-brand-950 hover:bg-accent-500 shadow-xl shadow-accent-400/25 hover:scale-105'
-                        : 'bg-brand-50 text-brand-600 border border-brand-200 hover:bg-brand-600 hover:text-white hover:border-brand-600'
-                    }`}
+                    className={`w-full py-4 rounded-2xl font-black text-base transition-all duration-300 active:scale-95 flex items-center justify-center gap-2 cursor-pointer ${plan.highlight
+                      ? 'bg-accent-400 text-brand-950 hover:bg-accent-500 shadow-xl shadow-accent-400/25 hover:scale-105'
+                      : 'bg-brand-50 text-brand-600 border border-brand-200 hover:bg-brand-600 hover:text-white hover:border-brand-600'
+                      }`}
                   >
                     <Phone className="w-4 h-4" />
                     {plan.cta}
@@ -277,81 +257,7 @@ const PricingPage = () => {
         </motion.p>
       </section>
 
-      {/* ══════════════════════════════════════
-          FEATURE COMPARISON TABLE
-      ══════════════════════════════════════ */}
-      <section className="py-16 px-6 md:px-12 lg:px-24 bg-white border-t border-brand-100">
-        <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-4 bg-brand-50 text-brand-600 border border-brand-200">
-              So sánh tính năng
-            </div>
-            <h2 className="text-2xl md:text-4xl font-black text-brand-950 mb-3">
-              Gói nào phù hợp với bạn?
-            </h2>
-            <p className="text-slate-500 text-sm font-medium max-w-xl mx-auto">
-              So sánh chi tiết để chọn đúng gói ngay từ đầu — không lãng phí ngân sách.
-            </p>
-          </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="rounded-3xl overflow-hidden border border-brand-100 shadow-[0_8px_30px_rgba(0,0,0,0.06)]"
-          >
-            {/* Table header */}
-            <div className="grid grid-cols-3 bg-brand-950 text-white">
-              <div className="p-5 text-sm font-bold text-white/60">Tính năng</div>
-              <div className="p-5 text-center border-l border-white/10">
-                <div className="text-xs font-black tracking-widest uppercase text-white/50 mb-1">Basic</div>
-                <div className="text-accent-400 font-black text-sm">4.800.000đ/năm</div>
-              </div>
-              <div className="p-5 text-center border-l border-white/10 relative">
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-accent-400 text-brand-950 text-[10px] font-black px-3 py-0.5 rounded-full tracking-wider whitespace-nowrap">
-                  Phổ biến nhất
-                </div>
-                <div className="text-xs font-black tracking-widest uppercase text-white/50 mb-1">Enterprise</div>
-                <div className="text-accent-400 font-black text-sm">Liên hệ báo giá</div>
-              </div>
-            </div>
-
-            {/* Table rows */}
-            {comparisonRows.map((row, i) => (
-              <div
-                key={i}
-                className={`grid grid-cols-3 border-t border-brand-100 ${i % 2 === 0 ? 'bg-white' : 'bg-brand-50/40'}`}
-              >
-                <div className="p-4 text-sm font-medium text-slate-700 flex items-center">{row.label}</div>
-                <div className="p-4 flex items-center justify-center border-l border-brand-100">
-                  {row.basic === true ? (
-                    <CheckCircle2 className="w-5 h-5 text-brand-600" />
-                  ) : row.basic === false ? (
-                    <X className="w-4 h-4 text-slate-300" />
-                  ) : (
-                    <span className="text-xs font-bold text-brand-600 bg-brand-50 border border-brand-200 px-2.5 py-1 rounded-full">{row.basic}</span>
-                  )}
-                </div>
-                <div className="p-4 flex items-center justify-center border-l border-brand-100 bg-accent-400/5">
-                  {row.enterprise === true ? (
-                    <CheckCircle2 className="w-5 h-5 text-accent-500" />
-                  ) : row.enterprise === false ? (
-                    <X className="w-4 h-4 text-slate-300" />
-                  ) : (
-                    <span className="text-xs font-bold text-accent-600 bg-accent-400/15 border border-accent-400/30 px-2.5 py-1 rounded-full">{row.enterprise}</span>
-                  )}
-                </div>
-              </div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
 
       {/* ══════════════════════════════════════
           FINAL CTA
@@ -389,13 +295,13 @@ const PricingPage = () => {
               Đội ngũ VNSIGN sẽ phân tích nhu cầu thực tế và đề xuất gói tối ưu nhất — không ép buộc, không phí ẩn.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4 mb-8">
-              <button 
+              <button
                 onClick={() => openContactModal('Giải pháp VNSIGN')}
                 className="bg-accent-400 text-brand-950 px-8 py-4 rounded-full font-black hover:bg-accent-500 transition-all text-lg shadow-xl shadow-accent-400/20 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 cursor-pointer"
               >
                 <Phone className="w-5 h-5" /> Gọi ngay: 0888 99 8181
               </button>
-              <button 
+              <button
                 onClick={() => openContactModal('Dùng thử miễn phí')}
                 className="bg-white/10 text-white border border-white/20 px-8 py-4 rounded-full font-bold hover:bg-white/20 transition-all text-lg backdrop-blur hover:scale-105 active:scale-95 cursor-pointer"
               >

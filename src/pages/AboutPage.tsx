@@ -41,15 +41,15 @@ const AboutPage = () => {
   const ecosystem = [
     { id: "tech", icon: Laptop, name: "VNDC Technology", tag: "CNTT · Outsourcing", desc: ["Giải pháp CNTT doanh nghiệp", "Gia công phần mềm (Outsourcing)", "Hệ thống ERP & CRM tùy chỉnh", "50+ kỹ sư phần mềm"] },
     { id: "vnsign", icon: Tv, name: "VNSIGN", tag: "⭐ Trọng Tâm Chiến Lược", desc: ["Màn hình LED Indoor & Outdoor", "LCD / Digital Poster chuyên dụng", "VNSIGN Cloud CMS — quản lý tập trung", "500+ dự án đã triển khai"], highlight: true },
-    { id: "vnvar", icon: Trophy, name: "VNVAR", tag: "Video · Thể thao", desc: ["Video Assistant Referee (VAR)", "Giải pháp hỗ trợ trọng tài video", "Tích hợp cho giải bóng đá V.League", "Replay & phân tích chuyển động"] },
+    { id: "vnvar", icon: Trophy, name: "VNVAR", tag: "Video · Thể thao", desc: ["Video Assistant Referee (VAR)", "Giải pháp hỗ trợ trọng tài video", "Tích hợp cho giải pickleball ", "Replay & phân tích chuyển động"] },
     { id: "vnwifi", icon: Wifi, name: "VNWIFI", tag: "WiFi · Marketing", desc: ["Marketing qua WiFi điểm bán lẻ", "Thu thập dữ liệu khách hàng", "Hiển thị quảng cáo khi kết nối WiFi", "Analytics hành vi người dùng"] },
     { id: "vncrm", icon: Handshake, name: "VNCRM", tag: "CRM · CSKH Đa Kênh", desc: ["Nền tảng CRM đa kênh", "CSKH qua Zalo, FB, Email, SMS", "Tự động hóa quy trình chăm sóc", "Báo cáo hành trình khách hàng"] },
   ];
 
   const stats = [
-    { icon: BarChart, num: 500, unit: "+", label: "Dự án LED hoàn thành", sub: "Vinamilk, Tan Hiep Phat, GS E&C..." },
+    { icon: BarChart, num: 500, unit: "+", label: "Dự án LED hoàn thành", sub: "Beta Cinema, Trang sức Doji,..." },
     { icon: Building, num: 150, unit: "+", label: "Khách hàng doanh nghiệp lớn", sub: "Tập đoàn, ngân hàng, bán lẻ" },
-    { icon: MapPin, num: 12, unit: "", label: "Tỉnh thành phủ sóng", sub: "Từ Hà Nội đến Cần Thơ" },
+    { icon: MapPin, num: 12, unit: "", label: "Tỉnh thành phủ sóng", sub: "Từ Hà Nội đến Tp. HCM" },
     { icon: Settings, num: 15, unit: "+", label: "Năm kinh nghiệm", sub: "Từ xây dựng đến công nghệ số" },
   ];
 
@@ -104,7 +104,7 @@ const AboutPage = () => {
               transition={{ delay: 0.22, duration: 0.6 }}
               className="text-lg md:text-xl text-white/80 mb-10 leading-relaxed font-medium"
             >
-              VNDC — từ những công trình xây dựng hàng đầu năm 2009 đến hệ sinh thái công nghệ số dẫn đầu Việt Nam 2025.
+              VNDC: Từ nền tảng xây dựng năm 2016 đến hệ sinh thái giải pháp số toàn diện 2026.
             </motion.p>
           </div>
         </div>
@@ -274,7 +274,7 @@ const AboutPage = () => {
           <div className="mt-20 pt-10 border-t border-brand-100">
             <div className="text-center text-sm font-bold text-brand-400 uppercase tracking-widest mb-8">Khách hàng tiêu biểu</div>
             <div className="flex flex-wrap justify-center gap-6 md:gap-12 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-              {['Vinamilk', 'Tan Hiep Phat', 'GS E&C', 'Vingroup', 'Lotte Mart', 'Sun Group', 'Techcombank', 'VietJet Air'].map((client, i) => (
+              {['Beta Cinema', 'Trang sức Doji', 'Bảo Tín Minh Châu', 'Yamaha', 'Lotte Mart', 'Bảo Việt Nhân Thọ', 'Doji'].map((client, i) => (
                 <div key={i} className="text-xl font-black text-brand-900">{client}</div>
               ))}
             </div>

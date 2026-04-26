@@ -35,6 +35,7 @@ const LEDPage = React.lazy(() => import('./pages/LEDPage'));
 const ContactPage = React.lazy(() => import('./pages/ContactPage'));
 const ProductDetailPage = React.lazy(() => import('./pages/ProductDetailPage'));
 const ProjectDetailPage = React.lazy(() => import('./pages/ProjectDetailPage'));
+const QuotePage = React.lazy(() => import('./pages/QuotePage'));
 
 const FallbackSkeleton = () => (
   <div className="h-64 w-full animate-pulse bg-brand-50/20 rounded-[40px] my-8 max-w-7xl mx-auto" />
@@ -203,13 +204,22 @@ const MainContent = () => {
             <ContactPage />
           </Suspense>
         } />
+        <Route path="/quote" element={
+          <Suspense fallback={<FallbackSkeleton />}>
+            <QuotePage />
+          </Suspense>
+        } />
+        <Route path="/quote/:type" element={
+          <Suspense fallback={<FallbackSkeleton />}>
+            <QuotePage />
+          </Suspense>
+        } />
         <Route path="/product/:slug" element={
           <Suspense fallback={<FallbackSkeleton />}>
             <ProductDetailPage />
           </Suspense>
         } />
         <Route path="/lcd/:id" element={
-
           <Suspense fallback={<FallbackSkeleton />}>
             <ProductDetailPage />
           </Suspense>
@@ -229,6 +239,7 @@ const MainContent = () => {
 
 const GlobalModal = () => {
   const { isContactModalOpen, closeContactModal, productName } = useContactModal();
+
   return (
     <QuoteModal 
       isOpen={isContactModalOpen} 
