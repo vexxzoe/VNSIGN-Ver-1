@@ -345,6 +345,7 @@ export const translations = {
     contact: {
       title: 'Sẵn sàng nâng tầm truyền thông?',
       subtitle: 'Để lại thông tin, đội ngũ chuyên gia của VNSign sẽ liên hệ tư vấn giải pháp tối ưu nhất cho bạn.',
+      ctaTitle: "Bắt đầu hành trình <highlight>Video</highlight> của bạn",
       hotline: 'Hotline',
       zalo: 'Zalo / Hotline 2',
       email: 'Email',
@@ -1232,6 +1233,7 @@ export const translations = {
     contact: {
       title: 'Ready to elevate communication?',
       subtitle: 'Leave your information, VNSign\'s expert team will contact you to advise the most optimal solution.',
+      ctaTitle: "Start your <highlight>video</highlight> journey",
       hotline: 'Hotline',
       zalo: 'Zalo / Hotline 2',
       email: 'Email',

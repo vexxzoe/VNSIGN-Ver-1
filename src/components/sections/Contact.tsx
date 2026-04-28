@@ -13,6 +13,18 @@ import { LazyVideo } from '../LazyVideo';
 const Contact = () => {
   const { t } = useLanguage();
 
+  const renderHighlightedText = (text: string) => {
+    if (!text) return null;
+    const parts = text.split(/(<highlight>.*?<\/highlight>)/g);
+    return parts.map((part, i) => {
+      if (part.startsWith('<highlight>') && part.endsWith('</highlight>')) {
+        const content = part.replace('<highlight>', '').replace('</highlight>', '');
+        return <span key={i} className="text-accent-400">{content}</span>;
+      }
+      return part;
+    });
+  };
+
   return (
     <section id="contact" className="section-padding bg-brand-950 relative overflow-hidden text-white pb-32 md:pb-20">
       {/* Background Decor */}
@@ -31,7 +43,7 @@ const Contact = () => {
               {t.contact.title}
             </div>
             <h2 className="text-5xl md:text-7xl font-black text-white mb-8 leading-[1.1] tracking-tighter">
-              Bắt đầu hành trình <span className="text-accent-400">Video</span> của bạn
+              {renderHighlightedText(t.contact.ctaTitle)}
             </h2>
             <p className="text-white/60 text-xl mb-12 font-medium leading-relaxed max-w-lg lg:text-left text-center mx-auto lg:mx-0">
               {t.contact.subtitle}
