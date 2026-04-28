@@ -52,11 +52,11 @@ const Features = () => {
           <div>
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-accent-400/30 bg-accent-400/10 mb-6">
               <div className="w-1.5 h-1.5 rounded-full bg-accent-400 animate-pulse" />
-              <span className="text-accent-400 text-xs font-bold uppercase tracking-[0.18em]">TÍNH NĂNG CỐT LÕI</span>
+              <span className="text-accent-400 text-xs font-bold uppercase tracking-[0.18em]">{t.features.badgeLabel}</span>
             </div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-brand-950 leading-[1.08] tracking-tight max-w-3xl">
-              NỀN TẢNG <span className="text-accent-400">THÔNG MINH</span><br />
-              CHO MỌI MÀN HÌNH
+              {t.features.headingLine1} <span className="text-accent-400">{t.features.headingHighlight}</span><br />
+              {t.features.headingLine2}
             </h2>
           </div>
           <p className="text-brand-600 text-base font-medium leading-relaxed max-w-sm md:text-right">
@@ -80,13 +80,13 @@ const Features = () => {
                 {/* Live badge */}
                 <div className="absolute top-6 left-6 flex items-center gap-2 bg-black/60 backdrop-blur-md border border-white/20 rounded-full px-4 py-1.5">
                   <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                  <span className="text-white text-xs font-bold uppercase tracking-widest">LIVE SYSTEM</span>
+                  <span className="text-white text-xs font-bold uppercase tracking-widest">{t.features.liveBadge}</span>
                 </div>
 
                 <div className="absolute bottom-10 left-10 right-10 text-white">
-                  <div className="text-accent-400 text-xs font-black uppercase tracking-widest mb-2">VNSIGN CMS PLATFORM</div>
+                  <div className="text-accent-400 text-xs font-black uppercase tracking-widest mb-2">{t.features.liveCaption}</div>
                   <h4 className="text-2xl md:text-3xl font-black leading-tight mb-3">
-                    Quản lý tập trung — Điều khiển toàn bộ màn hình từ một nơi
+                    {t.features.videoCaption}
                   </h4>
                   <div className="flex items-center gap-3 text-sm">
                     <div className="flex -space-x-2">
@@ -94,7 +94,7 @@ const Features = () => {
                         <div key={i} className="w-7 h-7 rounded-full bg-brand-600 border-2 border-brand-950 flex items-center justify-center text-white text-[10px] font-black">{i}</div>
                       ))}
                     </div>
-                    <span>500+ doanh nghiệp tin dùng</span>
+                    <span>{t.features.socialProof}</span>
                   </div>
                 </div>
               </div>
@@ -106,7 +106,7 @@ const Features = () => {
                 className="absolute -bottom-6 -right-6 bg-accent-400 px-7 py-5 rounded-3xl shadow-2xl z-20"
               >
                 <div className="text-4xl font-black text-brand-950">99.9%</div>
-                <div className="text-xs font-bold text-brand-950/70 uppercase tracking-widest">Uptime Cloud</div>
+                <div className="text-xs font-bold text-brand-950/70 uppercase tracking-widest">{t.features.uptimeLabel}</div>
               </motion.div>
             </div>
           </motion.div>

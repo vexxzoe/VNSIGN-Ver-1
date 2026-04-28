@@ -6,72 +6,53 @@ import {
   Headphones, Star
 } from 'lucide-react';
 import { useContactModal } from '../contexts/ModalContext';
-
-/* ─────────────────────────────────────────────
-   PLAN DATA
-───────────────────────────────────────────── */
-const plans = [
-  {
-    id: 'basic',
-    badge: 'Phổ biến',
-    name: 'GÓI BASIC',
-    tagline: 'Dành cho doanh nghiệp vừa & nhỏ',
-    price: '4.800.000đ',
-    period: '/năm',
-    priceNote: 'Trên mỗi thiết bị — thanh toán hàng năm',
-    highlight: false,
-    icon: Zap,
-    color: 'brand',
-    cta: 'Liên hệ tư vấn',
-    benefits: [
-      'Quản lý & phát nội dung Digital Signage cơ bản',
-      'Hỗ trợ video, hình ảnh, thông báo, website',
-      'Quản lý tập trung qua nền tảng Cloud',
-      'Phù hợp cửa hàng, café, nhà hàng, SME',
-      'Triển khai nhanh, chi phí tối ưu',
-      'Hỗ trợ kỹ thuật trong suốt thời gian sử dụng',
-    ],
-  },
-  {
-    id: 'enterprise',
-    badge: 'Được chọn nhiều nhất',
-    name: 'GÓI ENTERPRISE',
-    tagline: 'Dành cho chuỗi & doanh nghiệp lớn',
-    price: 'Liên hệ báo giá',
-    period: '',
-    priceNote: 'Tùy chỉnh theo quy mô — linh hoạt toàn diện',
-    highlight: true,
-    icon: Building2,
-    color: 'accent',
-    cta: 'Nhận báo giá ngay',
-    benefits: [
-      'Giải pháp Digital Signage nâng cao, không giới hạn màn hình',
-      'Quản lý số lượng lớn màn hình, nhiều chi nhánh',
-      'Lập lịch nâng cao & phân quyền người dùng đa cấp',
-      'Tích hợp dữ liệu thời gian thực (POS, ERP, CRM)',
-      'Hỗ trợ kỹ thuật chuyên sâu ưu tiên 24/7',
-      'Phù hợp chuỗi cửa hàng, TTTM, tập đoàn lớn',
-    ],
-  },
-];
-
-
-
-/* ─────────────────────────────────────────────
-   TRUST SIGNALS
-───────────────────────────────────────────── */
-const trustItems = [
-  { icon: ShieldCheck, label: 'Uptime 99.9% SLA' },
-  { icon: Clock, label: 'Triển khai trong 24h' },
-  { icon: Users, label: '150+ doanh nghiệp tin dùng' },
-  { icon: Headphones, label: 'Hỗ trợ tiếng Việt 24/7' },
-];
+import { useLanguage } from '../contexts/LanguageContext';
 
 /* ─────────────────────────────────────────────
    MAIN COMPONENT
-───────────────────────────────────────────── */
+   ───────────────────────────────────────────── */
 const PricingPage = () => {
   const { openContactModal } = useContactModal();
+  const { t } = useLanguage();
+
+  const plans = [
+    {
+      id: 'basic',
+      badge: t.pricingPage.plans.basic.badge,
+      name: t.pricingPage.plans.basic.name,
+      tagline: t.pricingPage.plans.basic.tagline,
+      price: t.pricingPage.plans.basic.price,
+      period: t.pricingPage.plans.basic.period,
+      priceNote: t.pricingPage.plans.basic.priceNote,
+      highlight: false,
+      icon: Zap,
+      color: 'brand',
+      cta: t.pricingPage.plans.basic.cta,
+      benefits: t.pricingPage.plans.basic.benefits,
+    },
+    {
+      id: 'enterprise',
+      badge: t.pricingPage.plans.enterprise.badge,
+      name: t.pricingPage.plans.enterprise.name,
+      tagline: t.pricingPage.plans.enterprise.tagline,
+      price: t.pricingPage.plans.enterprise.price,
+      period: t.pricingPage.plans.enterprise.period,
+      priceNote: t.pricingPage.plans.enterprise.priceNote,
+      highlight: true,
+      icon: Building2,
+      color: 'accent',
+      cta: t.pricingPage.plans.enterprise.cta,
+      benefits: t.pricingPage.plans.enterprise.benefits,
+    },
+  ];
+
+  const trustItems = [
+    { icon: ShieldCheck, label: t.pricingPage.trust.uptime },
+    { icon: Clock, label: t.pricingPage.trust.delivery },
+    { icon: Users, label: t.pricingPage.trust.clients },
+    { icon: Headphones, label: t.pricingPage.trust.support },
+  ];
+
   return (
     <div className="min-h-screen bg-brand-50" style={{ fontFamily: "'Be Vietnam Pro', sans-serif" }}>
 
@@ -103,7 +84,7 @@ const PricingPage = () => {
             className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-md"
           >
             <BarChart3 className="w-4 h-4 text-accent-400" />
-            <span className="text-white/90 text-sm font-semibold tracking-wider">BẢNG GIÁ · VNSIGN CLOUD CMS</span>
+            <span className="text-white/90 text-sm font-semibold tracking-wider">{t.pricingPage.hero.badge}</span>
           </motion.div>
 
           <motion.h1
@@ -112,7 +93,7 @@ const PricingPage = () => {
             transition={{ delay: 0.1, duration: 0.65 }}
             className="text-4xl sm:text-5xl md:text-6xl font-black leading-[1.1] mb-6 text-white"
           >
-            Gói dịch vụ phù hợp<br />
+            {t.pricingPage.hero.title}<br />
             <span style={{
               background: 'linear-gradient(90deg, #ffc107 0%, #ffe066 50%, #ffc107 100%)',
               WebkitBackgroundClip: 'text',
@@ -120,7 +101,7 @@ const PricingPage = () => {
               backgroundClip: 'text',
               filter: 'drop-shadow(0 2px 16px rgba(255,193,7,0.4))',
             }}>
-              với mọi quy mô doanh nghiệp
+              {t.pricingPage.hero.titleHighlight}
             </span>
           </motion.h1>
 
@@ -130,7 +111,7 @@ const PricingPage = () => {
             transition={{ delay: 0.22, duration: 0.6 }}
             className="text-lg md:text-xl text-white/70 mb-10 max-w-2xl mx-auto font-medium leading-relaxed"
           >
-            Từ cửa hàng đơn lẻ đến chuỗi hàng trăm chi nhánh — VNSIGN có gói giải pháp tối ưu cho bạn. Không ràng buộc, không chi phí ẩn.
+            {t.pricingPage.hero.desc}
           </motion.p>
 
           {/* Trust bar */}
@@ -253,7 +234,7 @@ const PricingPage = () => {
           transition={{ delay: 0.3 }}
           className="text-center text-slate-400 text-xs font-medium mt-8 max-w-2xl mx-auto leading-relaxed"
         >
-          * Bảng giá chỉ liệt kê các gói phổ biến và một phần tính năng của hệ thống. Nhận báo giá đầy đủ, vui lòng liên hệ hotline hoặc gửi thông tin chi tiết để được hỗ trợ nhanh nhất.
+          {t.pricingPage.disclaimer}
         </motion.p>
       </section>
 
@@ -285,31 +266,31 @@ const PricingPage = () => {
 
           <div className="relative z-10 max-w-3xl mx-auto">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-6 bg-white/10 text-accent-400 border border-white/15">
-              Bắt đầu ngay hôm nay
+              {t.pricingPage.cta.badge}
             </div>
             <h2 className="text-4xl md:text-5xl font-black text-white mb-6 leading-tight">
-              Chưa chắc gói nào phù hợp?<br />
-              <span className="text-accent-400">Để chuyên gia tư vấn miễn phí</span>
+              {t.pricingPage.cta.title}<br />
+              <span className="text-accent-400">{t.pricingPage.cta.titleHighlight}</span>
             </h2>
             <p className="text-xl text-white/70 mb-10 font-medium leading-relaxed">
-              Đội ngũ VNSIGN sẽ phân tích nhu cầu thực tế và đề xuất gói tối ưu nhất — không ép buộc, không phí ẩn.
+              {t.pricingPage.cta.desc}
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4 mb-8">
               <button
                 onClick={() => openContactModal('Giải pháp VNSIGN')}
                 className="bg-accent-400 text-brand-950 px-8 py-4 rounded-full font-black hover:bg-accent-500 transition-all text-lg shadow-xl shadow-accent-400/20 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 cursor-pointer"
               >
-                <Phone className="w-5 h-5" /> Gọi ngay: 0888 99 8181
+                <Phone className="w-5 h-5" /> {t.pricingPage.cta.buttonCall}
               </button>
               <button
                 onClick={() => openContactModal('Dùng thử miễn phí')}
                 className="bg-white/10 text-white border border-white/20 px-8 py-4 rounded-full font-bold hover:bg-white/20 transition-all text-lg backdrop-blur hover:scale-105 active:scale-95 cursor-pointer"
               >
-                ✨ Dùng thử miễn phí 30 ngày
+                {t.pricingPage.cta.buttonTry}
               </button>
             </div>
             <p className="text-white/45 text-sm font-medium">
-              ✅ Không cần thẻ tín dụng · Onboarding 1-1 miễn phí · Uptime 99.9% SLA
+              {t.pricingPage.cta.footer}
             </p>
           </div>
         </motion.div>

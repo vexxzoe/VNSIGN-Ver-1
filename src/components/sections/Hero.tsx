@@ -68,7 +68,7 @@ const Hero = () => {
           style={{ fontFamily: "'Be Vietnam Pro', sans-serif" }}
         >
           <span className="text-white drop-shadow-[0_2px_16px_rgba(0,0,0,0.4)]">
-            HỆ THỐNG QUẢN LÝ
+            {t.hero.title}
           </span>
           <br />
           <span
@@ -80,7 +80,7 @@ const Hero = () => {
               filter: 'drop-shadow(0 2px 12px rgba(255,193,7,0.35))',
             }}
           >
-            MÀN HÌNH TẬP TRUNG
+            {t.hero.titleHighlight}
           </span>
         </motion.h1>
 
@@ -107,13 +107,13 @@ const Hero = () => {
             className="inline-flex items-center justify-center gap-2 border-2 border-white/70 text-white px-8 py-3.5 rounded-full text-base font-bold hover:bg-white/10 hover:border-white transition-all active:scale-95 backdrop-blur-sm"
           >
             <Play className="w-4 h-4" />
-            Xem Demo
+            {t.hero.ctaDemo}
           </a>
           <button
             onClick={() => openContactModal('Giải pháp VNSIGN')}
             className="inline-flex items-center justify-center gap-2 bg-accent-400 text-brand-950 px-8 py-3.5 rounded-full text-base font-black hover:bg-accent-500 hover:scale-105 transition-all shadow-xl shadow-accent-400/25 active:scale-95 cursor-pointer"
           >
-            Nhận báo giá →
+            {t.hero.ctaQuote} →
           </button>
         </motion.div>
 

@@ -29,14 +29,14 @@ const Footer = () => {
         {/* CTA Banner inside footer */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-16 p-8 rounded-2xl border border-white/8 bg-white/3">
           <div>
-            <p className="text-white/40 text-xs font-bold uppercase tracking-widest mb-1">Sẵn sàng triển khai?</p>
-            <h3 className="text-white text-xl font-black">Nhận tư vấn & báo giá miễn phí hôm nay</h3>
+            <p className="text-white/40 text-xs font-bold uppercase tracking-widest mb-1">{t.footer.cta.badge}</p>
+            <h3 className="text-white text-xl font-black">{t.footer.cta.title}</h3>
           </div>
           <button
             onClick={() => openContactModal('Giải pháp VNSIGN')}
             className="shrink-0 bg-accent-400 text-brand-950 px-8 py-3 rounded-full font-black text-sm uppercase tracking-widest hover:bg-accent-500 hover:scale-105 transition-all shadow-lg shadow-accent-400/20 active:scale-95 whitespace-nowrap cursor-pointer"
           >
-            Liên hệ ngay →
+            {t.footer.cta.button} →
           </button>
         </div>
 
@@ -49,14 +49,15 @@ const Footer = () => {
             </p>
             <div className="flex gap-3">
               {[
-                { label: 'FB', href: '#' },
-                { label: 'LN', href: '#' },
-                { label: 'YT', href: '#' },
-                { label: 'TK', href: '#' },
+                { label: 'FB', href: 'https://www.facebook.com/profile.php?id=61563641611424' },
+                { label: 'YT', href: 'https://www.youtube.com/@vndc.technology' },
+                { label: 'TK', href: 'https://www.tiktok.com/@vndctech' },
               ].map(s => (
                 <a
                   key={s.label}
                   href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/40 hover:bg-accent-400 hover:text-brand-950 hover:border-accent-400 transition-all font-bold text-xs"
                 >
                   {s.label}

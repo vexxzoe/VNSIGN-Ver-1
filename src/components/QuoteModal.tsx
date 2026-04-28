@@ -2,6 +2,7 @@ import React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, Tv, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../contexts/LanguageContext';
 import { QuoteForm } from './QuoteForm';
 
 interface QuoteModalProps {
@@ -11,6 +12,7 @@ interface QuoteModalProps {
 }
 
 export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose, productName }) => {
+  const { t } = useLanguage();
   React.useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -29,7 +31,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose, product
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 overflow-y-auto">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -44,9 +46,9 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose, product
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
-            className="relative w-full max-w-xl bg-[#0a0f18] rounded-[40px] border border-white/10 shadow-2xl overflow-visible flex flex-col transform scale-90 md:scale-95 origin-center max-h-[110vh]"
+            className="relative w-full max-w-xl bg-[#0a0f18] rounded-[40px] border border-white/10 shadow-2xl overflow-hidden flex flex-col transform scale-90 md:scale-95 origin-center max-h-[90vh]"
           >
-            <div className="flex flex-col h-full w-full">
+            <div className="flex flex-col h-full w-full overflow-hidden">
               {/* Header Area */}
               <div className="p-4 md:p-5 border-b border-white/5 relative z-10 shrink-0">
                 <button
@@ -58,14 +60,14 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose, product
 
                 <div className="inline-flex items-center gap-2 mb-3 px-3 py-1 rounded-full bg-accent-400/10 border border-accent-400/20">
                   <ShieldCheck className="w-3 h-3 md:w-4 md:h-4 text-accent-400" />
-                  <span className="text-accent-400 text-[9px] md:text-[10px] font-black uppercase tracking-widest">Yêu cầu báo giá</span>
+                  <span className="text-accent-400 text-[9px] md:text-[10px] font-black uppercase tracking-widest">{t.contact.form.badge}</span>
                 </div>
 
                 <h2 className="text-2xl md:text-3xl font-black text-white mb-2 tracking-tight">
-                  Nhận tư vấn giải pháp
+                  {t.contact.form.title}
                 </h2>
                 <div className="flex flex-wrap items-center gap-2 text-white/50 font-medium mt-2">
-                  <span>Bạn đang quan tâm:</span>
+                  <span>{t.contact.form.interested}</span>
                   <span className="text-accent-400 font-bold underline decoration-accent-400/30 underline-offset-4">{productName}</span>
                   <span className="mx-2 text-white/20 hidden sm:inline">|</span>
                   <Link
@@ -73,13 +75,13 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose, product
                     onClick={onClose}
                     className="text-xs text-brand-400 hover:text-brand-300 underline underline-offset-4 transition-colors"
                   >
-                    Xem trang đầy đủ
+                    {t.contact.form.viewFull}
                   </Link>
                 </div>
               </div>
 
               {/* Form Component */}
-              <div className="flex-1 w-full h-auto rounded-b-[40px] overflow-hidden">
+              <div className="flex-1 w-full overflow-y-auto rounded-b-[40px] custom-scrollbar">
                 <QuoteForm productName={productName} />
               </div>
             </div>

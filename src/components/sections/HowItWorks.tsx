@@ -47,7 +47,7 @@ const HowItWorks = () => {
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-200 bg-brand-50 mb-6">
             <div className="w-1.5 h-1.5 rounded-full bg-brand-600" />
-            <span className="text-brand-600 text-xs font-bold uppercase tracking-[0.18em]">Quy trình triển khai</span>
+            <span className="text-brand-600 text-xs font-bold uppercase tracking-[0.18em]">{t.howItWorks.badgeLabel}</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-black text-brand-950 mb-4 tracking-tight">{t.howItWorks.title}</h2>
           <p className="text-brand-400 max-w-xl mx-auto font-medium">{t.howItWorks.subtitle}</p>
@@ -98,7 +98,7 @@ const HowItWorks = () => {
             onClick={() => openContactModal('Dùng thử VNSIGN')}
             className="inline-flex items-center gap-2 bg-brand-600 text-white px-10 py-4 rounded-full font-black text-sm uppercase tracking-widest hover:bg-brand-700 hover:scale-105 transition-all shadow-xl shadow-brand-600/20 active:scale-95 cursor-pointer"
           >
-            Bắt đầu ngay <ChevronRight className="w-4 h-4" />
+            {t.howItWorks.ctaStart} <ChevronRight className="w-4 h-4" />
           </button>
         </motion.div>
       </div>

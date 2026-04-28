@@ -31,26 +31,26 @@ const AboutPage = () => {
   const { t } = useLanguage();
 
   const timeline = [
-    { year: "2016", icon: Building2, title: "Thành Lập VNDC Technology", desc: "Đặt những viên gạch đầu tiên với đội ngũ kỹ sư tâm huyết, tập trung vào nghiên cứu hạ tầng mạng và các giải pháp phần mềm quản trị doanh nghiệp." },
-    { year: "2019", icon: Laptop, title: "Ra Mắt Giải Pháp VNWIFI", desc: "Chính thức giới thiệu giải pháp VNWIFI – nền tảng WiFi Marketing thông minh. Sản phẩm nhanh chóng chiếm lĩnh thị trường, giúp hàng ngàn doanh nghiệp thu thập dữ liệu và tối ưu hóa trải nghiệm khách hàng tại điểm bán." },
-    { year: "2022", icon: Tv, title: "Khai Sinh Hệ Sinh Thái VNSIGN", desc: "Phát triển thương hiệu VNSIGN – chuyên biệt về Digital Signage. VNDC tiên phong cung cấp phần mềm quản lý màn hình tập trung trên Cloud, giúp doanh nghiệp vận hành nội dung quảng cáo từ xa một cách chuyên nghiệp.", highlight: true },
-    { year: "2025", icon: Rocket, title: "Công Nghệ Thể Thao VNVAR", desc: "Đột phá với VNVAR – giải pháp hỗ trợ trọng tài và cắt Highlight tự động cho thể thao và pickleball. Ứng dụng công nghệ xử lý hình ảnh hiện đại để mang lại giá trị gia tăng cho các câu lạc bộ và sân chơi thể thao." },
-    { year: "2026", icon: Star, title: "Tầm Nhìn Dẫn Đầu Màn Hình LED", desc: "Tập trung đẩy mạnh giải pháp màn hình LED thế hệ mới tích hợp quản lý thông minh. VNDC khẳng định vị thế đơn vị tiên phong trong việc đồng bộ hóa phần cứng hiển thị và hệ sinh thái quản lý nội dung tại Việt Nam." }
+    { year: t.aboutPage.timeline.items[0].year, icon: Building2, title: t.aboutPage.timeline.items[0].title, desc: t.aboutPage.timeline.items[0].desc },
+    { year: t.aboutPage.timeline.items[1].year, icon: Laptop, title: t.aboutPage.timeline.items[1].title, desc: t.aboutPage.timeline.items[1].desc },
+    { year: t.aboutPage.timeline.items[2].year, icon: Tv, title: t.aboutPage.timeline.items[2].title, desc: t.aboutPage.timeline.items[2].desc, highlight: true },
+    { year: t.aboutPage.timeline.items[3].year, icon: Rocket, title: t.aboutPage.timeline.items[3].title, desc: t.aboutPage.timeline.items[3].desc },
+    { year: t.aboutPage.timeline.items[4].year, icon: Star, title: t.aboutPage.timeline.items[4].title, desc: t.aboutPage.timeline.items[4].desc }
   ];
 
   const ecosystem = [
-    { id: "tech", icon: Laptop, name: "VNDC Technology", tag: "CNTT · Outsourcing", desc: ["Giải pháp CNTT doanh nghiệp", "Gia công phần mềm (Outsourcing)", "Hệ thống ERP & CRM tùy chỉnh", "50+ kỹ sư phần mềm"] },
-    { id: "vnsign", icon: Tv, name: "VNSIGN", tag: "⭐ Trọng Tâm Chiến Lược", desc: ["Màn hình LED Indoor & Outdoor", "LCD / Digital Poster chuyên dụng", "VNSIGN Cloud CMS — quản lý tập trung", "500+ dự án đã triển khai"], highlight: true },
-    { id: "vnvar", icon: Trophy, name: "VNVAR", tag: "Video · Thể thao", desc: ["Video Assistant Referee (VAR)", "Giải pháp hỗ trợ trọng tài video", "Tích hợp cho giải pickleball ", "Replay & phân tích chuyển động"] },
-    { id: "vnwifi", icon: Wifi, name: "VNWIFI", tag: "WiFi · Marketing", desc: ["Marketing qua WiFi điểm bán lẻ", "Thu thập dữ liệu khách hàng", "Hiển thị quảng cáo khi kết nối WiFi", "Analytics hành vi người dùng"] },
-    { id: "vncrm", icon: Handshake, name: "VNCRM", tag: "CRM · CSKH Đa Kênh", desc: ["Nền tảng CRM đa kênh", "CSKH qua Zalo, FB, Email, SMS", "Tự động hóa quy trình chăm sóc", "Báo cáo hành trình khách hàng"] },
+    { id: "tech", icon: Laptop, name: t.aboutPage.ecosystem.items.tech.name, tag: t.aboutPage.ecosystem.items.tech.tag, desc: t.aboutPage.ecosystem.items.tech.desc },
+    { id: "vnsign", icon: Tv, name: t.aboutPage.ecosystem.items.vnsign.name, tag: t.aboutPage.ecosystem.items.vnsign.tag, desc: t.aboutPage.ecosystem.items.vnsign.desc, highlight: true },
+    { id: "vnvar", icon: Trophy, name: t.aboutPage.ecosystem.items.vnvar.name, tag: t.aboutPage.ecosystem.items.vnvar.tag, desc: t.aboutPage.ecosystem.items.vnvar.desc },
+    { id: "vnwifi", icon: Wifi, name: t.aboutPage.ecosystem.items.vnwifi.name, tag: t.aboutPage.ecosystem.items.vnwifi.tag, desc: t.aboutPage.ecosystem.items.vnwifi.desc },
+    { id: "vncrm", icon: Handshake, name: t.aboutPage.ecosystem.items.vncrm.name, tag: t.aboutPage.ecosystem.items.vncrm.tag, desc: t.aboutPage.ecosystem.items.vncrm.desc },
   ];
 
   const stats = [
-    { icon: BarChart, num: 500, unit: "+", label: "Dự án LED hoàn thành", sub: "Beta Cinema, Trang sức Doji,..." },
-    { icon: Building, num: 150, unit: "+", label: "Khách hàng doanh nghiệp lớn", sub: "Tập đoàn, ngân hàng, bán lẻ" },
-    { icon: MapPin, num: 12, unit: "", label: "Tỉnh thành phủ sóng", sub: "Từ Hà Nội đến Tp. HCM" },
-    { icon: Settings, num: 15, unit: "+", label: "Năm kinh nghiệm", sub: "Từ xây dựng đến công nghệ số" },
+    { icon: BarChart, num: 500, unit: "+", label: t.aboutPage.stats.items[0].label, sub: t.aboutPage.stats.items[0].sub },
+    { icon: Building, num: 150, unit: "+", label: t.aboutPage.stats.items[1].label, sub: t.aboutPage.stats.items[1].sub },
+    { icon: MapPin, num: 12, unit: "", label: t.aboutPage.stats.items[2].label, sub: t.aboutPage.stats.items[2].sub },
+    { icon: Settings, num: 15, unit: "+", label: t.aboutPage.stats.items[3].label, sub: t.aboutPage.stats.items[3].sub },
   ];
 
   return (
@@ -75,7 +75,7 @@ const AboutPage = () => {
               className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-md"
             >
               <Building2 className="w-4 h-4 text-accent-400" />
-              <span className="text-white/90 text-sm font-semibold tracking-wider uppercase">Về Chúng Tôi</span>
+              <span className="text-white/90 text-sm font-semibold tracking-wider uppercase">{t.aboutPage.hero.badge}</span>
             </motion.div>
 
             <motion.h1
@@ -84,7 +84,7 @@ const AboutPage = () => {
               transition={{ delay: 0.1, duration: 0.65 }}
               className="text-4xl sm:text-5xl md:text-6xl font-black leading-[1.1] mb-6 text-white"
             >
-              Xây dựng từ<br />
+              {t.aboutPage.hero.title}<br />
               <span
                 style={{
                   background: 'linear-gradient(90deg, #ffc107 0%, #ffe066 50%, #ffc107 100%)',
@@ -94,7 +94,7 @@ const AboutPage = () => {
                   filter: 'drop-shadow(0 2px 12px rgba(255,193,7,0.35))',
                 }}
               >
-                nền tảng vững chắc
+                {t.aboutPage.hero.titleHighlight}
               </span>
             </motion.h1>
 
@@ -104,7 +104,7 @@ const AboutPage = () => {
               transition={{ delay: 0.22, duration: 0.6 }}
               className="text-lg md:text-xl text-white/80 mb-10 leading-relaxed font-medium"
             >
-              VNDC: Từ nền tảng xây dựng năm 2016 đến hệ sinh thái giải pháp số toàn diện 2026.
+              {t.aboutPage.hero.desc}
             </motion.p>
           </div>
         </div>
@@ -113,9 +113,9 @@ const AboutPage = () => {
       {/* ── TIMELINE ── */}
       <section className="py-24 px-6 md:px-12 lg:px-24 max-w-5xl mx-auto">
         <div className="text-center mb-16">
-          <div className="text-brand-600 font-bold tracking-widest uppercase text-sm mb-4">Hành Trình Phát Triển</div>
+          <div className="text-brand-600 font-bold tracking-widest uppercase text-sm mb-4">{t.aboutPage.timeline.badge}</div>
           <h2 className="text-3xl md:text-4xl font-black text-brand-950 mb-6">
-            Di sản 10+ năm<br />kiến tạo tương lai
+            {t.aboutPage.timeline.title}<br />{t.aboutPage.timeline.titleHighlight}
           </h2>
         </div>
 
@@ -148,7 +148,7 @@ const AboutPage = () => {
                   <p className="text-brand-600 leading-relaxed">{item.desc}</p>
                   {item.highlight && (
                     <span className="inline-block mt-4 text-xs font-bold bg-accent-100 text-accent-700 px-3 py-1 rounded-full uppercase tracking-wider">
-                      Cột mốc chiến lược
+                      {t.aboutPage.timeline.milestone}
                     </span>
                   )}
                 </div>
@@ -162,11 +162,11 @@ const AboutPage = () => {
       <section className="py-24 px-6 md:px-12 lg:px-24 bg-gradient-to-b from-brand-50 to-brand-100/50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <div className="text-brand-600 font-bold tracking-widest uppercase text-sm mb-4">Hệ Sinh Thái VNDC</div>
+            <div className="text-brand-600 font-bold tracking-widest uppercase text-sm mb-4">{t.aboutPage.ecosystem.badge}</div>
             <h2 className="text-3xl md:text-4xl font-black text-brand-950 mb-6">
-              Một tập đoàn —<br />nhiều giải pháp đột phá
+              {t.aboutPage.ecosystem.title}<br />{t.aboutPage.ecosystem.titleHighlight}
             </h2>
-            <p className="text-brand-600 max-w-2xl mx-auto text-lg">Mỗi thương hiệu con là một mảnh ghép trong hệ sinh thái công nghệ - xây dựng toàn diện của VNDC.</p>
+            <p className="text-brand-600 max-w-2xl mx-auto text-lg">{t.aboutPage.ecosystem.desc}</p>
           </div>
 
           <div className="flex flex-col items-center mb-12">
@@ -175,8 +175,8 @@ const AboutPage = () => {
                 <span className="text-brand-600">VN</span>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-accent-500">DC</span>
               </div>
-              <div className="font-bold text-brand-900 mb-1">Tập Đoàn Mẹ</div>
-              <div className="text-sm text-brand-500 font-semibold tracking-wider">EST. 2009</div>
+              <div className="font-bold text-brand-900 mb-1">{t.aboutPage.ecosystem.parentGroup}</div>
+              <div className="text-sm text-brand-500 font-semibold tracking-wider">{t.aboutPage.ecosystem.est}</div>
             </div>
             {/* Connector Line */}
             <div className="w-0.5 h-12 bg-brand-200"></div>
@@ -230,8 +230,8 @@ const AboutPage = () => {
               <Lightbulb className="w-8 h-8 text-accent-400" />
             </div>
             <div>
-              <h3 className="text-2xl font-black mb-2 tracking-wide">"Build Success Together"</h3>
-              <p className="text-brand-100 text-lg leading-relaxed">Sự kết hợp hoàn hảo giữa phần cứng (LED) và phần mềm (VNDC Cloud/VNSIGN) — giải pháp trọn gói, tiết kiệm thời gian và chi phí.</p>
+              <h3 className="text-2xl font-black mb-2 tracking-wide">"{t.aboutPage.ecosystem.bannerTitle}"</h3>
+              <p className="text-brand-100 text-lg leading-relaxed">{t.aboutPage.ecosystem.bannerDesc}</p>
             </div>
           </motion.div>
         </div>
@@ -241,11 +241,11 @@ const AboutPage = () => {
       <section className="py-24 px-6 md:px-12 lg:px-24">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <div className="text-brand-600 font-bold tracking-widest uppercase text-sm mb-4">Năng Lực Thực Thi</div>
+            <div className="text-brand-600 font-bold tracking-widest uppercase text-sm mb-4">{t.aboutPage.stats.badge}</div>
             <h2 className="text-3xl md:text-4xl font-black text-brand-950 mb-6">
-              Những con số<br />nói lên tất cả
+              {t.aboutPage.stats.title}<br />{t.aboutPage.stats.titleHighlight}
             </h2>
-            <p className="text-brand-600 max-w-2xl mx-auto text-lg">Từ Beta Cinema đến Trang sức Doji — chúng tôi đã đồng hành cùng những thương hiệu lớn nhất Việt Nam và khu vực.</p>
+            <p className="text-brand-600 max-w-2xl mx-auto text-lg">{t.aboutPage.stats.desc}</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
@@ -272,7 +272,7 @@ const AboutPage = () => {
 
           {/* Client Logos (Static text representation as in HTML) */}
           <div className="mt-20 pt-10 border-t border-brand-100">
-            <div className="text-center text-sm font-bold text-brand-400 uppercase tracking-widest mb-8">Khách hàng tiêu biểu</div>
+            <div className="text-center text-sm font-bold text-brand-400 uppercase tracking-widest mb-8">{t.aboutPage.stats.clientsLabel}</div>
             <div className="flex flex-wrap justify-center gap-6 md:gap-12 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
               {['Beta Cinema', 'Trang sức Doji', 'Bảo Tín Minh Châu', 'Yamaha', 'Lotte Mart', 'Bảo Việt Nhân Thọ', 'Doji'].map((client, i) => (
                 <div key={i} className="text-xl font-black text-brand-900">{client}</div>
@@ -300,7 +300,7 @@ const AboutPage = () => {
             viewport={{ once: true }}
             className="text-accent-400 font-bold tracking-widest uppercase text-sm mb-6 inline-flex items-center gap-2"
           >
-            <Star className="w-4 h-4" /> Tầm Nhìn 2030
+            <Star className="w-4 h-4" /> {t.aboutPage.vision.badge}
           </motion.div>
 
           <motion.h2
@@ -310,9 +310,9 @@ const AboutPage = () => {
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-8 leading-tight"
           >
-            Dẫn đầu xu hướng<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-300 to-accent-500">Digital Signage</span><br />
-            tại Việt Nam
+            {t.aboutPage.vision.title}<br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-300 to-accent-500">{t.aboutPage.vision.titleHighlight}</span><br />
+            {t.aboutPage.vision.titleEnd}
           </motion.h2>
 
           <motion.p
@@ -322,7 +322,7 @@ const AboutPage = () => {
             transition={{ delay: 0.2 }}
             className="text-xl text-white/80 mb-12 leading-relaxed"
           >
-            Thông qua nền tảng VNSIGN Cloud và hệ sinh thái công nghệ VNDC, chúng tôi cam kết xây dựng hạ tầng màn hình số thông minh phủ rộng toàn quốc — nơi mỗi màn hình LED đều được kết nối, quản lý tập trung và tối ưu hóa tự động.
+            {t.aboutPage.vision.desc}
           </motion.p>
 
           <motion.div
@@ -333,10 +333,10 @@ const AboutPage = () => {
             className="flex flex-col sm:flex-row justify-center gap-4"
           >
             <a href="/features" className="inline-flex items-center justify-center gap-2 bg-accent-400 text-brand-950 px-8 py-4 rounded-full text-base font-black hover:bg-accent-500 transition-all hover:scale-105 shadow-xl shadow-accent-400/20 active:scale-95">
-              <Rocket className="w-5 h-5" /> Khám Phá Giải Pháp
+              <Rocket className="w-5 h-5" /> {t.aboutPage.vision.btnFeatures}
             </a>
             <a href="#" className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white px-8 py-4 rounded-full text-base font-bold hover:bg-white/10 hover:border-white/50 transition-all active:scale-95">
-              <FileText className="w-5 h-5" /> Tải Profile Công Ty
+              <FileText className="w-5 h-5" /> {t.aboutPage.vision.btnProfile}
             </a>
           </motion.div>
         </div>

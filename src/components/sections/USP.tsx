@@ -50,7 +50,7 @@ const USP = () => {
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-accent-400/30 bg-accent-400/10 mb-6">
             <div className="w-1.5 h-1.5 rounded-full bg-accent-400" />
-            <span className="text-accent-400 text-xs font-bold uppercase tracking-[0.18em]">Tại sao chọn VNSIGN</span>
+            <span className="text-accent-400 text-xs font-bold uppercase tracking-[0.18em]">{t.usp.badgeLabel}</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-black text-white mb-4 tracking-tight">
             {t.usp.title}
@@ -61,10 +61,10 @@ const USP = () => {
         {/* Stats Strip */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/5 rounded-2xl overflow-hidden mb-16">
           {[
-            { value: '500+', label: 'Màn hình triển khai' },
-            { value: '99.9%', label: 'Uptime đảm bảo' },
-            { value: '24/7', label: 'Hỗ trợ kỹ thuật' },
-            { value: '3 năm', label: 'Bảo hành thiết bị' },
+            { value: t.usp.stat1Value, label: t.usp.stat1Label },
+            { value: t.usp.stat2Value, label: t.usp.stat2Label },
+            { value: t.usp.stat3Value, label: t.usp.stat3Label },
+            { value: t.usp.stat4Value, label: t.usp.stat4Label },
           ].map((stat, i) => (
             <motion.div
               key={i}

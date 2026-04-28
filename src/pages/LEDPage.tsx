@@ -4,12 +4,7 @@ import { Tv, Maximize, Sun, ShieldCheck, Cpu, Zap, Settings, FileDown, ChevronRi
 import { useContactModal } from '../contexts/ModalContext';
 import { LED_PRODUCTS } from '../data/products';
 import { Link } from 'react-router-dom';
-
-const LED_CATEGORIES = [
-  { id: 'display', name: 'Màn hình LED' },
-  { id: 'control', name: 'Hệ thống điều khiển' },
-  { id: 'accessory', name: 'Phụ kiện' },
-];
+import { useLanguage } from '../contexts/LanguageContext';
 
 const ALL_PRODUCTS = Array.isArray(LED_PRODUCTS) ? LED_PRODUCTS : [];
 
@@ -19,7 +14,24 @@ const LEDPage = () => {
   const [activeSubCategory, setActiveSubCategory] = React.useState('all');
   const [currentPage, setCurrentPage] = React.useState(1);
   const { openContactModal } = useContactModal();
+  const { t, language } = useLanguage();
   const productsRef = React.useRef<HTMLDivElement>(null);
+
+  const LED_CATEGORIES = [
+    { id: 'display', name: t.ledPage.filter.catDisplay },
+    { id: 'control', name: t.ledPage.filter.catControl },
+    { id: 'accessory', name: t.ledPage.filter.catAccessory },
+  ];
+
+  // Sub-category label map (value stays same for data matching, label is translated)
+  const SUB_LABEL_MAP: Record<string, string> = {
+    Indoor: t.ledPage.filter.subIndoor,
+    Outdoor: t.ledPage.filter.subOutdoor,
+    Controller: t.ledPage.filter.subController,
+    'Video Processor': t.ledPage.filter.subVideoProcessor,
+    'Pandora Box': t.ledPage.filter.subPandoraBox,
+    'Nguồn': t.ledPage.filter.subNguon,
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -94,6 +106,12 @@ const LEDPage = () => {
     openContactModal(productName);
   };
 
+  const heroBadges = [
+    { label: t.ledPage.hero.badge1, icon: Maximize },
+    { label: t.ledPage.hero.badge2, icon: Sun },
+    { label: t.ledPage.hero.badge3, icon: ShieldCheck },
+  ];
+
   return (
     <div className="min-h-screen bg-brand-50" style={{ fontFamily: "'Be Vietnam Pro', sans-serif" }}>
 
@@ -126,7 +144,7 @@ const LEDPage = () => {
             className="inline-flex items-center gap-2 mb-8 px-5 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-xl"
           >
             <Tv className="w-4 h-4 text-accent-400" />
-            <span className="text-white/90 text-[10px] font-black tracking-[0.25em] uppercase">VNSIGN · HIỂN THỊ KHÔNG GIỚI HẠN</span>
+            <span className="text-white/90 text-[10px] font-black tracking-[0.25em] uppercase">{t.ledPage.hero.badge}</span>
           </motion.div>
 
           <motion.h1
@@ -135,9 +153,9 @@ const LEDPage = () => {
             transition={{ delay: 0.1, duration: 0.8 }}
             className="text-3xl sm:text-4xl md:text-5xl font-black leading-[1.1] mb-6 text-white tracking-tight"
           >
-            Màn hình LED<br />
+            {t.ledPage.hero.title}<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-400 via-accent-300 to-accent-400">
-              Trình chiếu ấn tượng & thu hút mọi ánh nhìn
+              {t.ledPage.hero.titleHighlight}
             </span>
           </motion.h1>
 
@@ -147,7 +165,7 @@ const LEDPage = () => {
             transition={{ delay: 0.2, duration: 0.8 }}
             className="text-base md:text-lg text-white/70 mb-12 font-medium leading-relaxed"
           >
-            Giải pháp hiển thị LED đồng bộ, tối ưu cho mọi quy mô trình chiếu. Độ sáng vượt trội, màu sắc chuẩn xác và vận hành bền bỉ.
+            {t.ledPage.hero.desc}
           </motion.p>
 
           {/* Core Feature Badges */}
@@ -157,11 +175,7 @@ const LEDPage = () => {
             transition={{ delay: 0.4, duration: 1 }}
             className="flex flex-wrap justify-center gap-x-12 gap-y-6"
           >
-            {[
-              { label: 'Tần số quét 3840Hz+', icon: Maximize },
-              { label: 'Độ sáng 8000 nits Max', icon: Sun },
-              { label: 'Chuẩn bảo vệ IP65/IP66', icon: ShieldCheck },
-            ].map((item, i) => (
+            {heroBadges.map((item, i) => (
               <div key={i} className="flex items-center gap-3 text-white/60 text-sm md:text-base font-bold group">
                 <div className="w-10 h-10 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-accent-400/20 transition-colors">
                   <item.icon className="w-5 h-5 text-accent-400" />
@@ -186,7 +200,7 @@ const LEDPage = () => {
               onClick={() => handleCategoryChange('all')}
               className={`px-10 py-5 rounded-full text-sm font-black transition-all duration-300 ${activeCategory === 'all' ? 'bg-brand-950 text-white shadow-xl shadow-brand-950/20' : 'text-slate-500 hover:bg-brand-50'}`}
             >
-              TẤT CẢ SẢN PHẨM
+              {t.ledPage.filter.all}
             </button>
             {LED_CATEGORIES.map((cat) => (
               <button
@@ -213,7 +227,7 @@ const LEDPage = () => {
                   onClick={() => handleSubCategoryChange('all')}
                   className={`px-6 py-3 rounded-full text-xs font-bold transition-all ${activeSubCategory === 'all' ? 'bg-brand-600 text-white shadow-lg' : 'bg-white border border-brand-100 text-slate-500 hover:border-brand-300'}`}
                 >
-                  TẤT CẢ {LED_CATEGORIES.find(c => c.id === activeCategory)?.name.toUpperCase()}
+                  {t.ledPage.filter.allSub} {LED_CATEGORIES.find(c => c.id === activeCategory)?.name.toUpperCase()}
                 </button>
                 {subCategories.map((sub) => (
                   <button
@@ -221,7 +235,7 @@ const LEDPage = () => {
                     onClick={() => handleSubCategoryChange(sub)}
                     className={`px-6 py-3 rounded-full text-xs font-bold transition-all ${activeSubCategory === sub ? 'bg-brand-600 text-white shadow-lg' : 'bg-white border border-brand-100 text-slate-500 hover:border-brand-300'}`}
                   >
-                    {sub.toUpperCase()}
+                    {(SUB_LABEL_MAP[sub] || sub).toUpperCase()}
                   </button>
                 ))}
               </motion.div>
@@ -242,15 +256,15 @@ const LEDPage = () => {
             >
               {paginatedProducts.length > 0 ? (
                 paginatedProducts.map((product) => (
-                  <ProductCard key={product.id} product={product} onQuote={handleQuote} />
+                  <ProductCard key={product.id} product={product} onQuote={handleQuote} t={t} language={language} />
                 ))
               ) : (
                 <div className="col-span-full py-48 text-center bg-white rounded-[56px] border border-brand-100/50 shadow-sm">
                   <div className="w-24 h-24 bg-brand-50 rounded-full flex items-center justify-center mx-auto mb-8 animate-pulse">
                     <Tv className="w-10 h-10 text-brand-200" />
                   </div>
-                  <h3 className="text-brand-950 font-black text-2xl mb-3">Đang cập nhật sản phẩm</h3>
-                  <p className="text-slate-400 font-medium max-w-md mx-auto">Chúng tôi đang cập nhật thêm các sản phẩm LED mới. Vui lòng quay lại sau hoặc liên hệ hỗ trợ.</p>
+                  <h3 className="text-brand-950 font-black text-2xl mb-3">{t.ledPage.empty.title}</h3>
+                  <p className="text-slate-400 font-medium max-w-md mx-auto">{t.ledPage.empty.desc}</p>
                 </div>
               )}
             </motion.div>
@@ -299,7 +313,7 @@ const LEDPage = () => {
   );
 };
 
-const ProductCard = ({ product, onQuote }: { product: any; onQuote: (name: string) => void }) => {
+const ProductCard = ({ product, onQuote, t, language }: { product: any; onQuote: (name: string) => void; t: any, language: string }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -311,7 +325,7 @@ const ProductCard = ({ product, onQuote }: { product: any; onQuote: (name: strin
       <div className="relative aspect-[4/3] p-8 bg-gradient-to-br from-slate-50 to-white overflow-hidden">
         <img
           src={product.image || '/assets/placeholder.png'}
-          alt={product.name}
+          alt={typeof product.name === 'string' ? product.name : product.name[language]}
           className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-[1.5s] ease-out drop-shadow-2xl"
         />
 
@@ -328,7 +342,7 @@ const ProductCard = ({ product, onQuote }: { product: any; onQuote: (name: strin
             to={`/product/${product.slug}`}
             className="bg-white text-brand-950 px-8 py-3 rounded-full text-sm font-black shadow-2xl hover:bg-accent-400 transition-all transform translate-y-8 group-hover:translate-y-0 duration-500"
           >
-            Xem chi tiết
+            {t.ledPage.card.viewDetail}
           </Link>
         </div>
       </div>
@@ -338,11 +352,11 @@ const ProductCard = ({ product, onQuote }: { product: any; onQuote: (name: strin
         <div className="mb-6">
           <Link to={`/product/${product.slug}`}>
             <h3 className="font-black text-brand-950 text-xl sm:text-2xl leading-[1.2] mb-3 group-hover:text-brand-600 transition-colors line-clamp-2 min-h-[3rem]">
-              {product.name}
+              {typeof product.name === 'string' ? product.name : product.name[language]}
             </h3>
           </Link>
           <p className="text-slate-500 text-sm md:text-base font-medium leading-relaxed line-clamp-3">
-            {product.description}
+            {product.description[language]}
           </p>
         </div>
 
@@ -363,7 +377,7 @@ const ProductCard = ({ product, onQuote }: { product: any; onQuote: (name: strin
             <ShieldCheck className="w-5 h-5 text-brand-300 mb-2" />
             <span className="text-[10px] font-black text-brand-950 uppercase tracking-wider">
               {product.specs.warranty.split(' ')[0]}<br />
-              <span className="text-[9px] text-slate-400 font-bold mt-0.5 block">Tháng</span>
+              <span className="text-[9px] text-slate-400 font-bold mt-0.5 block">{t.ledPage.card.warrantyUnit}</span>
             </span>
           </div>
         </div>
@@ -371,13 +385,13 @@ const ProductCard = ({ product, onQuote }: { product: any; onQuote: (name: strin
         {/* Action CTAs */}
         <div className="mt-auto flex flex-col gap-3">
           <button
-            onClick={() => onQuote(product.name)}
+            onClick={() => onQuote(typeof product.name === 'string' ? product.name : product.name[language])}
             className="w-full bg-brand-950 text-white py-4 rounded-[20px] text-sm font-black hover:bg-brand-600 shadow-xl shadow-brand-950/10 transition-all active:scale-95"
           >
-            NHẬN BÁO GIÁ
+            {t.ledPage.card.getQuote}
           </button>
           <button className="w-full border border-brand-100 text-brand-400 py-3 rounded-[20px] text-[10px] font-black hover:text-brand-600 hover:border-brand-200 transition-all flex items-center justify-center gap-2 uppercase tracking-[0.1em]">
-            <FileDown className="w-4 h-4" /> Datasheet (PDF)
+            <FileDown className="w-4 h-4" /> {t.ledPage.card.datasheet}
           </button>
         </div>
       </div>

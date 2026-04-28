@@ -71,11 +71,11 @@ const Navbar = () => {
 
   const navLinks = [
     { name: t.nav.features, href: '/features' },
-    { name: "Màn hình", href: '#solutions', dropdown: true },
+    { name: t.nav.display, href: '#solutions', dropdown: true },
     { name: t.nav.projects, href: '/projects' },
     { name: t.nav.pricing, href: '/pricing' },
     { name: t.nav.resources, href: '/docs' },
-    { name: "Giới thiệu", href: '/about' },
+    { name: t.nav.about, href: '/about' },
     { name: t.nav.contact, href: '/contact' },
   ];
 
@@ -175,7 +175,7 @@ const Navbar = () => {
               rel="noopener noreferrer"
               className="border border-white/60 text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-white/10 hover:border-white transition-all active:scale-95"
             >
-              Xem Demo
+              {t.nav.demo}
             </a>
             <button
               onClick={() => openContactModal('Giải pháp VNSIGN')}
@@ -186,7 +186,7 @@ const Navbar = () => {
                 boxShadow: isScrolled ? '0 10px 15px -3px rgba(8,103,136,0.3)' : '0 10px 15px -3px rgba(255,193,7,0.3)'
               }}
             >
-              Nhận báo giá
+              {t.nav.quote}
             </button>
           </div>
         </div>

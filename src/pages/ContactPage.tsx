@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Globe, Smartphone, Mail, MapPin, CheckCircle2, Tv } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const ContactPage = () => {
+  const { t } = useLanguage();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -39,7 +42,7 @@ const ContactPage = () => {
             className="inline-flex items-center gap-2 mb-8 px-5 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-xl"
           >
             <Mail className="w-4 h-4 text-accent-400" />
-            <span className="text-white/90 text-[10px] font-black tracking-[0.25em] uppercase">VNSIGN · KẾT NỐI VỚI CHUYÊN GIA</span>
+            <span className="text-white/90 text-[10px] font-black tracking-[0.25em] uppercase">{t.contactPage.hero.badge}</span>
           </motion.div>
 
           <motion.h1
@@ -48,7 +51,7 @@ const ContactPage = () => {
             transition={{ delay: 0.1, duration: 0.8 }}
             className="text-3xl sm:text-4xl md:text-5xl font-black leading-[1.1] mb-6 text-white tracking-tight"
           >
-            Liên hệ với chúng tôi
+            {t.contactPage.hero.title}
           </motion.h1>
 
           <motion.p
@@ -57,7 +60,7 @@ const ContactPage = () => {
             transition={{ delay: 0.2, duration: 0.8 }}
             className="text-base md:text-lg text-white/70 mb-0 font-medium leading-relaxed"
           >
-            Để lại thông tin để được tư vấn giải pháp phù hợp nhất. Đội ngũ chuyên gia của chúng tôi luôn sẵn sàng hỗ trợ bạn 24/7.
+            {t.contactPage.hero.desc}
           </motion.p>
         </div>
       </section>
@@ -75,11 +78,11 @@ const ContactPage = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl font-black text-brand-950 mb-8 leading-tight">
-              Chúng tôi luôn sẵn lòng <br />
-              <span className="text-brand-600">đồng hành cùng bạn</span>
+              {t.contactPage.content.title} <br />
+              <span className="text-brand-600">{t.contactPage.content.titleHighlight}</span>
             </h2>
             <p className="text-slate-500 text-lg mb-12 font-medium leading-relaxed">
-              Dù bạn là doanh nghiệp nhỏ hay tập đoàn đa quốc gia, VNSIGN luôn có giải pháp hiển thị tối ưu nhất cho nhu cầu của bạn.
+              {t.contactPage.content.desc}
             </p>
 
             {/* Contact Cards */}
@@ -88,7 +91,7 @@ const ContactPage = () => {
                 <div className="w-12 h-12 bg-accent-400 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-accent-400/20 group-hover:scale-110 transition-transform">
                   <Smartphone className="w-6 h-6 text-brand-950" />
                 </div>
-                <div className="text-slate-400 text-[10px] font-black uppercase tracking-widest mb-2">Hotline 24/7</div>
+                <div className="text-slate-400 text-[10px] font-black uppercase tracking-widest mb-2">{t.contactPage.content.hotlineLabel}</div>
                 <div className="text-brand-950 text-xl font-bold">0888 998 181</div>
               </div>
 
@@ -96,19 +99,14 @@ const ContactPage = () => {
                 <div className="w-12 h-12 bg-brand-50 rounded-2xl flex items-center justify-center mb-6 border border-brand-100 group-hover:scale-110 transition-transform">
                   <Globe className="w-6 h-6 text-brand-600" />
                 </div>
-                <div className="text-slate-400 text-[10px] font-black uppercase tracking-widest mb-2">Email hỗ trợ</div>
+                <div className="text-slate-400 text-[10px] font-black uppercase tracking-widest mb-2">{t.contactPage.content.emailLabel}</div>
                 <div className="text-brand-950 text-xl font-bold">congnt@vndc.vn</div>
               </div>
             </div>
 
             {/* Feature List */}
             <div className="space-y-4">
-              {[
-                'Tư vấn giải pháp miễn phí 100%',
-                'Khảo sát tận nơi trong vòng 24h',
-                'Báo giá chi tiết, không chi phí ẩn',
-                'Hỗ trợ kỹ thuật chuyên sâu 24/7'
-              ].map((item, i) => (
+              {t.contactPage.content.features.map((item, i) => (
                 <div key={i} className="flex items-center gap-3 text-slate-600 font-bold">
                   <CheckCircle2 className="w-5 h-5 text-accent-500" />
                   {item}

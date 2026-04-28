@@ -39,7 +39,7 @@ const DocsPage = () => {
               className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-md"
             >
               <BookOpen className="w-4 h-4 text-accent-400" />
-              <span className="text-white/90 text-sm font-semibold tracking-wider">TÀI LIỆU VÀ HƯỚNG DẪN</span>
+              <span className="text-white/90 text-sm font-semibold tracking-wider">{t.resources.heroBadge}</span>
             </motion.div>
             
             <motion.h1
@@ -48,7 +48,7 @@ const DocsPage = () => {
               transition={{ delay: 0.1, duration: 0.65 }}
               className="text-4xl sm:text-5xl md:text-6xl font-black leading-[1.1] mb-6 text-white"
             >
-              Trung tâm <br />
+              {t.resources.heroTitle} <br />
               <span 
                 style={{
                   background: 'linear-gradient(90deg, #ffc107 0%, #ffe066 50%, #ffc107 100%)',
@@ -58,7 +58,7 @@ const DocsPage = () => {
                   filter: 'drop-shadow(0 2px 12px rgba(255,193,7,0.35))',
                 }}
               >
-                tài nguyên VNSIGN
+                {t.resources.heroTitleHighlight}
               </span>
             </motion.h1>
             
@@ -68,7 +68,7 @@ const DocsPage = () => {
               transition={{ delay: 0.22, duration: 0.6 }}
               className="text-lg md:text-xl text-white/80 mb-10 leading-relaxed font-medium"
             >
-              Khám phá các tài liệu hướng dẫn, API references, video tutorials và bộ công cụ hỗ trợ để sử dụng VNSIGN Cloud CMS hiệu quả nhất.
+              {t.resources.heroDesc}
             </motion.p>
             
             <motion.div
@@ -83,7 +83,7 @@ const DocsPage = () => {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 bg-accent-400 text-brand-950 px-8 py-3.5 rounded-full text-base font-black hover:bg-accent-500 hover:scale-105 transition-all shadow-xl shadow-accent-400/25 active:scale-95"
               >
-                <Download className="w-5 h-5" /> Hướng dẫn cài đặt
+                <Download className="w-5 h-5" /> {t.resources.install}
               </a>
               <a 
                 href="https://www.youtube.com/watch?v=msrHeSt3JjI"
@@ -91,7 +91,7 @@ const DocsPage = () => {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 border-2 border-white/70 text-white px-8 py-3.5 rounded-full text-base font-bold hover:bg-white/10 hover:border-white transition-all active:scale-95 backdrop-blur-sm"
               >
-                <Youtube className="w-5 h-5 fill-white" /> Video hướng dẫn
+                <Youtube className="w-5 h-5 fill-white" /> {t.resources.video}
               </a>
             </motion.div>
           </div>
@@ -101,9 +101,9 @@ const DocsPage = () => {
       {/* ── RESOURCES GRID ── */}
       <section className="py-24 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <div className="text-brand-600 font-bold tracking-widest uppercase text-sm mb-4">KHÁM PHÁ</div>
+          <div className="text-brand-600 font-bold tracking-widest uppercase text-sm mb-4">{t.resources.exploreLabel}</div>
           <h2 className="text-3xl md:text-4xl font-black text-brand-950 mb-6">
-            Tất cả <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-brand-400">tài nguyên</span>
+            {t.resources.exploreTitle} <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-brand-400">{t.resources.exploreTitleHighlight}</span>
           </h2>
         </div>
 

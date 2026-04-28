@@ -4,12 +4,7 @@ import { Monitor, ChevronRight, Maximize, Sun, ShieldCheck, FileDown } from 'luc
 import { useContactModal } from '../contexts/ModalContext';
 import { LCD_PRODUCTS } from '../data/products';
 import { Link } from 'react-router-dom';
-
-const LCD_CATEGORIES = [
-  { id: 'man-treo-tuong', name: 'Màn treo tường' },
-  { id: 'man-hinh-standee', name: 'Màn hình standee' },
-  { id: 'man-hinh-tuong-tac', name: 'Màn hình tương tác' },
-];
+import { useLanguage } from '../contexts/LanguageContext';
 
 const ALL_PRODUCTS = Array.isArray(LCD_PRODUCTS) ? LCD_PRODUCTS : [];
 
@@ -18,7 +13,20 @@ const LCDPage = () => {
   const [activeCategory, setActiveCategory] = React.useState('all');
   const [currentPage, setCurrentPage] = React.useState(1);
   const { openContactModal } = useContactModal();
+  const { t, language } = useLanguage();
   const productsRef = React.useRef<HTMLDivElement>(null);
+
+  const LCD_CATEGORIES = [
+    { id: 'man-treo-tuong', name: t.lcdPage.filter.catWall },
+    { id: 'man-hinh-standee', name: t.lcdPage.filter.catStandee },
+    { id: 'man-hinh-tuong-tac', name: t.lcdPage.filter.catInteractive },
+  ];
+
+  const heroBadges = [
+    { label: t.lcdPage.hero.badge1, icon: Maximize },
+    { label: t.lcdPage.hero.badge2, icon: ShieldCheck },
+    { label: t.lcdPage.hero.badge3, icon: Sun },
+  ];
 
   useEffect(() => {
     console.log('LCDPage mounted');
@@ -108,7 +116,7 @@ const LCDPage = () => {
             className="inline-flex items-center gap-2 mb-8 px-5 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-xl"
           >
             <Monitor className="w-4 h-4 text-accent-400" />
-            <span className="text-white/90 text-[10px] font-black tracking-[0.2em] uppercase">VNSIGN · HIỂN THỊ CHUYÊN NGHIỆP</span>
+            <span className="text-white/90 text-[10px] font-black tracking-[0.2em] uppercase">{t.lcdPage.hero.badge}</span>
           </motion.div>
 
           <motion.h1
@@ -117,9 +125,9 @@ const LCDPage = () => {
             transition={{ delay: 0.1, duration: 0.7 }}
             className="text-3xl sm:text-4xl md:text-5xl font-black leading-[1.1] mb-6 text-white tracking-tight"
           >
-            Màn hình LCD<br />
+            {t.lcdPage.hero.title}<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-400 via-accent-300 to-accent-400">
-              Hiển thị chuyên nghiệp & tương tác hiệu quả
+              {t.lcdPage.hero.titleHighlight}
             </span>
           </motion.h1>
 
@@ -129,7 +137,7 @@ const LCDPage = () => {
             transition={{ delay: 0.2, duration: 0.7 }}
             className="text-base md:text-lg text-white/70 mb-12 font-medium leading-relaxed"
           >
-            Giải pháp hiển thị Digital Signage cao cấp. Độ phân giải 4K, độ bền công nghiệp 24/7 và hệ điều hành quản lý tập trung.
+            {t.lcdPage.hero.desc}
           </motion.p>
 
           {/* Feature Badges (Pricing-style) */}
@@ -139,11 +147,7 @@ const LCDPage = () => {
             transition={{ delay: 0.4, duration: 0.8 }}
             className="flex flex-wrap justify-center gap-x-8 gap-y-4"
           >
-            {[
-              { label: 'Độ phân giải 4K Ultra HD', icon: Maximize },
-              { label: 'Hoạt động bền bỉ 24/7', icon: ShieldCheck },
-              { label: 'Cloud CMS Tích hợp', icon: Sun },
-            ].map((item, i) => (
+            {heroBadges.map((item, i) => (
               <div key={i} className="flex items-center gap-2.5 text-white/60 text-sm font-bold">
                 <item.icon className="w-4 h-4 text-accent-400" />
                 {item.label}
@@ -165,7 +169,7 @@ const LCDPage = () => {
               onClick={() => handleCategoryChange('all')}
               className={`px-8 py-4 rounded-full text-sm font-black transition-all duration-300 ${activeCategory === 'all' ? 'bg-brand-950 text-white shadow-xl shadow-brand-950/20' : 'text-slate-500 hover:bg-brand-50'}`}
             >
-              TẤT CẢ SẢN PHẨM
+              {t.lcdPage.filter.all}
             </button>
             {LCD_CATEGORIES.map((cat) => (
               <button
@@ -192,15 +196,15 @@ const LCDPage = () => {
             >
               {paginatedProducts.length > 0 ? (
                 paginatedProducts.map((product) => (
-                  <ProductCard key={product.id} product={product} onQuote={handleQuote} />
+                  <ProductCard key={product.id} product={product} onQuote={handleQuote} t={t} language={language} />
                 ))
               ) : (
                 <div className="col-span-full py-40 text-center">
                   <div className="w-20 h-20 bg-brand-50 rounded-full flex items-center justify-center mx-auto mb-6">
                     <Monitor className="w-8 h-8 text-brand-200" />
                   </div>
-                  <p className="text-brand-950 font-black text-xl mb-2">Không tìm thấy sản phẩm</p>
-                  <p className="text-slate-400 font-medium">Vui lòng chọn danh mục khác hoặc liên hệ bộ phận hỗ trợ.</p>
+                  <p className="text-brand-950 font-black text-xl mb-2">{t.lcdPage.empty.title}</p>
+                  <p className="text-slate-400 font-medium">{t.lcdPage.empty.desc}</p>
                 </div>
               )}
             </motion.div>
@@ -249,7 +253,7 @@ const LCDPage = () => {
   );
 };
 
-const ProductCard = ({ product, onQuote }: { product: any; onQuote: (name: string) => void }) => {
+const ProductCard = ({ product, onQuote, t, language }: { product: any; onQuote: (name: string) => void; t: any, language: string }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -261,14 +265,14 @@ const ProductCard = ({ product, onQuote }: { product: any; onQuote: (name: strin
       <div className="relative aspect-[4/3] p-8 bg-gradient-to-br from-slate-50 to-white overflow-hidden">
         <img
           src={product.image}
-          alt={product.name}
+          alt={typeof product.name === 'string' ? product.name : product.name[language]}
           className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-[1.5s] ease-out drop-shadow-2xl"
         />
 
         {/* Floating Category Tag */}
         <div className="absolute top-6 left-6">
           <span className="px-4 py-2 rounded-full bg-white/90 backdrop-blur-md border border-brand-100 text-[10px] font-black text-brand-950 uppercase tracking-[0.1em] shadow-sm">
-            Professional LCD
+            {t.lcdPage.card.categoryTag}
           </span>
         </div>
 
@@ -278,7 +282,7 @@ const ProductCard = ({ product, onQuote }: { product: any; onQuote: (name: strin
             to={`/product/${product.slug}`}
             className="bg-white text-brand-950 px-8 py-3 rounded-full text-sm font-black shadow-2xl hover:bg-accent-400 transition-all transform translate-y-8 group-hover:translate-y-0 duration-500"
           >
-            Xem chi tiết
+            {t.lcdPage.card.viewDetail}
           </Link>
         </div>
       </div>
@@ -287,10 +291,10 @@ const ProductCard = ({ product, onQuote }: { product: any; onQuote: (name: strin
       <div className="p-8 md:p-10 flex flex-col flex-1">
         <div className="mb-6">
           <h3 className="font-black text-brand-950 text-xl sm:text-2xl leading-[1.2] mb-3 group-hover:text-brand-600 transition-colors line-clamp-2 min-h-[3rem]">
-            {product.name}
+            {typeof product.name === 'string' ? product.name : product.name[language]}
           </h3>
           <p className="text-slate-500 text-sm md:text-base font-medium leading-relaxed line-clamp-3">
-            {product.description}
+            {product.description[language]}
           </p>
         </div>
 
@@ -311,7 +315,7 @@ const ProductCard = ({ product, onQuote }: { product: any; onQuote: (name: strin
             <ShieldCheck className="w-5 h-5 text-brand-300 mb-2" />
             <span className="text-[10px] font-black text-brand-950 uppercase tracking-wider">
               {product.specs.warranty.split(' ')[0]}<br />
-              <span className="text-[9px] text-slate-400 font-bold mt-0.5 block">Tháng</span>
+              <span className="text-[9px] text-slate-400 font-bold mt-0.5 block">{t.lcdPage.card.warrantyUnit}</span>
             </span>
           </div>
         </div>
@@ -319,13 +323,13 @@ const ProductCard = ({ product, onQuote }: { product: any; onQuote: (name: strin
         {/* Action CTAs */}
         <div className="mt-auto flex flex-col gap-3">
           <button
-            onClick={() => onQuote(product.name)}
+            onClick={() => onQuote(typeof product.name === 'string' ? product.name : product.name[language])}
             className="w-full bg-brand-950 text-white py-4 rounded-[20px] text-sm font-black hover:bg-brand-600 shadow-xl shadow-brand-950/10 transition-all active:scale-95"
           >
-            NHẬN BÁO GIÁ
+            {t.lcdPage.card.getQuote}
           </button>
           <button className="w-full border border-brand-100 text-brand-400 py-3 rounded-[20px] text-[10px] font-black hover:text-brand-600 hover:border-brand-200 transition-all flex items-center justify-center gap-2 uppercase tracking-[0.1em]">
-            <FileDown className="w-4 h-4" /> Xem video demo
+            <FileDown className="w-4 h-4" /> {t.lcdPage.card.videoDemo}
           </button>
         </div>
       </div>

@@ -4,6 +4,7 @@ import { MapPin, Building2, ChevronRight, Rocket } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { PROJECTS_DATA } from '../data/projects';
 import { useContactModal } from '../contexts/ModalContext';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const TAG_STYLES: Record<string, string> = {
   accent: 'bg-accent-400/20 text-accent-600 border border-accent-400/30',
@@ -13,6 +14,7 @@ const TAG_STYLES: Record<string, string> = {
 const ProjectsPage = () => {
   const navigate = useNavigate();
   const { openContactModal } = useContactModal();
+  const { t } = useLanguage();
 
   return (
     <div className="min-h-screen bg-brand-50" style={{ fontFamily: "'Be Vietnam Pro', sans-serif" }}>
@@ -30,25 +32,29 @@ const ProjectsPage = () => {
             <motion.div initial={{ opacity:0, y:-16 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.5 }}
               className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-md">
               <Building2 className="w-4 h-4 text-accent-400" />
-              <span className="text-white/90 text-sm font-semibold tracking-wider">DỰ ÁN TIÊU BIỂU · VNSIGN</span>
+              <span className="text-white/90 text-sm font-semibold tracking-wider">{t.projectsPage.hero.badge}</span>
             </motion.div>
 
             <motion.h1 initial={{ opacity:0, y:28 }} animate={{ opacity:1, y:0 }} transition={{ delay:0.1, duration:0.65 }}
               className="text-4xl sm:text-5xl md:text-6xl font-black leading-[1.1] mb-6 text-white">
-              Những công trình<br />
+              {t.projectsPage.hero.title}<br />
               <span style={{ background:'linear-gradient(90deg,#ffc107 0%,#ffe066 50%,#ffc107 100%)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', filter:'drop-shadow(0 2px 16px rgba(255,193,7,0.4))' }}>
-                đã tạo ra sự khác biệt
+                {t.projectsPage.hero.titleHighlight}
               </span>
             </motion.h1>
 
             <motion.p initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }} transition={{ delay:0.22, duration:0.6 }}
               className="text-lg md:text-xl text-white/70 mb-10 max-w-2xl font-medium leading-relaxed">
-              Từ chuỗi F&B đến sân bay quốc tế — VNSIGN đã triển khai 500+ dự án digital signage trên khắp Việt Nam.
+              {t.projectsPage.hero.desc}
             </motion.p>
 
             <motion.div initial={{ opacity:0 }} animate={{ opacity:1 }} transition={{ delay:0.38 }}
               className="flex flex-wrap justify-center gap-x-8 gap-y-3">
-              {[['500+','Dự án hoàn thành'],['150+','Khách hàng doanh nghiệp'],['12','Tỉnh thành phủ sóng']].map(([num, label], i) => (
+              {[
+                ['500+', t.projectsPage.hero.stat1],
+                ['150+', t.projectsPage.hero.stat2],
+                ['12', t.projectsPage.hero.stat3]
+              ].map(([num, label], i) => (
                 <div key={i} className="flex items-center gap-2 text-white/65 text-sm font-semibold">
                   <span className="text-accent-400 font-black">{num}</span>
                   <span>{label}</span>
@@ -63,12 +69,12 @@ const ProjectsPage = () => {
       <section className="py-24 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
         <motion.div initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-4 bg-brand-50 text-brand-600 border border-brand-200">
-            Dự án nổi bật
+            {t.projectsPage.featured.badge}
           </div>
           <h2 className="text-3xl md:text-5xl font-black text-brand-950 mb-4 leading-tight">
-            Công trình <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-brand-400">tiêu biểu</span>
+            {t.projectsPage.featured.title} <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-brand-400">{t.projectsPage.featured.titleHighlight}</span>
           </h2>
-          <p className="text-slate-500 max-w-xl mx-auto text-base font-medium">Các dự án quy mô lớn, yêu cầu kỹ thuật cao mà VNSIGN đã triển khai thành công.</p>
+          <p className="text-slate-500 max-w-xl mx-auto text-base font-medium">{t.projectsPage.featured.desc}</p>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-8 mb-8">
@@ -90,7 +96,7 @@ const ProjectsPage = () => {
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold text-brand-500 uppercase tracking-wider">{p.model}</span>
                   <button className="inline-flex items-center gap-1 text-brand-600 font-bold text-sm hover:text-brand-700 transition-colors">
-                    Xem chi tiết <ChevronRight className="w-4 h-4" />
+                    {t.projectsPage.featured.viewDetail} <ChevronRight className="w-4 h-4" />
                   </button>
                 </div>
               </div>
@@ -136,26 +142,26 @@ const ProjectsPage = () => {
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] opacity-15 pointer-events-none" style={{ background:'radial-gradient(ellipse,#ffc107 0%,transparent 70%)' }} />
           <div className="relative z-10 max-w-3xl mx-auto">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-6 bg-white/10 text-accent-400 border border-white/15">
-              Bắt đầu dự án của bạn
+              {t.projectsPage.cta.badge}
             </div>
             <h2 className="text-4xl md:text-5xl font-black text-white mb-6 leading-tight">
-              Dự án tiếp theo<br /><span className="text-accent-400">sẽ là của bạn</span>
+              {t.projectsPage.cta.title}<br /><span className="text-accent-400">{t.projectsPage.cta.titleHighlight}</span>
             </h2>
             <p className="text-xl text-white/70 mb-10 font-medium leading-relaxed">
-              Đội ngũ VNSIGN sẵn sàng tư vấn và triển khai giải pháp digital signage phù hợp nhất cho doanh nghiệp của bạn.
+              {t.projectsPage.cta.desc}
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4 mb-8">
               <button 
                 onClick={() => openContactModal('Giải pháp VNSIGN')}
                 className="bg-accent-400 text-brand-950 px-8 py-4 rounded-full font-black hover:bg-accent-500 transition-all text-lg shadow-xl shadow-accent-400/20 hover:scale-105 active:scale-95 inline-flex items-center justify-center gap-2 cursor-pointer"
               >
-                <Rocket className="w-5 h-5" /> Yêu cầu tư vấn ngay
+                <Rocket className="w-5 h-5" /> {t.projectsPage.cta.button}
               </button>
               <button className="bg-white/10 text-white border border-white/20 px-8 py-4 rounded-full font-bold hover:bg-white/20 transition-all text-lg backdrop-blur hover:scale-105 active:scale-95">
                 📞 0888 99 8181
               </button>
             </div>
-            <p className="text-white/45 text-sm font-medium">✅ Tư vấn miễn phí · Báo giá trong 24h · Triển khai chuyên nghiệp</p>
+            <p className="text-white/45 text-sm font-medium">{t.projectsPage.cta.footer}</p>
           </div>
         </motion.div>
       </section>

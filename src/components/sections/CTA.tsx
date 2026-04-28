@@ -35,7 +35,7 @@ const CTA = () => {
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-accent-400/40 bg-accent-400/10 mb-8">
             <div className="w-1.5 h-1.5 rounded-full bg-accent-400 animate-pulse" />
-            <span className="text-accent-400 text-xs font-bold uppercase tracking-[0.18em]">Bắt đầu hành trình</span>
+            <span className="text-accent-400 text-xs font-bold uppercase tracking-[0.18em]">{t.cta.badgeLabel}</span>
           </div>
 
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 leading-[1.08] tracking-tight max-w-4xl mx-auto">
