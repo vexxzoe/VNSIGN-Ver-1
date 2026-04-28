@@ -14,7 +14,7 @@ const TAG_STYLES: Record<string, string> = {
 const ProjectsPage = () => {
   const navigate = useNavigate();
   const { openContactModal } = useContactModal();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <div className="min-h-screen bg-brand-50" style={{ fontFamily: "'Be Vietnam Pro', sans-serif" }}>
@@ -83,18 +83,18 @@ const ProjectsPage = () => {
               className="group relative rounded-3xl overflow-hidden shadow-[0_16px_48px_rgba(8,103,136,0.14)] cursor-pointer bg-white border border-brand-100 hover:shadow-[0_24px_60px_rgba(8,103,136,0.22)] hover:-translate-y-1 transition-all duration-400"
               onClick={() => navigate(`/projects/${p.id}`)}>
               <div className="relative h-64 overflow-hidden">
-                <img src={p.image} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                <img src={p.image} alt={p.title[language]} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-950/80 to-transparent" />
-                <div className={`absolute top-4 left-4 text-[11px] font-black px-3 py-1 rounded-full tracking-wider ${TAG_STYLES[p.tagColor]}`}>{p.tag}</div>
+                <div className={`absolute top-4 left-4 text-[11px] font-black px-3 py-1 rounded-full tracking-wider ${TAG_STYLES[p.tagColor]}`}>{p.tag[language]}</div>
                 <div className="absolute bottom-4 left-4 right-4">
-                  <div className="flex items-center gap-1.5 text-white/70 text-xs font-medium mb-1"><MapPin className="w-3 h-3" />{p.location}</div>
-                  <h3 className="text-white font-black text-xl leading-snug">{p.title}</h3>
+                  <div className="flex items-center gap-1.5 text-white/70 text-xs font-medium mb-1"><MapPin className="w-3 h-3" />{p.location[language]}</div>
+                  <h3 className="text-white font-black text-xl leading-snug">{p.title[language]}</h3>
                 </div>
               </div>
               <div className="p-6">
-                <p className="text-slate-500 text-sm leading-relaxed mb-4 font-medium">{p.desc}</p>
+                <p className="text-slate-500 text-sm leading-relaxed mb-4 font-medium">{p.desc[language]}</p>
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-brand-500 uppercase tracking-wider">{p.model}</span>
+                  <span className="text-xs font-bold text-brand-500 uppercase tracking-wider">{p.model[language]}</span>
                   <button className="inline-flex items-center gap-1 text-brand-600 font-bold text-sm hover:text-brand-700 transition-colors">
                     {t.projectsPage.featured.viewDetail} <ChevronRight className="w-4 h-4" />
                   </button>
@@ -111,18 +111,18 @@ const ProjectsPage = () => {
               className="group rounded-3xl overflow-hidden bg-white border border-brand-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer"
               onClick={() => navigate(`/projects/${p.id}`)}>
               <div className="relative h-48 overflow-hidden">
-                <img src={p.image} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-600" />
+                <img src={p.image} alt={p.title[language]} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-600" />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-950/70 to-transparent" />
-                <div className={`absolute top-3 left-3 text-[10px] font-black px-2.5 py-1 rounded-full tracking-wider ${TAG_STYLES[p.tagColor]}`}>{p.tag}</div>
+                <div className={`absolute top-3 left-3 text-[10px] font-black px-2.5 py-1 rounded-full tracking-wider ${TAG_STYLES[p.tagColor]}`}>{p.tag[language]}</div>
                 <div className="absolute bottom-3 left-3 right-3">
-                  <div className="flex items-center gap-1 text-white/65 text-xs mb-0.5"><MapPin className="w-3 h-3" />{p.location}</div>
-                  <h3 className="text-white font-bold text-base leading-snug">{p.title}</h3>
+                   <div className="flex items-center gap-1 text-white/65 text-xs mb-0.5"><MapPin className="w-3 h-3" />{p.location[language]}</div>
+                   <h3 className="text-white font-bold text-base leading-snug">{p.title[language]}</h3>
                 </div>
               </div>
               <div className="p-5">
-                <p className="text-slate-500 text-sm leading-relaxed mb-3 line-clamp-2">{p.desc}</p>
+                <p className="text-slate-500 text-sm leading-relaxed mb-3 line-clamp-2">{p.desc[language]}</p>
                 <div className="flex items-center justify-between">
-                  <span className="text-[11px] font-bold text-brand-400 uppercase tracking-wider">{p.model}</span>
+                  <span className="text-[11px] font-bold text-brand-400 uppercase tracking-wider">{p.model[language]}</span>
                   <ChevronRight className="w-4 h-4 text-brand-400 group-hover:text-brand-600 transition-colors" />
                 </div>
               </div>

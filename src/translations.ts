@@ -399,6 +399,27 @@ export const translations = {
         productGeneral: 'Sản phẩm VNSIGN',
       },
     },
+    project: {
+      detail: {
+        overview: 'Tổng quan dự án',
+        challenge: 'Thách thức',
+        solution: 'Giải pháp',
+        specs: 'Thông số triển khai',
+        result: 'Kết quả',
+        location: 'Địa điểm',
+        client: 'Khách hàng',
+        scale: 'Quy mô',
+        back: 'Quay lại dự án',
+        backToList: 'Quay lại danh sách dự án',
+        notFound: 'Dự án không tồn tại',
+        notFoundDesc: 'Xin lỗi, chúng tôi không tìm thấy thông tin dự án này hoặc đường dẫn đã thay đổi.',
+        ctaTitle: 'Sẵn sàng cho dự án <highlight>tiếp theo của bạn?</highlight>',
+        ctaSubtitle: 'Liên hệ với đội ngũ chuyên gia VNSIGN để nhận tư vấn giải pháp Digital Signage tối ưu nhất.',
+        ctaButton: 'Yêu cầu tư vấn',
+        viewMore: 'Xem thêm dự án',
+        featuredBadge: 'DỰ ÁN TIÊU BIỂU',
+      },
+    },
     footer: {
       cta: {
         badge: 'Sẵn sàng triển khai?',
@@ -1286,6 +1307,27 @@ export const translations = {
         productLED: 'LED Screen',
         productGeneral: 'VNSIGN Product',
       }
+    },
+    project: {
+      detail: {
+        overview: 'Project Overview',
+        challenge: 'Challenge',
+        solution: 'Solution',
+        specs: 'Implementation Specs',
+        result: 'Result',
+        location: 'Location',
+        client: 'Client',
+        scale: 'Scale',
+        back: 'Back to projects',
+        backToList: 'Back to project list',
+        notFound: 'Project Not Found',
+        notFoundDesc: 'Sorry, we could not find information about this project or the link has changed.',
+        ctaTitle: 'Ready for your <highlight>next project?</highlight>',
+        ctaSubtitle: 'Contact VNSIGN\'s expert team to receive the most optimal Digital Signage solution consultation.',
+        ctaButton: 'Request Consultation',
+        viewMore: 'View more projects',
+        featuredBadge: 'FEATURED PROJECT',
+      },
     },
     footer: {
       cta: {
