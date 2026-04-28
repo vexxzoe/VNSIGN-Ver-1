@@ -7,6 +7,7 @@ import {
   FileCheck2, Image, Layers
 } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useContactModal } from '../contexts/ModalContext';
 
 /* ─────────────────────────────────────────────
    REUSABLE COMPONENTS
@@ -51,6 +52,7 @@ const FeatureCard = ({ icon: Icon, title, desc, index, accentColor }: FeatureCar
  ───────────────────────────────────────────── */
 const FeaturesPage = () => {
   const { t } = useLanguage();
+  const { openContactModal } = useContactModal();
 
   const mgmtFeatures = [
     { icon: Shield, title: t.featuresPage.mgmt.items[0].title, desc: t.featuresPage.mgmt.items[0].desc },
@@ -166,12 +168,20 @@ const FeaturesPage = () => {
               transition={{ delay: 0.34, duration: 0.55 }}
               className="flex flex-col sm:flex-row justify-center gap-4 mb-14"
             >
-              <button className="inline-flex items-center justify-center gap-2 bg-accent-400 text-brand-950 px-8 py-3.5 rounded-full text-base font-black hover:bg-accent-500 hover:scale-105 transition-all shadow-xl shadow-accent-400/25 active:scale-95">
+              <button 
+                onClick={() => openContactModal(t.featuresPage.hero.btnTry)}
+                className="inline-flex items-center justify-center gap-2 bg-accent-400 text-brand-950 px-8 py-3.5 rounded-full text-base font-black hover:bg-accent-500 hover:scale-105 transition-all shadow-xl shadow-accent-400/25 active:scale-95"
+              >
                 {t.featuresPage.hero.btnTry}
               </button>
-              <button className="inline-flex items-center justify-center gap-2 border-2 border-white/70 text-white px-8 py-3.5 rounded-full text-base font-bold hover:bg-white/10 hover:border-white transition-all active:scale-95 backdrop-blur-sm">
+              <a 
+                href="https://www.tiktok.com/@vndctech"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 border-2 border-white/70 text-white px-8 py-3.5 rounded-full text-base font-bold hover:bg-white/10 hover:border-white transition-all active:scale-95 backdrop-blur-sm"
+              >
                 <Play className="w-4 h-4 fill-white" /> {t.featuresPage.hero.btnDemo}
-              </button>
+              </a>
             </motion.div>
 
             <motion.div
@@ -597,10 +607,16 @@ const FeaturesPage = () => {
               {t.featuresPage.cta.desc}
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4 mb-8">
-              <button className="bg-accent-400 text-brand-950 px-8 py-4 rounded-full font-black hover:bg-accent-500 transition-all text-lg shadow-xl shadow-accent-400/20 hover:scale-105 active:scale-95">
+              <button 
+                onClick={() => openContactModal(t.featuresPage.cta.btnStart)}
+                className="bg-accent-400 text-brand-950 px-8 py-4 rounded-full font-black hover:bg-accent-500 transition-all text-lg shadow-xl shadow-accent-400/20 hover:scale-105 active:scale-95"
+              >
                 {t.featuresPage.cta.btnStart}
               </button>
-              <button className="bg-white/10 text-white border border-white/20 px-8 py-4 rounded-full font-bold hover:bg-white/20 transition-all text-lg backdrop-blur hover:scale-105 active:scale-95">
+              <button 
+                onClick={() => openContactModal(t.featuresPage.cta.btnExpert)}
+                className="bg-white/10 text-white border border-white/20 px-8 py-4 rounded-full font-bold hover:bg-white/20 transition-all text-lg backdrop-blur hover:scale-105 active:scale-95"
+              >
                 {t.featuresPage.cta.btnExpert}
               </button>
             </div>
